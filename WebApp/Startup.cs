@@ -71,9 +71,12 @@ namespace WebApp
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
-            services.AddMediatR(typeof(TestConnectionCommandHandler));
+            //Add Mediator Assembly
+            services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());    
 
-            services.AddSingleton<WSCrystalPaymentsSvcSoapClient>(new WSCrystalPaymentsSvcSoapClient(WSCrystalPaymentsSvcSoapClient.EndpointConfiguration.WSCrystalPaymentsSvcSoap12));
+            //Add OmniPay Interface
+            var wS = new WSCrystalPaymentsSvcSoapClient(WSCrystalPaymentsSvcSoapClient.EndpointConfiguration.WSCrystalPaymentsSvcSoap12);
+            services.AddSingleton(wS);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

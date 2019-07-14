@@ -21,12 +21,12 @@ namespace Application.Modules.User
     }
 
     public class CheckUserExistsCommandHandler : IRequestHandler<CheckUserExistsCommand, CheckUserExistsCommandResponse>
-    {
-        private readonly WSCrystalPaymentsSvcSoapClient wsClient;
+    {        
+        private readonly WSCrystalPaymentsSvcSoapClient wS;
 
-        public CheckUserExistsCommandHandler(WSCrystalPaymentsSvcSoapClient wsClient)
-        {
-            this.wsClient = wsClient;
+        public CheckUserExistsCommandHandler(WSCrystalPaymentsSvcSoapClient wS)
+        {            
+            this.wS = wS;
         }
 
         public Task<CheckUserExistsCommandResponse> Handle(CheckUserExistsCommand request, CancellationToken cancellationToken)
@@ -34,20 +34,20 @@ namespace Application.Modules.User
             var response = new CheckUserExistsCommandResponse();
             var hMACHelper = new HMACHelper("checkuserexits");
 
-            hMACHelper.AddProperty("puserid", request.UserId);
-
             try
             {
-                var result = wsClient.CheckUserExistsAsync(
-                    new CMsgSecurity
-                    {
-                        MessageFormat = MsgFormat.FORMAT_1,
-                        MessageHMAC = hMACHelper.ToString(),
-                        TranDateTime = hMACHelper.GetTranDateTime(),
-                        MobileUUID = hMACHelper.GetMobileUUID()
-                    },
-                    request.UserId
-                ).Result;
+                hMACHelper.AddProperty("puserid", request.UserId);
+
+                var cMsgSecurity = new CMsgSecurity
+                {
+                    MessageFormat = MsgFormat.FORMAT_1,
+                    MessageHMAC = hMACHelper.ToString(),
+                    TranDateTime = hMACHelper.GetTranDateTime(),
+                    MobileUUID = hMACHelper.GetMobileUUID()
+                };
+
+                var result = wS.CheckUserExistsAsync(cMsgSecurity,request.UserId
+                    ).Result;
 
                 response.Success = result.Body.CheckUserExistsResult;
             }

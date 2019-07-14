@@ -21,11 +21,11 @@ namespace Application.Modules.Test
 
     public class TestConnectionCommandHandler : IRequestHandler<TestConnectionCommand, TestConnectionCommandResponse>
     {
-        private readonly WSCrystalPaymentsSvcSoapClient ws;
+        private readonly WSCrystalPaymentsSvcSoapClient wS;
 
-        public TestConnectionCommandHandler(WSCrystalPaymentsSvcSoapClient ws)
+        public TestConnectionCommandHandler(WSCrystalPaymentsSvcSoapClient wS)
         {
-            this.ws = ws;
+            this.wS = wS;
         }
 
         public Task<TestConnectionCommandResponse> Handle(TestConnectionCommand request, CancellationToken cancellationToken)
@@ -33,7 +33,7 @@ namespace Application.Modules.Test
             var response = new TestConnectionCommandResponse();
             try
             {
-                var result = ws.TestConnectionAsync(request.EchoTest).Result;
+                var result = wS.TestConnectionAsync(request.EchoTest).Result;
                 response.Result = result.Body.TestConnectionResult;
             }
             catch (Exception ex)
