@@ -106,6 +106,13 @@ namespace Application.Modules.User
 
             try
             {
+                ///TODO: Prepare HMAC Statement
+                hMACHelper.AddProperty("puserid", request.UserId);
+                hMACHelper.AddProperty("plastname", request.LastName);
+                hMACHelper.AddProperty("firstname", request.FirstName);
+                
+
+                //Prepare Security Object
                 CMsgSecurity cMsgSecurity = new CMsgSecurity
                 {
                     MessageFormat = MsgFormat.FORMAT_1,
@@ -114,6 +121,7 @@ namespace Application.Modules.User
                     TranDateTime = hMACHelper.GetTranDateTime()
                 };
 
+                //Prepare AddresssInfo
                 CAddressInfo[] cAddressInfos = new CAddressInfo[]
                 {
                     new CAddressInfo
@@ -128,12 +136,12 @@ namespace Application.Modules.User
                     }
                 };
 
-                //Optional
+                //Prepare Social Media Information (Optional)
                 CSocialMedia[] cSocialMedias = new CSocialMedia[]
                 {
                 };
 
-                ///TODO: Add Image in
+                ///TODO: Required to have upload image
                 CCardholderIDInfo[] cCardholderIDInfos = new CCardholderIDInfo[]
                 {
                     new CCardholderIDInfo
@@ -145,6 +153,7 @@ namespace Application.Modules.User
                     }
                 };
 
+                ///TODO: Required further clarifications
                 CAuditHistory cAuditHistory = new CAuditHistory
                 {
                 };

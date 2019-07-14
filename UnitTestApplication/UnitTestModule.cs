@@ -47,7 +47,6 @@ namespace UnitTestApplication
 
         }
 
-
         [TestMethod]
         public async Task TestRegisterNewUserCommandAsync()
         {

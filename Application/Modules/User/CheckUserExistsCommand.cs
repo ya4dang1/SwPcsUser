@@ -46,13 +46,12 @@ namespace Application.Modules.User
                     MobileUUID = hMACHelper.GetMobileUUID()
                 };
 
-                var result = wS.CheckUserExistsAsync(cMsgSecurity,request.UserId
-                    ).Result;
-
+                var result = wS.CheckUserExistsAsync(cMsgSecurity,request.UserId).Result;
                 response.Success = result.Body.CheckUserExistsResult;
             }
             catch(Exception ex)
             {
+                response.Success = false;
                 response.AddError(ex);
             }
 

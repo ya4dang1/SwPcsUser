@@ -38,7 +38,7 @@ namespace Core.Helper
         }
         public string GetMethod()
         {
-            return method.ToLower();
+            return method.ToUpper();
         }
         public string GetTranDateTime()
         {
@@ -47,7 +47,7 @@ namespace Core.Helper
 
         public string GetMobileUUID()
         {
-            return MobileUUID.ToString();
+            return MobileUUID.ToString().ToUpper();
         }      
 
         public string GetDateTimeString(DateTime dateTime)
@@ -72,7 +72,7 @@ namespace Core.Helper
                 }
                 else
                 {
-                    result.Append($"&{property.Key}={property.Value.ToString()}");
+                    result.Append($"&{property.Key}={property.Value.ToString().ToUpper()}");
                 }
             }
 
