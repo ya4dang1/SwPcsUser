@@ -1,0 +1,22 @@
+﻿@page
+@model WebApp.Pages.Test.TestConnectionModel
+@{
+    ViewData["Title"] = "TestConnection";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>TestConnection</h1>
+<div asp-validation-summary="All" class="text-danger"></div>
+<div>
+    <form method="post">
+        <label asp-for="Input.TestEcho"></label>
+        <input asp-for="Input.TestEcho" />
+        <input type="submit" />
+        @if (Model.Input.Result != "")
+        {
+            <a>Echo: @Model.Input.Result</a>
+        }
+    </form>
+</div>
+
+
