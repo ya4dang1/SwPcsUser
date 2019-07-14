@@ -37,7 +37,7 @@ namespace Application.Modules.Test
                 response.Result = result.Body.TestConnectionResult;
             }
             catch (Exception ex)
-            {
+            {   
                 response.AddError(ex);
             }            
 

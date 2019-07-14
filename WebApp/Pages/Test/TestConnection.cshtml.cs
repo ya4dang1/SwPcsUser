@@ -13,10 +13,16 @@ namespace WebApp.Pages.Test
     public class TestConnectionModel : PageModel
     {
         private readonly IMediator mediator;
+        private readonly IMapper mapper;
 
         public TestConnectionModel(IMediator mediator)
         {
-            this.mediator = mediator;           
+            this.mediator = mediator;
+            var mapperConfig = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<InputModel, TestConnectionCommand>();
+            });
+            mapper = mapperConfig.CreateMapper();
         }
 
         [BindProperty]
@@ -35,15 +41,11 @@ namespace WebApp.Pages.Test
 
         public async Task<IActionResult> OnPostAsync()
         {
-            ///NOTE:For massive fields, use AutoMapper to map the variables
+            ///NOTE: For Simple fields
             //var testConnectionCommand = new TestConnectionCommand { EchoTest = Input.EchoTest };
-            var mapperConfig = new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<InputModel,TestConnectionCommand>();
-            });
-            var mapper = mapperConfig.CreateMapper();
-            var testConnectionCommand = mapper.Map<TestConnectionCommand>(Input);
 
+            ///NOTE:For massive fields, use AutoMapper to map the variables
+            var testConnectionCommand = mapper.Map<TestConnectionCommand>(Input);
             var result = await mediator.Send(testConnectionCommand);
 
             if (result.IsError)
