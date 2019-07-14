@@ -64,18 +64,23 @@ namespace WebApp
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.AddMvc()              
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            //Localization
             services.AddMvc()
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
-                .AddDataAnnotationsLocalization()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);            
+                .AddDataAnnotationsLocalization();
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
-            //Add Mediator Assembly
-            services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());    
+            //Mediator
+            services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
 
-            //Add OmniPay Interface
-            var wS = new WSCrystalPaymentsSvcSoapClient(WSCrystalPaymentsSvcSoapClient.EndpointConfiguration.WSCrystalPaymentsSvcSoap12);
+            //OmniPay Webservice
+            var wS = new WSCrystalPaymentsSvcSoapClient(WSCrystalPaymentsSvcSoapClient.EndpointConfiguration.WSCrystalPaymentsSvcSoap12,
+                Configuration.GetValue("OmniPayWebService", "http://beta-wscrystalpaymentsvc.omnipay.asia")
+            );             
             services.AddSingleton(wS);
         }
 
