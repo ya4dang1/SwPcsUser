@@ -1,0 +1,33 @@
+<!-- Button trigger modal -->
+<button type="button" id="ModalBtn" class="btn btn-primary d-none" data-toggle="modal" data-target="#Modal">
+</button>
+
+<!-- Modal -->
+<div class="modal modal-info fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id="ModalBody" class="modal-body"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    $('table.table').on('click', 'td.modal-content-col', function () {
+      var modalTitle = $('span', this).attr('rel');
+      var modalBody = $('span', this).html();
+      $('#ModalLabel').html(modalTitle);
+      $('#ModalBody').html(modalBody);
+      $('#ModalBtn').trigger('click');
+    });
+  });
+</script>
