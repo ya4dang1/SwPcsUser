@@ -32,18 +32,19 @@ namespace Application.Modules.User
         public Task<CheckUserExistsCommandResponse> Handle(CheckUserExistsCommand request, CancellationToken cancellationToken)
         {
             var response = new CheckUserExistsCommandResponse();
-            var hMACHelper = new HMACHelper("checkuserexits");
+            var hmac = new HMACHelper("checkuserexits");
+            
 
             try
             {
-                hMACHelper.AddProperty("puserid", request.UserId);
+                hmac.AddProperty("puserid", request.UserId);
 
                 var cMsgSecurity = new CMsgSecurity
                 {
                     MessageFormat = MsgFormat.FORMAT_1,
-                    MessageHMAC = hMACHelper.ToString(),
-                    TranDateTime = hMACHelper.GetTranDateTime(),
-                    MobileUUID = hMACHelper.GetMobileUUID()
+                    MessageHMAC = hmac.ToString(),
+                    TranDateTime = hmac.GetTranDateTime(),
+                    MobileUUID = hmac.GetMobileUUID()
                 };
 
                 var result = wS.CheckUserExistsAsync(cMsgSecurity,request.UserId).Result;

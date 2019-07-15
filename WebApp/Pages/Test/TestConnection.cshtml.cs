@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Application.Modules.Test;
@@ -18,6 +19,7 @@ namespace WebApp.Pages.Test
         public TestConnectionModel(IMediator mediator)
         {
             this.mediator = mediator;
+
             var mapperConfig = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<InputModel, TestConnectionCommand>();
@@ -30,6 +32,7 @@ namespace WebApp.Pages.Test
 
         public class InputModel
         {
+            [Required]
             public string EchoTest { get; set; }
             public string Result { get; set; }
         }
@@ -41,6 +44,9 @@ namespace WebApp.Pages.Test
 
         public async Task<IActionResult> OnPostAsync()
         {
+            if (!ModelState.IsValid)
+                return Page();
+
             ///NOTE: For Simple fields
             //var testConnectionCommand = new TestConnectionCommand { EchoTest = Input.EchoTest };
 

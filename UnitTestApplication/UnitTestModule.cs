@@ -2,6 +2,7 @@ using Application.Modules.Test;
 using Application.Modules.User;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OmniPay;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -41,10 +42,17 @@ namespace UnitTestApplication
                     },
                     token
                 );
-           
-            Assert.IsFalse(result.Success);
-            Assert.IsFalse(result.IsError);
 
+                      
+            Assert.IsFalse(result.Success);
+            Assert.IsTrue(result.IsError);
+            if (result.IsError)
+            {
+                foreach (var error in result.Errors)
+                {
+                    Debug.WriteLine(error);
+                }
+            }
         }
 
         [TestMethod]

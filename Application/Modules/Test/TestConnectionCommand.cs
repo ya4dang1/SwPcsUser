@@ -6,11 +6,12 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace Application.Modules.Test
 {
     public class TestConnectionCommand: IRequest<TestConnectionCommandResponse>
-    {
+    {       
         public string EchoTest { get; set; }
     }
 
@@ -29,7 +30,7 @@ namespace Application.Modules.Test
         }
 
         public Task<TestConnectionCommandResponse> Handle(TestConnectionCommand request, CancellationToken cancellationToken)
-        {
+        {   
             var response = new TestConnectionCommandResponse();
             try
             {
