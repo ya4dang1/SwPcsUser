@@ -13,6 +13,10 @@
   display: none;
 }
 
+.header-fixed .app-body {
+  margin-top: 0;
+}
+
 .card-header h4 {
   margin-bottom: 0;
   line-height: 1.7em;
