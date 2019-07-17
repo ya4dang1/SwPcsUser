@@ -6,14 +6,14 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.Modules.User
+namespace Application.Features.User
 {
-    public class ChangePasswordCommand: IRequest<ChangePasswordCommandResponse>
+    public class ChangePasswordCommand : IRequest<ChangePasswordCommandResponse>
     {
 
     }
 
-    public class ChangePasswordCommandResponse: BaseResponse
+    public class ChangePasswordCommandResponse : BaseResponse
     {
     }
 

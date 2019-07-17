@@ -6,13 +6,13 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.Modules.User
+namespace Application.Features.User
 {
-    public class IsFirstTimeLoginCommand: IRequest<IsFirstTimeLoginCommandResponse>
+    public class IsFirstTimeLoginCommand : IRequest<IsFirstTimeLoginCommandResponse>
     {
     }
 
-    public class IsFirstTimeLoginCommandResponse: BaseResponse
+    public class IsFirstTimeLoginCommandResponse : BaseResponse
     {
     }
 

@@ -6,13 +6,13 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.Modules.Card
+namespace Application.Features.Card
 {
-    public class GetCardInformationQuery: IRequest<GetCardInformationQueryResponse>
+    public class GetCardInformationQuery : IRequest<GetCardInformationQueryResponse>
     {
     }
 
-    public class GetCardInformationQueryResponse: BaseResponse
+    public class GetCardInformationQueryResponse : BaseResponse
     {
     }
 

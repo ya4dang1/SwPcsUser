@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using Application.Modules.Test;
+using Application.Features.Test;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

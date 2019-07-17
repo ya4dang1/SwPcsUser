@@ -1,5 +1,5 @@
-using Application.Modules.Test;
-using Application.Modules.User;
+using Application.Features.Test;
+using Application.Features.User;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OmniPay;
 using System.Diagnostics;

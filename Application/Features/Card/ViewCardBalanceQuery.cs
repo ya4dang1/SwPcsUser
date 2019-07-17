@@ -6,13 +6,13 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.Modules.Card
+namespace Application.Features.Card
 {
-    public class ViewCardBalanceQuery: IRequest<ViewCardBalanceQueryResponse>
+    public class ViewCardBalanceQuery : IRequest<ViewCardBalanceQueryResponse>
     {
     }
 
-    public class ViewCardBalanceQueryResponse: BaseResponse
+    public class ViewCardBalanceQueryResponse : BaseResponse
     {
     }
 

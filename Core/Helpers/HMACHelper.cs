@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Core.Helper
+namespace Core.Helpers
 {
     public class HMACHelper
     {
@@ -12,7 +12,7 @@ namespace Core.Helper
         public Guid MobileUUID { get; private set; }
         public DateTime TranDateTime { get; private set; }
 
-        public Dictionary<string,object> Properties { get; private set; }
+        public Dictionary<string, object> Properties { get; private set; }
 
         public HMACHelper(string method)
         {
@@ -48,7 +48,7 @@ namespace Core.Helper
         public string GetMobileUUID()
         {
             return MobileUUID.ToString().ToUpper();
-        }      
+        }
 
         public string GetDateTimeString(DateTime dateTime)
         {
@@ -66,7 +66,7 @@ namespace Core.Helper
 
             foreach (var property in Properties)
             {
-                if (property.Value.GetType() == typeof(System.DateTime))
+                if (property.Value.GetType() == typeof(DateTime))
                 {
                     result.Append($"&{property.Key}={GetDateTimeString((DateTime)property.Value)}");
                 }

@@ -19,9 +19,6 @@ using System.Globalization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Localization;
 
-using Application.Modules.Test;
-using OmniPay;
-
 namespace WebApp
 {
     public class Startup
@@ -78,10 +75,10 @@ namespace WebApp
             services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
 
             //OmniPay Webservice
-            var wS = new WSCrystalPaymentsSvcSoapClient(WSCrystalPaymentsSvcSoapClient.EndpointConfiguration.WSCrystalPaymentsSvcSoap12,
-                Configuration.GetValue("OmniPayWebService", "http://beta-wscrystalpaymentsvc.omnipay.asia")
-            );             
-            services.AddSingleton(wS);
+            //var wS = new WSCrystalPaymentsSvcSoapClient(WSCrystalPaymentsSvcSoapClient.EndpointConfiguration.WSCrystalPaymentsSvcSoap12,
+            //    Configuration.GetValue("OmniPayWebService", "http://beta-wscrystalpaymentsvc.omnipay.asia")
+            //);             
+            //services.AddSingleton(wS);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

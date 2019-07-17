@@ -6,13 +6,13 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.Modules.User
+namespace Application.Features.User
 {
-    public class LogoffUserCommand:  IRequest<LogoffUserCommandResponse>
+    public class LogoffUserCommand : IRequest<LogoffUserCommandResponse>
     {
     }
 
-    public class LogoffUserCommandResponse: BaseResponse
+    public class LogoffUserCommandResponse : BaseResponse
     {
     }
 
