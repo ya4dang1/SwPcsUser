@@ -1,28 +1,34 @@
 ﻿@page
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Options
+
+@inject IViewLocalizer Localizer
+
 @model LoginModel
 
 @{
-  ViewData["Title"] = "Log in";
-  Layout = "~/Pages/Shared/_BlankLayout.cshtml";
+    ViewData["Title"] = "Log in";
+    Layout = "~/Pages/Shared/_BlankLayout.cshtml";
 }
 
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-8">
+    <div class="col-md-10">
       <div class="card-group">
         <div class="card p-4">
           <div class="card-body">
             <div class="float-right"><partial name="_SelectLanguagePartial" /></div>
             <form id="account" method="post">
-              <h1>Login</h1>
-              <p class="text-muted">Sign In to your account</p>
+              <h1>@Localizer["Login"]</h1>
+              <p class="text-muted">@Localizer["Sign In to your account"]</p>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text">
                     <i class="icon-envelope"></i>
                   </span>
                 </div>
-                <input asp-for="Input.UserName" class="form-control" placeholder="User Name" />
+                <input asp-for="Input.UserName" class="form-control" placeholder="@Localizer["User Name"]" />
               </div>
               <span asp-validation-for="Input.UserName" class="text-danger"></span>
               <div class="input-group mt-3">
@@ -31,10 +37,10 @@
                     <i class="icon-lock"></i>
                   </span>
                 </div>
-                <input asp-for="Input.Password" class="form-control" placeholder="Password" />
+                <input asp-for="Input.Password" class="form-control" placeholder="@Localizer["Password"]" />
               </div>
               <span asp-validation-for="Input.Password" class="text-danger"></span>
-              <div class="form-group mt-2">
+              <div class="form-group mt-2 d-none">
                 <div class="checkbox">
                   <label asp-for="Input.RememberMe">
                     <input asp-for="Input.RememberMe" />
@@ -42,13 +48,13 @@
                   </label>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-4">
-                  <button class="btn btn-primary px-4" type="submit">Login</button>
-                </div>
-                <div class="col-8 text-right">
-                  <a class="btn btn-link p-0" id="forgot-password" asp-page="./ForgotPassword">Forgot password?</a> <br />
-                  <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+              <div class="row mt-4">
+                <div class="col-md-5 text-center text-md-left">
+                  <button class="btn btn-primary px-4" type="submit">@Localizer["Submit"]</button>
+</div>
+                <div class="col-md-7 text-md-right text-center mt-4 mt-md-0">
+                  <a class="btn btn-link p-0" id="forgot-password" asp-page="./ForgotPassword">@Localizer["Forgot password"]</a> <br />
+                  <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">@Localizer["Register as a new user"]</a>
                 </div>
               </div>
             </form>
@@ -58,9 +64,9 @@
           <div class="card-body text-center d-flex">
             <div class="m-auto">
               <h1>Swiftwire</h1>
-              <h4>Cobrand Card System</h4>
+              <h4>@Localizer["Cobrand Card System"]</h4>
               <p></p>
-              <p>Personal Cards Management System</p>
+              <p>@Localizer["Personal Cards Management System"]</p>
             </div>
           </div>
         </div>

@@ -1,60 +1,86 @@
 ﻿@page
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Options
+
+@inject IViewLocalizer Localizer
+
 @model RegisterModel
 @{
   ViewData["Title"] = "Register User";
+  Layout = "~/Pages/Shared/_BlankLayout.cshtml";
 }
 
-<div class="card card-sm">
-  <div class="card-header">
-    <h4>
-      <strong>Register</strong>
-      <small>User</small>
-    </h4>
-  </div>
-  <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-    <div class="card-body">
-      <div class="col-md-8 offset-md-2">
-        <div class="text-danger d-none validation-summary-valid" data-valmsg-summary="true">
-          <ul>
-            <li class="d-none"></li>
-          </ul>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="card-group">
+        <div class="card p-4">
+          <div class="card-body">
+            <div class="float-right"><partial name="_SelectLanguagePartial" /></div>
+            <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+              <h1>@Localizer["Register"]</h1>
+              <p class="text-muted"></p>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="icon-envelope"></i>
+                  </span>
+                </div>
+                <input asp-for="Input.UserName" class="form-control" placeholder="@Localizer["User Name"]" />
+              </div>
+              <span asp-validation-for="Input.UserName" class="text-danger"></span>
+              <div class="input-group mt-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="icon-user"></i>
+                  </span>
+                </div>
+                <input asp-for="Input.Email" class="form-control" placeholder="@Localizer["Email"]" />
+              </div>
+              <span asp-validation-for="Input.Email" class="text-danger"></span>
+              <div class="input-group mt-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="icon-lock"></i>
+                  </span>
+                </div>
+                <input asp-for="Input.Password" class="form-control" placeholder="@Localizer["Password"]" />
+              </div>
+              <span asp-validation-for="Input.Password" class="text-danger"></span>
+              <div class="input-group mt-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="icon-lock"></i>
+                  </span>
+                </div>
+                <input asp-for="Input.ConfirmPassword" class="form-control" placeholder="@Localizer["Confirm Password"]" />
+              </div>
+              <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+              <div class="row mt-4">
+                <div class="col-md-5 text-center text-md-left">
+                  <button class="btn btn-primary px-4" type="submit">@Localizer["Submit"]</button>
+                </div>
+                <div class="col-md-7 text-md-right text-center mt-4 mt-md-0">
+                  <a class="btn btn-link p-0" asp-page="./Login">@Localizer["Sign In to your account"]</a> <br />
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
-        <div class="row">
-          <div class="form-group col-md-6">
-            <label asp-for="Input.UserName"></label>
-            <input asp-for="Input.UserName" class="form-control" />
-            <span asp-validation-for="Input.UserName" class="text-danger"></span>
-          </div>
-          <div class="form-group col-md-6">
-            <label asp-for="Input.Email"></label>
-            <input asp-for="Input.Email" class="form-control" />
-            <span asp-validation-for="Input.Email" class="text-danger"></span>
-          </div>
-          <div class="form-group col-md-6">
-            <label asp-for="Input.Password"></label>
-            <input asp-for="Input.Password" class="form-control" />
-            <span asp-validation-for="Input.Password" class="text-danger"></span>
-          </div>
-          <div class="form-group col-md-6">
-            <label asp-for="Input.ConfirmPassword"></label>
-            <input asp-for="Input.ConfirmPassword" class="form-control" />
-            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+        <div class="card text-white bg-primary py-5 d-md-down-none" style="width: 44%">
+          <div class="card-body text-center d-flex">
+            <div class="m-auto">
+              <h1>Swiftwire</h1>
+              <h4>@Localizer["Cobrand Card System"]</h4>
+              <p></p>
+              <p>@Localizer["Personal Cards Management System"]</p>
+            </div>
           </div>
         </div>
-      </div><!-- /.col -->
-    </div>
-    <div class="card-footer">
-      <div class="form-group mb-0">
-        <a class="btn btn-secondary d-none" href="">
-          <i class="fa fa-caret-left"></i>
-          Back
-        </a>
-        <button type="submit" value="Create" class="btn btn-primary">
-          <i class="far fa-dot-circle"></i> Submit
-        </button>
       </div>
     </div>
-  </form>
+  </div>
 </div>
 
 @section Scripts {

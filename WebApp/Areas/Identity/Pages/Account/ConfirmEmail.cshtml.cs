@@ -7,11 +7,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using WebApp.Pages;
 
 namespace WebApp.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
-    public class ConfirmEmailModel : PageModel
+    public class ConfirmEmailModel : PageModelBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
 
