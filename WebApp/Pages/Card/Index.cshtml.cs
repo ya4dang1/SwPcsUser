@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using Application.Modules.Card;
-using Application.Modules.User;
+using Application.Features.Card;
+using Application.Features.User;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -31,7 +31,7 @@ namespace WebApp.Pages.Card
         [BindProperty]
         public InputModel Input { get; set; }
 
-        public class InputModel : GetCardInformationQuery
+        public class InputModel
         {
             public string Result { get; set; }
         }
@@ -60,7 +60,7 @@ namespace WebApp.Pages.Card
 
             if (ModelState.IsValid)
             {
-                Input.Result = result.Result;
+                // Do something
             }
 
             return Page();
