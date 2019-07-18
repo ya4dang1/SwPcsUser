@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Core.Helper;
+using Newtonsoft.Json;
 
 namespace Application.Modules.User
 {
@@ -26,6 +27,8 @@ namespace Application.Modules.User
         public string MiddleName { get; set; }
 
         [Required]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd'/'MM'/'yy}")]
+        [JsonConverter(typeof(DateTime), "dd'/'MM'/'yy")]
         public DateTime Birthday { get; set; }
 
         [Required]
@@ -74,9 +77,13 @@ namespace Application.Modules.User
         public string IDType { get; set; }
 
         [Required]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd'/'MM'/'yyyy}")]
+        [JsonConverter(typeof(DateTime), "dd'/'MM'/'yyyy")]
         public DateTime IDIssuanceDate { get; set; }
 
         [Required]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd'/'MM'/'yyyy}")]
+        [JsonConverter(typeof(DateTime), "dd'/'MM'/'yyyy")]
         public DateTime IDExpiryDate { get; set; }
 
         [Required]

@@ -8,6 +8,7 @@ using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json;
 
 namespace WebApp.Pages.User
 {
@@ -30,9 +31,80 @@ namespace WebApp.Pages.User
         [BindProperty]
         public InputModel Input { get; set; }
 
-        public class InputModel : RegisterNewUserCommand
+        public class InputModel
         {
             public string Result { get; set; }
+
+            [Required]
+            public string UserId { get; set; }
+
+            [Required]
+            public string LastName { get; set; }
+
+            [Required]
+            public string FirstName { get; set; }
+
+            [Required]
+            public string MiddleName { get; set; }
+
+            [Required]
+            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd'/'MM'/'yy}")]
+            [JsonConverter(typeof(DateTime), "dd'/'MM'/'yy")]
+            public DateTime Birthday { get; set; }
+
+            [Required]
+            public string AddressType { get; set; }
+
+            [Required]
+            public string Address { get; set; }
+
+            [Required]
+            public string City { get; set; }
+
+            public string Region { get; set; }
+
+            [Required]
+            public string Zip { get; set; }
+
+            [Required]
+            public bool IsDeliveryYN { get; set; }
+
+            [Required]
+            public string Mobile { get; set; }
+
+            [Required]
+            public string Email { get; set; }
+
+            [Required]
+            public bool CardRequestYN { get; set; }
+
+            public string CardPersoName { get; set; }
+
+            [Required]
+            public string FundSource { get; set; }
+
+            [Required]
+            public string Industry { get; set; }
+
+            [Required]
+            public string Subindustry { get; set; }
+
+            public string Comments { get; set; }
+
+            [Required]
+            public string IDValue { get; set; }
+
+            [Required]
+            public string IDType { get; set; }
+
+            [Required]
+            public DateTime IDIssuanceDate { get; set; }
+
+            [Required]
+            public DateTime IDExpiryDate { get; set; }
+
+            [Required]
+            public string DeliveryCountry { get; set; }
         }
 
         public void OnGet()

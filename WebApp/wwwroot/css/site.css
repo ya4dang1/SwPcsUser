@@ -180,9 +180,10 @@ table.table td > span,
 }
 
 /* For Demo */
-html:not([dir="rtl"]) .sidebar-lg-show.sidebar-fixed .main, html:not([dir="rtl"]) .sidebar-lg-show.sidebar-fixed .app-footer, html:not([dir="rtl"]) .sidebar-show.sidebar-fixed .main, html:not([dir="rtl"]) .sidebar-show.sidebar-fixed .app-footer{
+html:not([dir=rtl]) .sidebar-lg-show.sidebar-fixed .app-footer, html:not([dir=rtl]) .sidebar-lg-show.sidebar-fixed .main, html:not([dir=rtl]) .sidebar-show.sidebar-fixed .app-footer, html:not([dir=rtl]) .sidebar-show.sidebar-fixed .main{
   margin-left: 0;
 }
+
 
 a.no-underline:hover{
   text-decoration: none !important;

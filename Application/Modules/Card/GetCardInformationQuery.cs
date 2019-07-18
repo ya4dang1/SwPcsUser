@@ -14,6 +14,7 @@ namespace Application.Modules.Card
 
     public class GetCardInformationQueryResponse: BaseResponse
     {
+        public string Result { get; set; }
     }
 
     public class GetCardInformationQueryHandler : IRequestHandler<GetCardInformationQuery, GetCardInformationQueryResponse>
