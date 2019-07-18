@@ -1,4 +1,5 @@
 ﻿using Core.Libraries;
+using Core.Models;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using System;
@@ -23,9 +24,9 @@ namespace Application.Features.User
 
     public class ChangePasswordCommandHandler : IRequestHandler<ChangePasswordCommand, ChangePasswordCommandResponse>
     {
-        private readonly UserManager<IdentityUser> userManager;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public ChangePasswordCommandHandler(UserManager<IdentityUser> userManager)
+        public ChangePasswordCommandHandler(UserManager<ApplicationUser> userManager)
         {
             this.userManager = userManager;
         }

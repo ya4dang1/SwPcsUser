@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Core.Helpers;
 using Microsoft.AspNetCore.Identity;
+using Core.Models;
 
 namespace Application.Features.User
 {
@@ -22,9 +23,9 @@ namespace Application.Features.User
 
     public class CheckUserExistsCommandHandler : IRequestHandler<CheckUserExistsCommand, CheckUserExistsCommandResponse>
     {
-        private readonly UserManager<IdentityUser> userManager;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public CheckUserExistsCommandHandler(UserManager<IdentityUser> userManager)
+        public CheckUserExistsCommandHandler(UserManager<ApplicationUser> userManager)
         {
             this.userManager = userManager;
         }
