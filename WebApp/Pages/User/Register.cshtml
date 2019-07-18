@@ -1,18 +1,49 @@
 ﻿@page
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Options
+
+@inject IViewLocalizer Localizer
+
 @model WebApp.Pages.User.RegisterModel
 @{
   ViewData["Title"] = "Register User";
   Layout = "~/Pages/Shared/_BlankLayout.cshtml";
 }
 
-<form method="post" novalidate="novalidate">
-  <div class="row justify-content-center">
-    <div class="col-sm-10">
-      <div class="card mx-4">
-        <div class="card-body p-4">
-          <h1>Register</h1>
-          <p class="text-muted">Create your account</p>
+<div class="row justify-content-center">
+  <div class="col-sm-10">
+    <div class="card mx-4">
+      <div class="card-body p-4">
+        <div class="row">
+          <div class="col-6">
+            <h1>Register</h1>
+            <p class="text-muted">Create your account</p>
+          </div>
+          <div class="col-6">
+            <form asp-page-handler="SetLanguage" asp-route-returnUrl="/User/Register?handler=SetLanguage" method="post" class="form-horizontal" role="form">
+              <header class="app-header navbar" style="border-bottom: none">
+                <ul class="nav navbar-nav ml-auto">
+                  <li class="nav-item dropdown mr-2">
+                    <a class="nav-link nav-link" Title="" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="margin-right: 11px; cursor: pointer" id="culture-gb">
+                      <i class="flag-icon flag-icon-gb h5 mb-0" title="gb"></i> <span class="h5">English</span>
+                    </a>
+                    <a class="nav-link nav-link" Title="" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="margin-right: 11px; cursor: pointer" id="culture-jp">
+                      <i class="flag-icon flag-icon-jp h5 mb-0" title="jp"></i> <span class="h5">日本語</span>
+                    </a>
+                  </li>
+                </ul>
+              </header>
+            </form>
+          </div>
+        </div>
+        <form method="post" novalidate="novalidate">
           <div class="row">
+            <div class="form-group col-md-6">
+              <label asp-for="Input.Email" class="control-label"></label>
+              <input asp-for="Input.Email" class="form-control" />
+              <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
             <div class="form-group col-md-6">
               <label asp-for="Input.FirstName" class="control-label"></label>
               <input asp-for="Input.FirstName" class="form-control" />
@@ -33,24 +64,40 @@
               <input asp-for="Input.Birthday" class="form-control datepicker-date" value="@DateTime.Now.ToString("dd/MMM/yyyy")" type="datetime" />
               <span asp-validation-for="Input.Birthday" class="text-danger"></span>
             </div>
-
-
           </div>
-        </div>
-        <div class="card-footer p-4">
-          <div class="row">
-            <div class="col-12">
-              <button class="btn btn-block btn-success" type="submit">Create Account</button>
-            </div>
+        </form>
+      </div>
+      <div class="card-footer p-4">
+        <div class="row">
+          <div class="col-6">
+            <button class="btn btn-block btn-secondary" type="button"><i class="fa fa-caret-left"></i> Back</button>
+          </div>
+          <div class="col-6">
+            <button class="btn btn-block btn-success" type="submit">Create Account</button>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+<form asp-page-handler="SetLanguage" asp-route-returnUrl="/User/Register?handler=SetLanguage" method="post" class="form-horizontal d-none" role="form" id="form-culture">
+  <input type="hidden" value="ja-JP" name="culture" id="culture" />
 </form>
 
 <partial name="_ScriptsPartial" />
 <script>
-$(document).ready(function() {
-});
+  $(document).ready(function () {
+    $('#culture-gb').on('click', function () {
+      console.log('foo');
+      $('#culture').val('en-US');
+      $('#form-culture').submit();
+    });
+
+    $('#culture-jp').on('click', function () {
+      console.log('bar');
+      $('#culture').val('ja-JP');
+      $('#form-culture').submit();
+    })
+  });
 </script>

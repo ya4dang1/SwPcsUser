@@ -35,7 +35,7 @@ namespace WebApp.Pages.User
         {
             public string Result { get; set; }
 
-            [Required]
+            [Required]            
             public string UserId { get; set; }
 
             [Required]
@@ -73,6 +73,7 @@ namespace WebApp.Pages.User
             public string Mobile { get; set; }
 
             [Required]
+            [Display(Name = "Email")]
             public string Email { get; set; }
 
             [Required]
