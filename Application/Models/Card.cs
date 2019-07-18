@@ -1,4 +1,5 @@
 ﻿using Core.Libraries;
+using Core.Models;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace Application.Models
         public string UserId { get; set; }
 
         [Required]
-        public IdentityUser User { get; set; }
+        public ApplicationUser User { get; set; }
 
         [Required]
         public int CVV { get; set; }

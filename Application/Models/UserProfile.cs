@@ -15,7 +15,7 @@ namespace Application.Models
         public string UserId { get; set; }
 
         [Required]
-        public IdentityUser User { get; set; }
+        public ApplicationUser User { get; set; }
 
         [Required]
         public string LastName { get; set; }
