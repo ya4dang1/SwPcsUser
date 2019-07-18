@@ -26,7 +26,7 @@ namespace Core.Services
         public async Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
 
-            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(emailConfig.MailServer))
+            if (!emailConfig.Enable || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(emailConfig.MailServer))
                 return;
 
 
@@ -55,7 +55,7 @@ namespace Core.Services
                     await smtpClient.DisconnectAsync(true);
                 }
             }
-            catch (Exception) { }
+            catch (Exception ex) { throw ex; }
         }
     }
 }

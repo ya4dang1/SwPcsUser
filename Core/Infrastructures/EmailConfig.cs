@@ -6,6 +6,7 @@ namespace Core.Infrastructures
 {
     public class EmailConfig
     {
+        public bool Enable { get; set; }
         public string MailServer { get; set; }
         public int MailPort { get; set; }
         public string UserName { get; set; }
