@@ -1,0 +1,57 @@
+﻿@page
+@model WebApp.Pages.Card.IndexModel
+@{
+    ViewData["Title"] = "All Cards";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+      <div class="row">
+        <h4 class="col-md-12 mb-2">
+          <strong>All</strong>
+          <small>Cards</small>
+          <a asp-action="Create" class="btn btn-pill btn-primary float-right"><i class="fa fa-plus"></i></a>
+        </h4>
+      </div>
+    </div>
+    <div class="card-body">
+      <table data-order='[[ 0, "asc" ]]' class="table table-striped table-bordered table-responsive datatable">
+        <thead>
+          <tr>
+            <th>
+              Card Number
+            </th>
+            <th>
+              Expiry Date
+            </th>
+            <th class="text-center datatable-actions"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              12341234
+            </td>
+            <td>
+              19/2020
+            </td>
+            <td class="text-center text-nowrap">
+              <a title="Edit" class="btn btn-success">
+                <i class="fa fa-edit"></i>
+              </a>&nbsp;
+              <a title="Delete" class="btn btn-secondary">
+                <i class="fa fa-trash"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function () {});
+  </script>
+
+  <partial name="_ScriptsPartial" />

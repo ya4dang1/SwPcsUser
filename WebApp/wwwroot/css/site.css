@@ -1,32 +1,53 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+﻿main.main {
+  padding-top: 1.5rem;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+/* Nav links */
+.navMarginLeft {
+  margin-left: 10px;
+  opacity: 0.7;
 }
 
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+/* Hidden by default before loading */
+.main {
+  display: none;
 }
 
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+.header-fixed .app-body {
+  margin-top: 0;
+}
+
+.card-header h4 {
+  margin-bottom: 0;
+  line-height: 1.7em;
+}
+
+/* Validation */
+.validation-invalid {
+  font-size: 80%;
+  font-style: italic;
+}
+
+.text-nowrap {
+  white-space: nowrap
+}
+
+table[class*="table-responsive"] {
+  min-width: 100%;
+}
+
+.datatable td {
+  vertical-align: middle;
+}
+
+th.datatable-actions,
+td.datatable-actions {
+  width: 1% !important;
+}
+
+/* font awesome */
+.fa span {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 button.accept-policy {
@@ -34,23 +55,136 @@ button.accept-policy {
   line-height: inherit;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
+.layout {
+  padding: 0 10px 10px;
 }
 
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+.btn-save {
+  padding-left: 30px;
+  padding-right: 30px
 }
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  line-height: 60px; /* Vertically center the text there */
+
+/* Revive Bootstrap 3 button */
+.btn-default {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc
+}
+
+  .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active,
+  .open > .dropdown-toggle.btn-default {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad
+  }
+
+  .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default {
+    background-image: none
+  }
+
+  .btn-default.disabled, .btn-default[disabled], fieldset[disabled] .btn-default,
+  .btn-default.disabled:hover, .btn-default[disabled]:hover, fieldset[disabled] .btn-default:hover,
+  .btn-default.disabled:focus, .btn-default[disabled]:focus, fieldset[disabled] .btn-default:focus,
+  .btn-default.disabled:active, .btn-default[disabled]:active, fieldset[disabled] .btn-default:active,
+  .btn-default.disabled.active, .btn-default[disabled].active, fieldset[disabled] .btn-default.active {
+    background-color: #fff;
+    border-color: #ccc
+  }
+
+  .btn-default .badge {
+    color: #fff;
+    background-color: #333
+  }
+
+/* Disable button */
+.disabledbutton {
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.btn-group.btn-group-tab > .btn {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.card.validation.invalid-feedback {
+  font-size: inherit;
+}
+
+.card.validation .card-header {
+  color: #333;
+  background-color: #63c2de;
+}
+
+.card.validation .validation-body {
+  height: 280px;
+  overflow-x: hidden;
+  overflow-y: overlay;
+}
+
+.label-box h4 {
+  float: left;
+  margin-right: 10px;
+}
+
+.label-box h5 {
+  float: left;
+  border: 1px double #000;
+}
+
+  .label-box h5 input.form-control[readonly] {
+    background-color: #fff;
+    font-size: 1.2em;
+  }
+
+/* For table */
+table.table td.append-icon {
+  position: relative;
+  padding-right: 2.5rem;
+}
+
+  table.table td.append-icon a {
+    position: absolute;
+    right: 0;
+    top: .5rem;
+  }
+
+table.table td > span,
+#ModalBody {
+  white-space: pre-line;
+}
+
+#ModalBody {
+  max-height: 70vh;
+  overflow-y: overlay;
+}
+
+.text-ellipsis {
+  cursor: copy;
+  cursor: -webkit-zoom-in;
+}
+
+  .text-ellipsis > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5; /* number of lines to show */
+    line-height: 1.5em; /* fallback */
+    max-height: 7.5em; /* fallback */
+  }
+
+/* Fix for wizard */
+.wizard > .content > .body .dataTables_paginate ul {
+  list-style: none !important;
+}
+
+/* For Demo */
+html:not([dir=rtl]) .sidebar-lg-show.sidebar-fixed .app-footer, html:not([dir=rtl]) .sidebar-lg-show.sidebar-fixed .main, html:not([dir=rtl]) .sidebar-show.sidebar-fixed .app-footer, html:not([dir=rtl]) .sidebar-show.sidebar-fixed .main{
+  margin-left: 0;
+}
+
+
+a.no-underline:hover{
+  text-decoration: none !important;
 }
