@@ -29,6 +29,9 @@ namespace WebApp.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            public string UserName { get; set; }
+
+            [Required]
             [EmailAddress]
             public string Email { get; set; }
         }
@@ -37,8 +40,9 @@ namespace WebApp.Areas.Identity.Pages.Account
         {
             if (ModelState.IsValid)
             {
-                var user = await _userManager.FindByEmailAsync(Input.Email);
-                if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+                var user = await _userManager.FindByNameAsync(Input.UserName);
+
+                if (user == null || user.Email != Input.Email || !(await _userManager.IsEmailConfirmedAsync(user)))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
                     return RedirectToPage("./ForgotPasswordConfirmation");
