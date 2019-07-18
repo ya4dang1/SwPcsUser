@@ -32,15 +32,15 @@ namespace Application.Features.User
 
         public async Task<IsFirstTimeLoginCommandResponse> Handle(IsFirstTimeLoginCommand request, CancellationToken cancellationToken)
         {
-            var response = new IsFirstTimeLoginCommandResponse();
-            response.IsFirstTimeLogin = true;
+            var response = new IsFirstTimeLoginCommandResponse {  IsFirstTimeLogin = true};
+            
             var user = await dbContext.Users.FirstOrDefaultAsync(fd => fd.NormalizedUserName == request.UserName.ToUpper());
             if(user != null)
             {
                 var userProfile = dbContext.UserProfiles.FirstOrDefault(fd => fd.UserId == user.Id);
                 if(userProfile != null)
                 {
-                    response.IsFirstTimeLogin = userProfile.Status == UserStatus.InProgress;
+                    response.IsFirstTimeLogin = userProfile.Status == UserStatus.Pending;
                 }
             }
             else

@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 using Application.Features.User;
 using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
 
 namespace WebApp.Pages.User
-{
+{     
     public class RegisterModel : PageModelBase
     {
         private readonly IMediator mediator;

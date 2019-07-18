@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 using Application.Features.User;
 using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WebApp.Pages.Card
-{
+{  
     public class ChangePinModel : PageModelBase
     {
         private readonly IMediator mediator;

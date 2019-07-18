@@ -7,11 +7,13 @@ using Application.Features.Card;
 using Application.Features.User;
 using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WebApp.Pages.Card
 {
+    [Authorize(Policy = "IsApproved")]
     public class IndexModel : PageModelBase
     {
         private readonly IMediator mediator;

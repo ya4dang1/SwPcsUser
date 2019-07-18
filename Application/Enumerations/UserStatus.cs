@@ -6,7 +6,7 @@ namespace Application.Enumerations
 {
     public enum UserStatus
     {
-        InProgress = 0,
-        Completed = 100,
+        Pending = 0,
+        Approved = 100,
     }
 }

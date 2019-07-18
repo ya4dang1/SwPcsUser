@@ -70,7 +70,11 @@ namespace WebApp
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddMvc()              
+            services.AddMvc()
+                .AddRazorPagesOptions(options => {
+                    options.Conventions.AuthorizeFolder("/User");
+                    options.Conventions.AuthorizeFolder("/Card","IsApproved");                    
+                })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             //Localization
@@ -79,6 +83,10 @@ namespace WebApp
                 .AddDataAnnotationsLocalization();
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+            services.AddAuthorization(options => {
+                options.AddPolicy("IsApproved", policy => policy.RequireClaim("Approved"));
+            });
 
             //Mediator
             services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
