@@ -107,6 +107,11 @@ button.accept-policy {
   border-bottom-right-radius: 0;
 }
 
+.card.card-sm{
+  max-width: 1200px;
+  margin: auto;
+}
+
 .card.validation.invalid-feedback {
   font-size: inherit;
 }

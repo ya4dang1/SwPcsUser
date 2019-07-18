@@ -1,0 +1,25 @@
+﻿<form asp-page-handler="SetLanguage" asp-route-returnUrl="@Context.Request.Path?handler=SetLanguage" method="post" class="form-horizontal" role="form" id="form-culture">
+  <input type="hidden" value="ja-JP" name="culture" id="culture" />
+  <header class="" style="border-bottom: none">
+    <a class="no-underline text-black-50" href="#" role="button" style="margin-right: 9px; margin-bottom: 0; cursor: pointer" id="culture-gb">
+      <i class="flag-icon flag-icon-gb h6 mb-0" title="gb" style="border: 1px solid #808080"></i> <span class="h6">English</span>
+    </a><br />
+    <a class="no-underline text-black-50"  href="#" role="button" style="margin-right: 11px; cursor: pointer" id="culture-jp">
+      <i class="flag-icon flag-icon-jp h6 mb-0" title="jp" style="border: 1px solid #808080"></i> <span class="h6">日本語</span>
+      </a>
+  </header>
+</form>
+
+<script>
+  $(document).ready(function () {
+    $('#culture-gb').on('click', function () {
+      $('#culture').val('en-US');
+      $('#form-culture').submit();
+    });
+
+    $('#culture-jp').on('click', function () {
+      $('#culture').val('ja-JP');
+      $('#form-culture').submit();
+    })
+  });
+</script>
