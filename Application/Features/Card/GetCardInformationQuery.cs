@@ -18,7 +18,7 @@ namespace Application.Features.Card
 
     public class GetCardInformationQueryHandler : IRequestHandler<GetCardInformationQuery, GetCardInformationQueryResponse>
     {
-        public Task<GetCardInformationQueryResponse> Handle(GetCardInformationQuery request, CancellationToken cancellationToken)
+        public Task<GetCardInformationQueryResponse> Handle (GetCardInformationQuery request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

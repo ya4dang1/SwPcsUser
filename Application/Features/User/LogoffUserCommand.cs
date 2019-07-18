@@ -1,5 +1,6 @@
 ﻿using Core.Libraries;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,19 +9,23 @@ using System.Threading.Tasks;
 
 namespace Application.Features.User
 {
-    public class LogoffUserCommand : IRequest<LogoffUserCommandResponse>
+    public class LogoffUserCommand : IRequest<Unit>
     {
     }
 
-    public class LogoffUserCommandResponse : BaseResponse
+    public class LogoffUserCommandHandler : IRequestHandler<LogoffUserCommand, Unit>
     {
-    }
+        private readonly SignInManager<IdentityUser> signInManager;
 
-    public class LogoffUserCommandHandler : IRequestHandler<LogoffUserCommand, LogoffUserCommandResponse>
-    {
-        public Task<LogoffUserCommandResponse> Handle(LogoffUserCommand request, CancellationToken cancellationToken)
+        public LogoffUserCommandHandler(SignInManager<IdentityUser> signInManager)
         {
-            throw new NotImplementedException();
+            this.signInManager = signInManager;
+        }
+
+        public async Task<Unit> Handle(LogoffUserCommand request, CancellationToken cancellationToken)
+        {            
+            await signInManager.SignOutAsync();
+            return Unit.Value;
         }
     }
 }

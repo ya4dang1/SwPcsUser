@@ -1,4 +1,6 @@
-﻿using Core.Libraries;
+﻿using Application.Enumerations;
+using Core.Libraries;
+using Core.Models;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -9,9 +11,8 @@ namespace Application.Models
 {
     public class UserProfile : BaseModel
     {
-
         [Required]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         [Required]
         public IdentityUser User { get; set; }
@@ -24,63 +25,52 @@ namespace Application.Models
 
         [Required]
         public string MiddleName { get; set; }
-
-        [Required]
+        
         public DateTime Birthday { get; set; }
-
-        [Required]
+        
         public string AddressType { get; set; }
-
-        [Required]
+                
         public string Address { get; set; }
-
-        [Required]
+                
         public string City { get; set; }
 
         public string Region { get; set; }
-
-        [Required]
+                
         public string Zip { get; set; }
-
-        [Required]
+                
         public bool IsDeliveryYN { get; set; }
-
-        [Required]
+                
         public string Mobile { get; set; }
-
-        [Required]
+                
         public string Email { get; set; }
-
-        [Required]
+                
         public bool CardRequestYN { get; set; }
 
-        public string CardPersoName { get; set; }
-
-        [Required]
+        public string CardPersonName { get; set; }
+                
         public string FundSource { get; set; }
-
-        [Required]
+                
         public string Industry { get; set; }
-
-        [Required]
+                
         public string Subindustry { get; set; }
 
         public string Comments { get; set; }
-
-        [Required]
+                
         public string IDValue { get; set; }
-
-        [Required]
+                
         public string IDType { get; set; }
-
-        [Required]
+                
         public DateTime IDIssuanceDate { get; set; }
-
-        [Required]
+                
         public DateTime IDExpiryDate { get; set; }
 
-        [Required]
+        public Guid IDFileId { get; set; }
+
+        public FileLibrary IDFile { get; set; }
+                
         public string DeliveryCountry { get; set; }
+
+        public UserStatus Status { get; set; }
 
     }
 }

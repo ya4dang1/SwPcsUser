@@ -6,40 +6,34 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Core.Helpers;
+using Microsoft.AspNetCore.Identity;
 
 namespace Application.Features.User
 {
     public class CheckUserExistsCommand : IRequest<CheckUserExistsCommandResponse>
     {
-        public string UserId { get; set; }
+        public string UserName { get; set; }
     }
 
     public class CheckUserExistsCommandResponse : BaseResponse
     {
-        public bool Success { get; set; }
+        public bool Exists { get; set; }        
     }
 
     public class CheckUserExistsCommandHandler : IRequestHandler<CheckUserExistsCommand, CheckUserExistsCommandResponse>
-    {   
+    {
+        private readonly UserManager<IdentityUser> userManager;
 
-        public CheckUserExistsCommandHandler()
+        public CheckUserExistsCommandHandler(UserManager<IdentityUser> userManager)
         {
+            this.userManager = userManager;
         }
 
         public Task<CheckUserExistsCommandResponse> Handle(CheckUserExistsCommand request, CancellationToken cancellationToken)
         {
-            var response = new CheckUserExistsCommandResponse();           
-
-            try
-            {                
-                response.Success = true;
-            }
-            catch (Exception ex)
-            {
-                response.Success = false;
-                response.AddError(ex);
-            }
-
+            var response = new CheckUserExistsCommandResponse();
+            var user = this.userManager.FindByNameAsync(request.UserName);
+            response.Exists = user != null;
             return Task.FromResult(response);
         }
     }

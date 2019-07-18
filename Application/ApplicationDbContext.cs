@@ -1,4 +1,5 @@
 ﻿using Application.Models;
+using Core.Libraries;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace Application
 {
-    class ApplicationDbContext : IdentityDbContext
+    public partial class ApplicationDbContext : BaseDbContext
     {
 
         public DbSet<UserProfile> UserProfiles { get; set; }

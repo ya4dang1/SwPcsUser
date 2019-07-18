@@ -5,6 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20190718072629_InitialMigration.cs" />
+    <Compile Remove="Migrations\20190718072629_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20190718073222_InitialMigration.cs" />
+    <Compile Remove="Migrations\20190718073222_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20190718073535_InitialMigration.cs" />
+    <Compile Remove="Migrations\20190718073535_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20190718082557_InitialMigration.cs" />
+    <Compile Remove="Migrations\20190718082557_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20190718084028_InitialMigration.cs" />
+    <Compile Remove="Migrations\20190718084028_InitialMigration.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.2.0" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql.Design" Version="1.1.2" />

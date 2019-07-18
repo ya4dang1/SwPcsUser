@@ -1,5 +1,6 @@
 ﻿using Core.Libraries;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,29 +11,29 @@ namespace Application.Features.User
 {
     public class LoginUserCommand : IRequest<LoginUserCommandResponse>
     {
-        public string Username { get; set; }
+        public string UserName { get; set; }
         public string Password { get; set; }
     }
 
     public class LoginUserCommandResponse : BaseResponse
     {
-        public bool IsValid { get; set; }
+        public SignInResult Result { get; set; }
     }
 
     public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, LoginUserCommandResponse>
-    {   
+    {
+        private readonly SignInManager<IdentityUser> signInManager;
 
-        public LoginUserCommandHandler()
-        {   
+        public LoginUserCommandHandler(SignInManager<IdentityUser> signInManager)
+        {
+            this.signInManager = signInManager;
         }
 
-        public Task<LoginUserCommandResponse> Handle(LoginUserCommand request, CancellationToken cancellationToken)
+        public async Task<LoginUserCommandResponse> Handle(LoginUserCommand request, CancellationToken cancellationToken)
         {
-            LoginUserCommandResponse response = new LoginUserCommandResponse();
-
-            response.IsValid = true;
-
-            return Task.FromResult(response);
+            LoginUserCommandResponse response = new LoginUserCommandResponse();            
+            response.Result = await signInManager.PasswordSignInAsync(request.UserName, request.Password, false, false);
+            return response;
         }
     }
 }

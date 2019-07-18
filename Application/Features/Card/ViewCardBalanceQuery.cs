@@ -18,7 +18,7 @@ namespace Application.Features.Card
 
     public class ViewCardBalanceQueryHandler : IRequestHandler<ViewCardBalanceQuery, ViewCardBalanceQueryResponse>
     {
-        public Task<ViewCardBalanceQueryResponse> Handle(ViewCardBalanceQuery request, CancellationToken cancellationToken)
+        public Task<ViewCardBalanceQueryResponse> Handle (ViewCardBalanceQuery request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
