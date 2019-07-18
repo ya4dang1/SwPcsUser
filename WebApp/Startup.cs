@@ -18,6 +18,11 @@ using System.Globalization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Localization;
 using Application;
+using Core.Infrastructures;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Core.Services;
+using Application.Infrastructures;
+using Core.Models;
 
 namespace WebApp
 {
@@ -57,7 +62,7 @@ namespace WebApp
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<ApplicationUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
@@ -74,11 +79,18 @@ namespace WebApp
             //Mediator
             services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
 
-            //OmniPay Webservice
+            ///TODO:OmniPay Webservice
             //var wS = new WSCrystalPaymentsSvcSoapClient(WSCrystalPaymentsSvcSoapClient.EndpointConfiguration.WSCrystalPaymentsSvcSoap12,
             //    Configuration.GetValue("OmniPayWebService", "http://beta-wscrystalpaymentsvc.omnipay.asia")
             //);             
             //services.AddSingleton(wS);
+
+            //Email Configuration
+            services.Configure<EmailConfig>(Configuration.GetSection("EmailConfig"));
+            services.AddTransient<IEmailSender, EmailSender>();
+
+            //Reseller Configurations
+            services.Configure<ResellerConfig>(Configuration.GetSection("ResellerConfig"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

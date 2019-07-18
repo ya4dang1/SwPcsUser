@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Core.Libraries
 {
-    public abstract class BaseDbContext : IdentityDbContext
+    public abstract class BaseDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<AuditLog> AuditLogs { get; set; }
 
