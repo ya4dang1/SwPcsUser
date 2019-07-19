@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Application.Infrastructures;
 using Application.Enumerations;
+using System.IO;
 
 namespace WebApp.Areas.Identity.Pages.Account
 {
@@ -99,11 +100,10 @@ namespace WebApp.Areas.Identity.Pages.Account
 
                         var userProfile = await dbContext.UserProfiles.FirstOrDefaultAsync(fd => fd.User == user);
 
-                        if(userProfile == null || userProfile.Status == UserStatus.Pending)                        
+                        if(userProfile == null || userProfile.IsPending())                        
                             await userManager.AddClaimAsync(user, new System.Security.Claims.Claim("Approved", "false"));                        
                         else                     
-                            await userManager.AddClaimAsync(user, new System.Security.Claims.Claim("Approved", "true"));
-                      
+                            await userManager.AddClaimAsync(user, new System.Security.Claims.Claim("Approved", "true"));                      
 
                         return LocalRedirect(returnUrl);
                     }

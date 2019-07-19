@@ -25,5 +25,8 @@ namespace Application.Models
         [Required]
         public int PIN { get; set; }
 
+        [Required]
+        public DateTime ExpiredDate { get; set; }
+
     }
 }

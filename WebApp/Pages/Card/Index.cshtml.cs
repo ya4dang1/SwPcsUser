@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.Features.Card;
 using Application.Features.User;
+using Application.Models;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -24,8 +25,7 @@ namespace WebApp.Pages.Card
             this.mediator = mediator;
 
             var mapperConfig = new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<InputModel, GetCardInformationQuery>();
+            {               
             });
             mapper = mapperConfig.CreateMapper();
         }
@@ -35,37 +35,19 @@ namespace WebApp.Pages.Card
 
         public class InputModel
         {
-            public string Result { get; set; }
+            public List<UserCard> Cards { get; set; }
         }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
             Input = new InputModel();
-        }
+            var request = new GetCardsQuery();
+            var result = await mediator.Send(request);
 
-        public async Task<IActionResult> OnPostAsync()
-        {
-            if (!ModelState.IsValid)
-                return Page();
-
-            ///NOTE:For massive fields, use AutoMapper to map the variables
-            var getCardInformationQuery = mapper.Map<GetCardInformationQuery>(Input);
-            var result = await mediator.Send(getCardInformationQuery);
-
-            if (result.IsError)
+            if (!result.IsError)
             {
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError("", error);
-                }
+                Input.Cards = result.Cards;
             }
-
-            if (ModelState.IsValid)
-            {
-                // Do something
-            }
-
-            return Page();
         }
     }
 }

@@ -7,6 +7,7 @@ namespace Application.Infrastructures
     public class ResellerConfig
     {
         public string AppId { get; set; }
+        public string Name { get; set; }
         public List<string> HostNames { get; set; }
     }
 }

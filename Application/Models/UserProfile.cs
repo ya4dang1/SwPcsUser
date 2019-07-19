@@ -26,7 +26,7 @@ namespace Application.Models
         [Required]
         public string MiddleName { get; set; }
         
-        public DateTime Birthday { get; set; }
+        public DateTime? Birthday { get; set; }
         
         public string AddressType { get; set; }
                 
@@ -41,8 +41,6 @@ namespace Application.Models
         public bool IsDeliveryYN { get; set; }
                 
         public string Mobile { get; set; }
-                
-        public string Email { get; set; }
                 
         public bool CardRequestYN { get; set; }
 
@@ -60,17 +58,25 @@ namespace Application.Models
                 
         public string IDType { get; set; }
                 
-        public DateTime IDIssuanceDate { get; set; }
+        public DateTime? IDIssuanceDate { get; set; }
                 
-        public DateTime IDExpiryDate { get; set; }
+        public DateTime? IDExpiryDate { get; set; }
 
-        public Guid IDFileId { get; set; }
+        public Guid? IDFileId { get; set; }
 
-        public FileLibrary IDFile { get; set; }
+        public virtual FileLibrary IDFile { get; set; }
                 
         public string DeliveryCountry { get; set; }
 
         public UserStatus Status { get; set; }
+
+
+        public bool IsPending()
+        {
+            return !Birthday.HasValue || string.IsNullOrEmpty(AddressType) || string.IsNullOrEmpty(Address) || string.IsNullOrEmpty(Region) || string.IsNullOrEmpty(Zip) || 
+                string.IsNullOrEmpty(IDValue) ;
+            
+        }
 
     }
 }

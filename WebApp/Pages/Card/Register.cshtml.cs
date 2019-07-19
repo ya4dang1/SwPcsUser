@@ -21,10 +21,11 @@ namespace WebApp.Pages.Card
         {
             this.mediator = mediator;
 
-            var mapperConfig = new MapperConfiguration(cfg =>
+            var mapperConfig = new MapperConfiguration(config =>
             {
-                cfg.CreateMap<InputModel, GetCardInformationQuery>();
+                config.CreateMap<InputModel, RegisterCardCommand>();
             });
+
             mapper = mapperConfig.CreateMapper();
         }
 
@@ -33,7 +34,10 @@ namespace WebApp.Pages.Card
 
         public class InputModel
         {
-            public string Result { get; set; }
+            public string CardNumber { get; set; }
+            public int CVV { get; set; }
+            public int PIN { get; set; }
+            public DateTime ExpiredDate { get; set; }
         }
 
         public void OnGet()
@@ -43,24 +47,19 @@ namespace WebApp.Pages.Card
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-                return Page();
-
-            ///NOTE:For massive fields, use AutoMapper to map the variables
-            var getCardInformationQuery = mapper.Map<GetCardInformationQuery>(Input);
-            var result = await mediator.Send(getCardInformationQuery);
-
-            if (result.IsError)
+            if (ModelState.IsValid)
             {
+                var registerCardCommand = mapper.Map<RegisterCardCommand>(Input);
+                var result = await mediator.Send(registerCardCommand);
+                if (!result.IsError)
+                {
+                    return Redirect("/Card/");
+                }
+
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError("", error);
-                }
-            }
-
-            if (ModelState.IsValid)
-            {
-                // Do something
+                }                
             }
 
             return Page();

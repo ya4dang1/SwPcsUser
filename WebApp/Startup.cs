@@ -23,6 +23,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Core.Services;
 using Application.Infrastructures;
 using Core.Models;
+using Application.Services;
 
 namespace WebApp
 {
@@ -70,6 +71,11 @@ namespace WebApp
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            //Security Claim
+            services.AddAuthorization(options => {
+                options.AddPolicy("IsApproved", policy => policy.RequireClaim("Approved"));
+            });
+
             services.AddMvc()
                 .AddRazorPagesOptions(options => {
                     options.Conventions.AuthorizeFolder("/User");
@@ -82,11 +88,7 @@ namespace WebApp
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
                 .AddDataAnnotationsLocalization();
 
-            services.AddLocalization(options => options.ResourcesPath = "Resources");
-
-            services.AddAuthorization(options => {
-                options.AddPolicy("IsApproved", policy => policy.RequireClaim("Approved"));
-            });
+            services.AddLocalization(options => options.ResourcesPath = "Resources");           
 
             //Mediator
             services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
@@ -103,6 +105,9 @@ namespace WebApp
 
             //Reseller Configurations
             services.Configure<ResellerConfig>(Configuration.GetSection("ResellerConfig"));
+
+            //Login User
+            services.AddTransient<LoginUser>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
