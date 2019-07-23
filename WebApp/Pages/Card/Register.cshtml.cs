@@ -34,9 +34,16 @@ namespace WebApp.Pages.Card
 
         public class InputModel
         {
+            [Required]
             public string CardNumber { get; set; }
+
+            [Required]
             public int CVV { get; set; }
+
+            [Required]
             public int PIN { get; set; }
+
+            [Required]
             public DateTime ExpiredDate { get; set; }
         }
 
@@ -53,6 +60,7 @@ namespace WebApp.Pages.Card
                 var result = await mediator.Send(registerCardCommand);
                 if (!result.IsError)
                 {
+                    ///TODO: Add toast success
                     return Redirect("/Card/");
                 }
 

@@ -24,6 +24,7 @@ using Core.Services;
 using Application.Infrastructures;
 using Core.Models;
 using Application.Services;
+using EmyralSystems;
 
 namespace WebApp
 {
@@ -63,10 +64,15 @@ namespace WebApp
                 options.UseMySql(
                     Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddDbContext<PcsDbContext>(options =>
+            {
+                options.UseMySql(Configuration.GetConnectionString("PcsConnection"));
+            });
+
             services.AddDefaultIdentity<ApplicationUser>(
                 config =>
                 {
-                    config.SignIn.RequireConfirmedEmail = true;
+                    config.SignIn.RequireConfirmedEmail = true;        
                 })
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();

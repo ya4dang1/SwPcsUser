@@ -88,9 +88,8 @@ namespace Application.Features.Card
                                 }
 
                                 card.CardUser = cardUser;
-
-                                ///TODO:: Check the registered card enum value
-                                card.Status = 200;
+                                                                
+                                card.Status = 100;
                                 pcsDbContext.Update(card);
                                 await pcsDbContext.SaveChangesAsync();
                             }

@@ -17,7 +17,7 @@ namespace Application.Features.Card
 {
     public class GetCardDetailsQuery : IRequest<GetCardDetailsQueryResponse>
     {
-        public Guid CardId { get; set; }
+        public Guid Id { get; set; }
     }
 
     public class GetCardDetailsQueryResponse : BaseResponse
@@ -49,7 +49,7 @@ namespace Application.Features.Card
 
             if (user != null)
             {
-                var userCard = await dbContext.UserCards.FirstOrDefaultAsync(w => w.Id == request.CardId && w.User == user);
+                var userCard = await dbContext.UserCards.FirstOrDefaultAsync(w => w.Id == request.Id && w.User == user);
                 if (userCard != null)
                 {
                     var pcsCard = await pcsDbContext.Card.FirstOrDefaultAsync(fd => fd.CardNumber == userCard.CardNumber);

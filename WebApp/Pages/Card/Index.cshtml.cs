@@ -38,7 +38,7 @@ namespace WebApp.Pages.Card
             public List<UserCard> Cards { get; set; }
         }
 
-        public async Task OnGetAsync()
+        public async Task<IActionResult> OnGetAsync()
         {
             Input = new InputModel();
             var request = new GetCardsQuery();
@@ -48,6 +48,15 @@ namespace WebApp.Pages.Card
             {
                 Input.Cards = result.Cards;
             }
+            else
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error);
+                }
+            }
+
+            return Page();
         }
     }
 }
