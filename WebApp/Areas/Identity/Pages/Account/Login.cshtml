@@ -8,19 +8,23 @@
 }
 
 <div class="container">
+  <div class="row">
+    <div class="col-11">
+      <div class="float-right"><partial name="_SelectLanguagePartial" /></div>
+    </div>
+  </div>
   <div class="row justify-content-center">
     <div class="col-md-10">
       <div class="card-group">
         <div class="card p-4">
           <div class="card-body">
-            <div class="float-right"><partial name="_SelectLanguagePartial" /></div>
             <form id="account" method="post">
-              <h1>@Localizer["Login"]</h1>
+              <h2>@Localizer["Login"]</h2>
               <p class="text-muted">@Localizer["Sign In to your account"]</p>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text">
-                    <i class="icon-envelope"></i>
+                    <i class="icon-user"></i>
                   </span>
                 </div>
                 <input asp-for="Input.UserName" class="form-control" placeholder="@Localizer["User Name"]" />

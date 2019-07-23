@@ -1,25 +1,40 @@
-﻿<form asp-page-handler="SetLanguage" asp-route-returnUrl="@Context.Request.Path?handler=SetLanguage" method="post" class="form-horizontal" role="form" id="form-culture">
-  <input type="hidden" value="ja-JP" name="culture" id="culture" />
-  <header class="" style="border-bottom: none">
-    <a class="no-underline text-black-50" href="#" role="button" style="margin-right: 9px; margin-bottom: 0; cursor: pointer" id="culture-gb">
-      <i class="flag-icon flag-icon-gb h6 mb-0" title="gb" style="border: 1px solid #808080"></i> <span class="h6">English</span>
-    </a><br />
-    <a class="no-underline text-black-50"  href="#" role="button" style="margin-right: 11px; cursor: pointer" id="culture-jp">
-      <i class="flag-icon flag-icon-jp h6 mb-0" title="jp" style="border: 1px solid #808080"></i> <span class="h6">日本語</span>
-      </a>
+﻿<form asp-page-handler="SetLanguage" asp-route-returnUrl="@Context.Request.Path?handler=SetLanguage" method="post"
+  class="form-horizontal" role="form" id="form-culture">
+  <input type="hidden" value="" name="culture" id="culture" />
+  <header class="nav navbar m-0 p-0">
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown">
+        <a id="selected-culture" class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"></a>
+        <div class="dropdown-menu dropdown-menu-right" style="position: absolute; min-width: auto">
+          <div class="dropdown-header text-center d-none">
+            <strong>Select language</strong>
+          </div>
+          <div class="dropdown-item" rel="en-US" style="">
+            <i class="flag-icon flag-icon-gb mb-0" title="gb"></i>
+            <span class="">English</span>
+          </div>
+          <div class="dropdown-item" rel="ja-JP" style="">
+            <i class="flag-icon flag-icon-jp mb-0" title="jp" style=""></i>
+            <span class="">日本語</span>
+          </div>
+        </div>
+      </li>
+    </ul>
   </header>
 </form>
 
 <script>
+  var arrLanguages = new Array();
+  arrLanguages["c=en-US|uic=en-US"] = '<i class="flag-icon flag-icon-gb h6 mb-0" title="English" style="border: 1px solid #808080"></i> <i class="fas fa-xm fa-sort-down">';
+  arrLanguages["c=ja-JP|uic=ja-JP"] = '<i class="flag-icon flag-icon-jp h6 mb-0" title="日本語" style="border: 1px solid #808080"></i> <i class="fas fa-xm fa-sort-down">';
   $(document).ready(function () {
-    $('#culture-gb').on('click', function () {
-      $('#culture').val('en-US');
+    var culture = getCookie(".AspNetCore.Culture");
+    var selectedCulture = arrLanguages[getCookie(".AspNetCore.Culture")] == undefined ? arrLanguages["c=en-US|uic=en-US"] : arrLanguages[getCookie(".AspNetCore.Culture")];
+    $('#selected-culture').html(selectedCulture);
+
+    $('#form-culture .dropdown-item').on('click', function () {
+      $('#culture').val($(this).attr('rel'));
       $('#form-culture').submit();
     });
-
-    $('#culture-jp').on('click', function () {
-      $('#culture').val('ja-JP');
-      $('#form-culture').submit();
-    })
   });
 </script>
