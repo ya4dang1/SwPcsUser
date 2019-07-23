@@ -35,7 +35,8 @@
     });
 
     // For Expiry Date
-    //$('.date-format-expiry').mask('99/9999');
+    var imExpiry = new Inputmask('99/9999');
+    imExpiry.mask($('.date-format-expiry'));
     // For Date
     var imDate = new Inputmask('99/a{3}/9999');
     imDate.mask($('.datepicker-date'));
@@ -58,6 +59,11 @@
     // date picker
     $('.datepicker-date').datepicker({
       format: 'dd/M/yyyy',
+    });
+    $('.date-format-expiry').datepicker( {
+      format: "mm/yyyy",
+      viewMode: "months", 
+      minViewMode: "months"
     });
   });
 

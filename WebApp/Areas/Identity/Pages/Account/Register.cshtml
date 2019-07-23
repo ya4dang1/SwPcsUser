@@ -29,7 +29,7 @@
                 </div>
                 <input asp-for="Input.UserName" class="form-control" placeholder="@Localizer["User Name"]" />
               </div>
-              <span asp-validation-for="Input.UserName" class="text-danger"></span>
+              <span asp-validation-for="Input.UserName" class="text-danger d-none"></span>
               <div class="input-group mt-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text">
@@ -38,7 +38,7 @@
                 </div>
                 <input asp-for="Input.Email" class="form-control" placeholder="@Localizer["Email"]" />
               </div>
-              <span asp-validation-for="Input.Email" class="text-danger"></span>
+              <span asp-validation-for="Input.Email" class="text-danger d-none"></span>
               <div class="input-group mt-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text">
@@ -47,7 +47,7 @@
                 </div>
                 <input asp-for="Input.Password" class="form-control" placeholder="@Localizer["Password"]" />
               </div>
-              <span asp-validation-for="Input.Password" class="text-danger"></span>
+              <span asp-validation-for="Input.Password" class="text-danger d-none"></span>
               <div class="input-group mt-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text">
@@ -56,7 +56,7 @@
                 </div>
                 <input asp-for="Input.ConfirmPassword" class="form-control" placeholder="@Localizer["Confirm Password"]" />
               </div>
-              <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+              <span asp-validation-for="Input.ConfirmPassword" class="text-danger d-none"></span>
               <div class="row mt-4">
                 <div class="col-md-5 text-center text-md-left">
                   <button class="btn btn-primary px-4" type="submit">@Localizer["Submit"]</button>

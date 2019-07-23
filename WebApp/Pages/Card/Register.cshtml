@@ -1,9 +1,52 @@
 ﻿@page
 @model WebApp.Pages.Card.RegisterModel
 @{
-    ViewData["Title"] = "Register";
-    Layout = "~/Pages/Shared/_Layout.cshtml";
+  ViewData["Title"] = "Register";
+  Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<h1>Register</h1>
 
+<div class="card card-sm">
+  <div class="card-header">
+    <h4>
+      <strong>Register</strong>
+      <small>Card</small>
+    </h4>
+  </div>
+  <form method="post" novalidate="novalidate">
+    <div class="card-body">
+      <div class="col-xl-8 offset-xl-2">
+        <div class="text-danger validation-summary-valid d-none" data-valmsg-summary="true">
+          <ul>
+            <li class="d-none"></li>
+          </ul>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label asp-for="Input.CardNumber" class="control-label"></label>
+            <input asp-for="Input.CardNumber" class="form-control" />
+            <span asp-validation-for="Input.CardNumber" class="text-danger"></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label asp-for="Input.ExpiryDate" class="control-label"></label>
+            <input type="text" asp-for="Input.ExpiryDate" class="form-control date-format-expiry" value="" />
+            <span asp-validation-for="Input.ExpiryDate" class="text-danger"></span>
+          </div>
+        </div>
+      </div><!-- /.col -->
+    </div>
+    <div class="card-footer">
+      <div class="form-group mb-0">
+        <a class="btn btn-secondary d-none" asp-action="Index">
+          <i class="fa fa-caret-left"></i>
+          Back
+        </a>
+        <button type="submit" value="Create" class="btn btn-primary">
+          <i class="far fa-dot-circle"></i> Submit
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

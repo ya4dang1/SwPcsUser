@@ -16,7 +16,15 @@ namespace WebApp.Pages
     #pragma warning restore MVC1002 // Route attributes cannot be applied to page handler methods.
     public IActionResult OnPostSetLanguageAsync(string culture, string returnUrl)
 		{
-			Response.Cookies.Append(
+            if(!(culture is String))
+            {
+                culture = string.Empty;
+            }
+            if (!(returnUrl is String))
+            {
+                returnUrl = "/Identity/Account/Login";
+            }
+            Response.Cookies.Append(
 				CookieRequestCultureProvider.DefaultCookieName,
 				CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
 				new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }

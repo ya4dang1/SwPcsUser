@@ -7,11 +7,13 @@ using Application.Features.Card;
 using Application.Features.User;
 using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WebApp.Pages.Card
 {
+    [AllowAnonymous]
     public class RegisterModel : PageModelBase
     {
         private readonly IMediator mediator;
@@ -44,7 +46,7 @@ namespace WebApp.Pages.Card
             public int PIN { get; set; }
 
             [Required]
-            public DateTime ExpiredDate { get; set; }
+            public DateTime ExpiryDate { get; set; }
         }
 
         public void OnGet()

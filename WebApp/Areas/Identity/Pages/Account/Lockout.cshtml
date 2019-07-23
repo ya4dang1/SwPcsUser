@@ -1,10 +1,24 @@
 ﻿@page
 @model LockoutModel
 @{
-    ViewData["Title"] = "Locked out";
+  ViewData["Title"] = "Locked out";
+  Layout = "~/Pages/Shared/_BlankLayout.cshtml";
 }
 
-<header>
-    <h1 class="text-danger">@ViewData["Title"]</h1>
-    <p class="text-danger">This account has been locked out, please try again later.</p>
+
+<header class="d-none">
+  <h1>@ViewData["Title"]</h1>
+  <p>This account has been locked out, please try again later.</p>
 </header>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="clearfix text-center">
+        <h1 class="display-3 mr-4"><i class="icon-lock icons d-block mt-4"></i></h1>
+        <h4 class="pt-3">This account has been locked out, please try again later.</h4>
+        <p class="">Please contact our sales consultant to unlock your account.</p>
+      </div>
+    </div>
+  </div>
+</div>
