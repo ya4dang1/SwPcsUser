@@ -51,6 +51,7 @@ namespace Core.Services
                     {
                         await smtpClient.AuthenticateAsync(emailConfig.UserName, emailConfig.Password);
                     }
+
                     await smtpClient.SendAsync(mailMessage);
                     await smtpClient.DisconnectAsync(true);
                 }
