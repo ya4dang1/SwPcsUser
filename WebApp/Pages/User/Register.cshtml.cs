@@ -33,33 +33,43 @@ namespace WebApp.Pages.User
         public InputModel Input { get; set; }
 
         public class InputModel
-        { 
-            public string LastName { get; set; }
-                        
+        {
+            [Display(Prompt = "FirstName")]
             public string FirstName { get; set; }
-                        
+
+            [Display(Prompt = "MiddleName")]
             public string MiddleName { get; set; }
-                        
+
+            [Display(Prompt = "LastName")]
+            public string LastName { get; set; }
+
+            [Display(Prompt = "Birthday")]
             [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd'/'MM'/'yy}")]
             [JsonConverter(typeof(DateTime), "dd'/'MM'/'yy")]
             public DateTime Birthday { get; set; }
-                        
+
+            [Display(Prompt = "AddressType")]
             public string AddressType { get; set; }
-                        
+
+            [Display(Prompt = "Address")]
             public string Address { get; set; }
-                        
+
+            [Display(Prompt = "City")]
             public string City { get; set; }
 
+            [Display(Prompt = "Region")]
             public string Region { get; set; }
-                        
+
+            [Display(Prompt = "Zip")]
             public string Zip { get; set; }
-                        
+
             public string Mobile { get; set; }
 
+            [Display(Prompt = "IDValue")]
             public string IDValue { get; set; }
 
             [Required]
-            [Display(Name = "Email")]
+            [Display(Name = "Email", Prompt = "Email")]
             public string Email { get; set; }
         }
 
