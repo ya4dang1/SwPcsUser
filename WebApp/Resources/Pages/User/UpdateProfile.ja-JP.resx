@@ -126,4 +126,16 @@
   <data name="Update" xml:space="preserve">
     <value>更新</value>
   </data>
+  <data name="Birthday" xml:space="preserve">
+    <value>お誕生日</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>住所</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>携帯電話</value>
+  </data>
+  <data name="IDValue" xml:space="preserve">
+    <value>アイディー</value>
+  </data>
 </root>

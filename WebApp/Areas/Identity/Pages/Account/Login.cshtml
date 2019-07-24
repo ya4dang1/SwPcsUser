@@ -21,24 +21,25 @@
             <form id="account" method="post">
               <h2>@Localizer["Login"]</h2>
               <p class="text-muted">@Localizer["Sign In to your account"]</p>
+              <div asp-validation-summary="All" class="text-danger"></div>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text">
                     <i class="icon-user"></i>
                   </span>
                 </div>
-                <input asp-for="Input.UserName" class="form-control" placeholder="@Localizer["User Name"]" />
+                <input asp-for="Input.UserName" class="form-control" />
               </div>
-              <span asp-validation-for="Input.UserName" class="text-danger"></span>
+              <span asp-validation-for="Input.UserName" class="text-danger d-none"></span>
               <div class="input-group mt-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text">
                     <i class="icon-lock"></i>
                   </span>
                 </div>
-                <input asp-for="Input.Password" class="form-control" placeholder="@Localizer["Password"]" />
+                <input asp-for="Input.Password" class="form-control" />
               </div>
-              <span asp-validation-for="Input.Password" class="text-danger"></span>
+              <span asp-validation-for="Input.Password" class="text-danger d-none"></span>
               <div class="form-group mt-2 d-none">
                 <div class="checkbox">
                   <label asp-for="Input.RememberMe">

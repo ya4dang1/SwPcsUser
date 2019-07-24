@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using WebApp.Resources;
 
 namespace WebApp.Pages.User
@@ -59,6 +60,8 @@ namespace WebApp.Pages.User
             public string LastName { get; set; }
             
             [Display(Name= "Birthday", Prompt = "Birthday")]
+            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd'/'MMM'/'yyyy}")]
+            [JsonConverter(typeof(IsoDateTimeConverter), "dd'/'MMM'/'yyyy")]
             public DateTime? Birthday { get; set; }
 
             [Display(Name="", Prompt = "AddressType")]

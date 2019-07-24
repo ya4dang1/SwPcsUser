@@ -16,7 +16,7 @@
   <form method="post" novalidate="novalidate">
     <div class="card-body">
       <div class="col-xl-8 offset-xl-2">
-        <div class="text-danger validation-summary-valid" data-valmsg-summary="true">
+        <div class="text-danger validation-summary-valid d-none" data-valmsg-summary="true">
           <ul>
             <li class="d-none"></li>
           </ul>
@@ -47,7 +47,7 @@
         <div class="form-group row">
           <label asp-for="Input.Birthday" class="col-md-3 col-form-label font-weight-bold"></label>
           <div class="col-md">
-            <input asp-for="Input.Birthday" class="form-control datepicker-date" value="" type="datetime" />
+            <input asp-for="Input.Birthday" class="form-control datepicker-date" type="datetime" />
             <span asp-validation-for="Input.Birthday" class="text-danger"></span>
           </div>
           <div class="col-md"></div>

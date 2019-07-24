@@ -55,9 +55,11 @@ namespace WebApp.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]           
+            [Display(Prompt = "UserName")]
             public string UserName { get; set; }
 
             [Required]
+            [Display(Prompt = "Password")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 

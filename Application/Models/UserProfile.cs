@@ -2,6 +2,8 @@
 using Core.Libraries;
 using Core.Models;
 using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -24,7 +26,9 @@ namespace Application.Models
         public string FirstName { get; set; }
                 
         public string MiddleName { get; set; }
-        
+
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd'/'MMM'/'yyyy}")]
+        [JsonConverter(typeof(IsoDateTimeConverter), "dd'/'MMM'/'yyyy")]
         public DateTime? Birthday { get; set; }
         
         public string AddressType { get; set; }

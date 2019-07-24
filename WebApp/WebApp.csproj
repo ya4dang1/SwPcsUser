@@ -5,6 +5,7 @@
     <UserSecretsId>aspnet-WebApp-FDCEBA04-8A63-4C23-B134-CA2FC5A254F8</UserSecretsId>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <TypeScriptToolsVersion>3.3</TypeScriptToolsVersion>
   </PropertyGroup>
 
 
