@@ -10,6 +10,8 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace WebApp.Pages.Card
 {   
@@ -45,6 +47,8 @@ namespace WebApp.Pages.Card
             public int PIN { get; set; }
 
             [Required]
+            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM'/'yyyy}")]
+            [JsonConverter(typeof(IsoDateTimeConverter), "MM'/'yyyy")]
             public DateTime ExpiryDate { get; set; }
         }
 

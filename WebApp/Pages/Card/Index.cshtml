@@ -11,7 +11,7 @@
         <h4 class="col-md-12 mb-2">
           <strong>All</strong>
           <small>Cards</small>
-          <a asp-action="Create" class="btn btn-pill btn-primary float-right"><i class="fa fa-plus"></i></a>
+          <a asp-page="./Register" class="btn btn-pill btn-primary float-right"><i class="fa fa-plus"></i></a>
         </h4>
       </div>
     </div>
@@ -20,10 +20,16 @@
         <thead>
           <tr>
             <th>
-              Card Number
+              @Html.DisplayNameFor(model => model.Input.CardNumber)
             </th>
             <th>
-              Expiry Date
+              @Html.DisplayNameFor(model => model.Input.CVV)
+            </th>
+            <th>
+              @Html.DisplayNameFor(model => model.Input.PIN)
+            </th>
+            <th>
+              @Html.DisplayNameFor(model => model.Input.ExpiredDate)
             </th>
             <th class="text-center datatable-actions"></th>
           </tr>
@@ -34,13 +40,19 @@
               12341234
             </td>
             <td>
+              007
+            </td>
+            <td>
+              123456
+            </td>
+            <td>
               19/2020
             </td>
             <td class="text-center text-nowrap">
               <a title="Edit" class="btn btn-success">
                 <i class="fa fa-edit"></i>
               </a>&nbsp;
-              <a title="Delete" class="btn btn-secondary">
+              <a title="Unregister" class="btn btn-secondary">
                 <i class="fa fa-trash"></i>
               </a>
             </td>

@@ -35,6 +35,21 @@ namespace WebApp.Pages.Card
 
         public class InputModel
         {
+            [Display(Name = "CardNumber")]
+            public string CardNumber { get; set; }
+
+            [Display(Name = "CardNumber")]
+            public string UserId { get; set; }
+
+            [Display(Name = "CVV")]
+            public int CVV { get; set; }
+
+            [Display(Name = "PIN")]
+            public int PIN { get; set; }
+
+            [Display(Name = "ExpiredDate")]
+            public DateTime ExpiredDate { get; set; }
+
             public List<UserCard> Cards { get; set; }
         }
 
