@@ -3,28 +3,37 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Application;
 using Application.Features.User;
+using Application.Models;
+using Application.Services;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using WebApp.Resources;
 
 namespace WebApp.Pages.User
 {     
-    public class RegisterModel : PageModelBase
+    public class UpdateProfileModel : PageModelBase
     {
         private readonly IMediator mediator;
+        private readonly LoginUser loginUser;
+        private readonly ApplicationDbContext dbContext;
         private readonly IMapper mapper;
 
-        public RegisterModel(IMediator mediator)
+        public UpdateProfileModel(IMediator mediator, LoginUser loginUser, ApplicationDbContext dbContext)
         {
             this.mediator = mediator;
-
+            this.loginUser = loginUser;
+            this.dbContext = dbContext;
             var mapperConfig = new MapperConfiguration(config =>
             {
                 config.CreateMap<InputModel, UpdateUserProfileCommand>();
+                config.CreateMap<UserProfile, InputModel>();
             });
             mapper = mapperConfig.CreateMapper();
         }
@@ -42,16 +51,14 @@ namespace WebApp.Pages.User
 
             [Display(Prompt = "LastName")]
             public string LastName { get; set; }
+            
+            [Display(Name= "Birthday", Prompt = "Birthday")]
+            public DateTime? Birthday { get; set; }
 
-            [Display(Prompt = "Birthday")]
-            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd'/'MM'/'yy}")]
-            [JsonConverter(typeof(DateTime), "dd'/'MM'/'yy")]
-            public DateTime Birthday { get; set; }
-
-            [Display(Prompt = "AddressType")]
+            [Display(Name="", Prompt = "AddressType")]
             public string AddressType { get; set; }
 
-            [Display(Prompt = "Address")]
+            [Display(Name = "Address", Prompt = "Address")]
             public string Address { get; set; }
 
             [Display(Prompt = "City")]
@@ -63,19 +70,35 @@ namespace WebApp.Pages.User
             [Display(Prompt = "Zip")]
             public string Zip { get; set; }
 
+            [Display(Name ="Mobile", Prompt ="Mobile")]
             public string Mobile { get; set; }
 
-            [Display(Prompt = "IDValue")]
+            [Display(Name="ID", Prompt = "ID")]
             public string IDValue { get; set; }
 
             [Required]
             [Display(Name = "Email", Prompt = "Email")]
             public string Email { get; set; }
+
+            [Display(Name = "FullName")]
+            public string FullName
+            {
+                get { return $"{LastName} {MiddleName} {FirstName}";  }
+            }
         }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
+            var user = await loginUser.GetAsync();
+            var userProfile = await dbContext.UserProfiles.FirstOrDefaultAsync(fd => fd.User == user);
+
             Input = new InputModel();
+            Input.Email = user.Email;
+                       
+            if(userProfile != null)
+            {
+                Input = mapper.Map<UserProfile, InputModel>(userProfile, Input);
+            }
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -84,8 +107,8 @@ namespace WebApp.Pages.User
                 return Page();
 
             ///NOTE:For massive fields, use AutoMapper to map the variables
-            var updateUserProfile = mapper.Map<UpdateUserProfileCommand>(Input);
-            var result = await mediator.Send(updateUserProfile);
+            var updateUserProfileCommand = mapper.Map<UpdateUserProfileCommand>(Input);
+            var result = await mediator.Send(updateUserProfileCommand);
 
             if (!result.IsError)
             {

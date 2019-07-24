@@ -12,8 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WebApp.Pages.Card
-{
-    [AllowAnonymous]
+{   
     public class RegisterModel : PageModelBase
     {
         private readonly IMediator mediator;

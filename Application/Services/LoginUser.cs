@@ -10,15 +10,15 @@ namespace Application.Services
 {
     public class LoginUser
     {
-        private readonly HttpContext httpContext;
+        private readonly IHttpContextAccessor httpContext;
         private readonly UserManager<ApplicationUser> userManager;
 
-        public LoginUser(HttpContext httpContext, UserManager<ApplicationUser> userManager)
+        public LoginUser(IHttpContextAccessor httpContext, UserManager<ApplicationUser> userManager)
         {
             this.httpContext = httpContext;
             this.userManager = userManager;
         }
 
-        public async Task<ApplicationUser> GetAsync() => await userManager.GetUserAsync(httpContext.User);
+        public async Task<ApplicationUser> GetAsync() => await userManager.GetUserAsync(httpContext.HttpContext.User);
     }
 }

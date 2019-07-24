@@ -1,6 +1,7 @@
 @using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.Mvc.Localization
 @using Microsoft.Extensions.Options
+@using Microsoft.AspNetCore.Authorization
 
 @using Core.Models
 @using Application
@@ -15,3 +16,4 @@
 
 @inject IViewLocalizer Localizer
 @inject IOptions<ResellerConfig> ResellerConfig
+@inject IAuthorizationService AuthorizationService

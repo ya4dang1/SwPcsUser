@@ -22,8 +22,7 @@ namespace Application.Models
 
         [Required]
         public string FirstName { get; set; }
-
-        [Required]
+                
         public string MiddleName { get; set; }
         
         public DateTime? Birthday { get; set; }

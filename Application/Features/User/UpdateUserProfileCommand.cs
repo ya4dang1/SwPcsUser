@@ -32,6 +32,8 @@ namespace Application.Features.User
 
         public string Zip { get; set; }
 
+        public string Mobile { get; set; }
+
         public string IDValue { get; set; }
     }
 
@@ -50,7 +52,7 @@ namespace Application.Features.User
             this.loginUser = loginUser;
             this.dbContext = dbContext;
             var mapperConfig = new MapperConfiguration(config => {
-                config.CreateMap<UpdateUserProfileCommand, UserProfile>();
+                config.CreateMap<UpdateUserProfileCommand,UserProfile>();
             });
 
             mapper = mapperConfig.CreateMapper();
@@ -63,9 +65,9 @@ namespace Application.Features.User
             var userProfile = await dbContext.UserProfiles.FirstOrDefaultAsync(fd => fd.User == user);
 
             if (userProfile == null)
-                userProfile = new UserProfile();
+                userProfile = new UserProfile { User = user};
 
-            mapper.Map<UserProfile>(request);
+            userProfile = mapper.Map<UpdateUserProfileCommand, UserProfile>(request, userProfile);
             dbContext.Update(userProfile);
 
             await dbContext.SaveChangesAsync();

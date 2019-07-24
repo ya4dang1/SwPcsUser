@@ -55,16 +55,16 @@ namespace Core.Libraries
                     ((BaseModel)entity.Entity).ActionOn = actionOn;
                 }
 
-                this.Add<AuditLog>(new AuditLog
-                {
-                    EntityName = entity.Entity.GetType().Name,
-                    EntityId = ((BaseModel)entity.Entity).Id,
-                    Action = entity.State,
-                    ActionBy = actionBy,
-                    ActionOn = actionOn,
-                    OldValue = JsonConvert.SerializeObject(entity.OriginalValues),
-                    NewValue = JsonConvert.SerializeObject(entity.CurrentValues),
-                });
+                //this.Add<AuditLog>(new AuditLog
+                //{
+                //    EntityName = entity.Entity.GetType().Name,
+                //    EntityId = ((BaseModel)entity.Entity).Id,
+                //    Action = entity.State,
+                //    ActionBy = actionBy,
+                //    ActionOn = actionOn,
+                //    OldValue = JsonConvert.SerializeObject(entity.OriginalValues),
+                //    NewValue = JsonConvert.SerializeObject(entity.CurrentValues),
+                //});
             }
         }
 

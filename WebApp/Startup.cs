@@ -60,6 +60,8 @@ namespace WebApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddHttpContextAccessor();
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseMySql(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -85,7 +87,11 @@ namespace WebApp
             services.AddMvc()
                 .AddRazorPagesOptions(options => {
                     options.Conventions.AuthorizeFolder("/User");
-                    options.Conventions.AuthorizeFolder("/Card","IsApproved");                    
+                    options.Conventions.AuthorizeFolder("/Card","IsApproved");                 
+                }).
+                AddJsonOptions(options =>
+                {
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
