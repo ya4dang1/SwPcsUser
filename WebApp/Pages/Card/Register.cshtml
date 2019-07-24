@@ -14,11 +14,11 @@
   </div>
   <form method="post" novalidate="novalidate">
     <div class="card-body">
-      <div class="col-xl-8 offset-xl-2">
-        <div class="text-danger validation-summary-valid d-none" data-valmsg-summary="true">
-          <ul>
-            <li class="d-none"></li>
-          </ul>
+        <div class="col-xl-8 offset-xl-2">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <ul>
+                <li class="d-none"></li>
+            </ul>
         </div>
         <div class="row">
           <div class="form-group col-md-6">
@@ -39,9 +39,9 @@
             <span asp-validation-for="Input.PIN" class="text-danger"></span>
           </div>
           <div class="form-group col-md-6">
-            <label asp-for="Input.ExpiryDate" class="control-label"></label>
-            <input type="datetime" asp-for="Input.ExpiryDate" class="form-control date-format-expiry" />
-            <span asp-validation-for="Input.ExpiryDate" class="text-danger"></span>
+            <label asp-for="Input.ExpiredDate" class="control-label"></label>
+            <input type="datetime" asp-for="Input.ExpiredDate" class="form-control date-format-expiry" />
+            <span asp-validation-for="Input.ExpiredDate" class="text-danger"></span>
           </div>
         </div>
       </div><!-- /.col -->

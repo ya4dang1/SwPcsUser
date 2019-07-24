@@ -49,7 +49,7 @@ namespace WebApp.Pages.Card
             [Required]
             [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM'/'yyyy}")]
             [JsonConverter(typeof(IsoDateTimeConverter), "MM'/'yyyy")]
-            public DateTime ExpiryDate { get; set; }
+            public DateTime ExpiredDate { get; set; }
         }
 
         public void OnGet()
@@ -66,7 +66,7 @@ namespace WebApp.Pages.Card
                 if (!result.IsError)
                 {
                     ///TODO: Add toast success
-                    return Redirect("/Card/");
+                    return Redirect("/Card");
                 }
 
                 foreach (var error in result.Errors)
