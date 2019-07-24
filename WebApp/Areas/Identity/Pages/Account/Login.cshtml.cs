@@ -100,6 +100,9 @@ namespace WebApp.Areas.Identity.Pages.Account
 
                         var userProfile = await dbContext.UserProfiles.FirstOrDefaultAsync(fd => fd.User == user);
 
+                        var claims = await userManager.GetClaimsAsync(user);
+                        await userManager.RemoveClaimsAsync(user, claims);
+
                         if(userProfile == null || userProfile.IsPending())                        
                             await userManager.AddClaimAsync(user, new System.Security.Claims.Claim("Approved", "false"));                        
                         else                     

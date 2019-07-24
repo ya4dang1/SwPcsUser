@@ -8,8 +8,10 @@ using Application.Features.User;
 using Application.Models;
 using Application.Services;
 using AutoMapper;
+using Core.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -23,13 +25,15 @@ namespace WebApp.Pages.User
         private readonly IMediator mediator;
         private readonly LoginUser loginUser;
         private readonly ApplicationDbContext dbContext;
+        private readonly UserManager<ApplicationUser> userManager;
         private readonly IMapper mapper;
 
-        public UpdateProfileModel(IMediator mediator, LoginUser loginUser, ApplicationDbContext dbContext)
+        public UpdateProfileModel(IMediator mediator, LoginUser loginUser, ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager)
         {
             this.mediator = mediator;
             this.loginUser = loginUser;
             this.dbContext = dbContext;
+            this.userManager = userManager;
             var mapperConfig = new MapperConfiguration(config =>
             {
                 config.CreateMap<InputModel, UpdateUserProfileCommand>();
@@ -43,12 +47,14 @@ namespace WebApp.Pages.User
 
         public class InputModel
         {
+            [Required]
             [Display(Prompt = "FirstName")]
             public string FirstName { get; set; }
-
+                        
             [Display(Prompt = "MiddleName")]
             public string MiddleName { get; set; }
 
+            [Required]
             [Display(Prompt = "LastName")]
             public string LastName { get; set; }
             
@@ -112,6 +118,17 @@ namespace WebApp.Pages.User
 
             if (!result.IsError)
             {
+                var user = await loginUser.GetAsync();
+                var userProfile = await dbContext.UserProfiles.FirstOrDefaultAsync(fd => fd.User == user);
+
+                var claims = await userManager.GetClaimsAsync(user);
+                await userManager.RemoveClaimsAsync(user, claims);
+
+                if (userProfile == null || userProfile.IsPending())
+                    await userManager.AddClaimAsync(user, new System.Security.Claims.Claim("Approved", "false"));
+                else
+                    await userManager.AddClaimAsync(user, new System.Security.Claims.Claim("Approved", "true"));
+
                 return Redirect("/");               
             }
 

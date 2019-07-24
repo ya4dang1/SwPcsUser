@@ -81,7 +81,7 @@ namespace WebApp
 
             //Security Claim
             services.AddAuthorization(options => {
-                options.AddPolicy("IsApproved", policy => policy.RequireClaim("Approved"));
+                options.AddPolicy("IsApproved", policy => policy.RequireClaim("Approved", "true"));
             });
 
             services.AddMvc()
