@@ -105,10 +105,8 @@ namespace WebApp.Areas.Identity.Pages.Account
                         var claims = await userManager.GetClaimsAsync(user);
                         await userManager.RemoveClaimsAsync(user, claims);
 
-                        if(userProfile == null || userProfile.IsPending())                        
-                            await userManager.AddClaimAsync(user, new System.Security.Claims.Claim("Approved", "False"));                        
-                        else                     
-                            await userManager.AddClaimAsync(user, new System.Security.Claims.Claim("Approved", "True"));                      
+                        var isApproved = userProfile != null && !userProfile.IsPending();
+                        await userManager.AddClaimAsync(user, new System.Security.Claims.Claim("Approved", $"{isApproved}"));
 
                         return LocalRedirect(returnUrl);
                     }
