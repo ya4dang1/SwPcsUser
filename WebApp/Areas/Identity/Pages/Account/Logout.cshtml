@@ -1,10 +1,32 @@
 ﻿@page
 @model LogoutModel
 @{
-    ViewData["Title"] = "Log out";
+  ViewData["Title"] = "Log out";
+  Layout = "~/Pages/Shared/_BlankLayout.cshtml";
 }
 
-<header>
-    <h1>@ViewData["Title"]</h1>
-    <p>You have successfully logged out of the application.</p>
+<header class="d-none">
+  <h1>@ViewData["Title"]</h1>
+  <p>You have successfully logged out of the application.</p>
 </header>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="clearfix text-center">
+        <h1 class="display-3 mr-4"><i class="icon-lock-open icons d-block mt-4"></i></h1>
+        <h4 class="pt-3">You have logged out!</h4>
+        <p class="">Click <a href="./Login">here</a> to log in again.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    // For toastr
+    if(GetURLParameter('toast') == 'logout'){
+      toastr.info('Your session has been cleared.', 'Logout');
+    }
+  });
+</script>

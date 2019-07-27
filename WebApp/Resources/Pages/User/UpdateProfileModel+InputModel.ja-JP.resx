@@ -123,6 +123,9 @@
   <data name="Birthday" xml:space="preserve">
     <value>お誕生日</value>
   </data>
+  <data name="Birthday (mm/dd/yyyy)" xml:space="preserve">
+    <value>お誕生日 (月/日/年)</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>メール</value>
   </data>

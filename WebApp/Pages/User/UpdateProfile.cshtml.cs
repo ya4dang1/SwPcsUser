@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -28,14 +28,16 @@ namespace WebApp.Pages.User
         private readonly LoginUser loginUser;
         private readonly ApplicationDbContext dbContext;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly SignInManager<ApplicationUser> signInManager;
         private readonly IMapper mapper;
 
-        public UpdateProfileModel(IMediator mediator, LoginUser loginUser, ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager)
+        public UpdateProfileModel(IMediator mediator, LoginUser loginUser, ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             this.mediator = mediator;
             this.loginUser = loginUser;
             this.dbContext = dbContext;
             this.userManager = userManager;
+            this.signInManager = signInManager;
             var mapperConfig = new MapperConfiguration(config =>
             {
                 config.CreateMap<InputModel, UpdateUserProfileCommand>();
@@ -126,14 +128,16 @@ namespace WebApp.Pages.User
                 var userProfile = await dbContext.UserProfiles.FirstOrDefaultAsync(fd => fd.User == user);
 
                 var claims = await userManager.GetClaimsAsync(user);
-                await userManager.RemoveClaimsAsync(user, claims);
+                var claim = claims.FirstOrDefault(w => w.Type == "Approved");
 
                 if (claim != null)
                     await userManager.ReplaceClaimAsync(user, claim, new Claim("Approved", $"{!userProfile.IsPending()}"));
                 else
                     await userManager.AddClaimAsync(user, new Claim("Approved", $"{!userProfile.IsPending()}"));
 
-                return Redirect("/");               
+                await signInManager.RefreshSignInAsync(user);
+
+                return RedirectToPage("/Index", new {toast = "success" });               
             }
 
             foreach (var error in result.Errors)
