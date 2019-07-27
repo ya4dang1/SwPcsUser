@@ -58,6 +58,7 @@ namespace Application.Features.Card
                         if (resellerConfig.HostNames.Contains(card.Reseller.HostName))
                         {
 
+                            //Add to UserCard Model
                             var userCard = new UserCard
                             {
                                 User = user,
@@ -70,11 +71,17 @@ namespace Application.Features.Card
                             dbContext.Add(userCard);
                             await dbContext.SaveChangesAsync();
 
+                            //Add to CardUser Model
                             pcsDbContext.Entry(card).Reference(r => r.CardUser).Load();
                             if (card.CardUser == null)
                             {
                                 var userProfile = await dbContext.UserProfiles.FirstOrDefaultAsync(fd => fd.User == user);
                                 var cardUser = await pcsDbContext.CardUser.FirstOrDefaultAsync(fd => fd.Reseller == card.Reseller && fd.UserIdentification == userProfile.IDValue);
+
+                                if(cardUser == null)
+                                {
+                                    cardUser = await pcsDbContext.CardUser.FirstOrDefaultAsync(fd => fd.Reseller == card.Reseller && fd.Email == user.Email);
+                                }
 
                                 if (cardUser == null)
                                 {

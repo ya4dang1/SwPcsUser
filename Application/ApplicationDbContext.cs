@@ -1,5 +1,6 @@
 ﻿using Application.Models;
 using Core.Libraries;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -16,6 +17,10 @@ namespace Application
         public DbSet<UserCard> UserCards { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        {
+        }
+
+        public ApplicationDbContext (DbContextOptions<ApplicationDbContext> options, IHttpContextAccessor httpContext): base(options, httpContext)
         {
         }
 

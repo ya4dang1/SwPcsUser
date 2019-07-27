@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Application;
 using Application.Features.User;
@@ -130,7 +131,9 @@ namespace WebApp.Pages.User
                 var claim = claims.FirstOrDefault(w => w.Type == "Approved");
 
                 if (claim != null)
-                    await userManager.ReplaceClaimAsync(user, claim, new System.Security.Claims.Claim("Approved", $"{!userProfile.IsPending()}"));
+                    await userManager.ReplaceClaimAsync(user, claim, new Claim("Approved", $"{!userProfile.IsPending()}"));
+                else
+                    await userManager.AddClaimAsync(user, new Claim("Approved", $"{!userProfile.IsPending()}"));
 
                 await signInManager.RefreshSignInAsync(user);
 
