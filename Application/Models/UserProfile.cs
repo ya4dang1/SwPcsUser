@@ -27,8 +27,8 @@ namespace Application.Models
                 
         public string MiddleName { get; set; }
 
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd'/'MMM'/'yyyy}")]
-        [JsonConverter(typeof(IsoDateTimeConverter), "dd'/'MMM'/'yyyy")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM'/'dd'/'yyyy}")]
+        [JsonConverter(typeof(IsoDateTimeConverter), "MM'/'dd'/'yyyy")]
         public DateTime? Birthday { get; set; }
         
         public string AddressType { get; set; }

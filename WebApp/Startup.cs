@@ -40,6 +40,11 @@ namespace WebApp
             CultureInfo.GetCultureInfo("ko-KR"),
             CultureInfo.GetCultureInfo("id-ID"),
         };
+        readonly CultureInfo[] SupportedUICultures = new CultureInfo[]
+        {
+            CultureInfo.GetCultureInfo("en-US"),
+            CultureInfo.GetCultureInfo("ja-JP"),
+        };
 
         //MediatR Settings
 
@@ -100,7 +105,7 @@ namespace WebApp
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
                 .AddDataAnnotationsLocalization();
 
-            services.AddLocalization(options => options.ResourcesPath = "Resources");           
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
 
             //Mediator
             services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
@@ -145,7 +150,7 @@ namespace WebApp
             {
                 DefaultRequestCulture = new RequestCulture(DefaultCulture.Name),                
                 SupportedCultures = SupportedCultures,               
-                SupportedUICultures = SupportedCultures
+                SupportedUICultures = SupportedUICultures
             });
 
             app.UseAuthentication();

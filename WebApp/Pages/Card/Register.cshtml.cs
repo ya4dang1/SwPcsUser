@@ -65,8 +65,7 @@ namespace WebApp.Pages.Card
                 var result = await mediator.Send(registerCardCommand);
                 if (!result.IsError)
                 {
-                    ///TODO: Add toast success
-                    return Redirect("/Card");
+                    return Redirect("/Card/?toast=success");
                 }
 
                 foreach (var error in result.Errors)

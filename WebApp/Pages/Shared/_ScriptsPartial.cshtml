@@ -36,10 +36,10 @@
 
     // For Expiry Date
     var imExpiry = new Inputmask('99/9999');
-    imExpiry.mask($('.date-format-expiry'));
+    imExpiry.mask($('.dateformat-expiry'));
     // For Date
-    var imDate = new Inputmask('99/a{3}/9999');
-    imDate.mask($('.datepicker-date'));
+    var imDate = new Inputmask('99/99/9999');
+    imDate.mask($('.dateformat-date'));
     // For Card Number
     //$('.card-number-format').mask('9999 9999 9999 9999');
 
@@ -57,10 +57,10 @@
     });
     
     // date picker
-    $('.datepicker-date').datepicker({
-      format: 'dd/M/yyyy',
+    $('.dateformat-date').datepicker({
+      format: 'mm/dd/yyyy',
     });
-    $('.date-format-expiry').datepicker( {
+    $('.dateformat-expiry').datepicker( {
       format: "mm/yyyy",
       viewMode: "months", 
       minViewMode: "months"

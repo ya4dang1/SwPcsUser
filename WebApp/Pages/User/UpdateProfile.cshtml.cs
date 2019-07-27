@@ -28,16 +28,14 @@ namespace WebApp.Pages.User
         private readonly LoginUser loginUser;
         private readonly ApplicationDbContext dbContext;
         private readonly UserManager<ApplicationUser> userManager;
-        private readonly SignInManager<ApplicationUser> signInManager;
         private readonly IMapper mapper;
 
-        public UpdateProfileModel(IMediator mediator, LoginUser loginUser, ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public UpdateProfileModel(IMediator mediator, LoginUser loginUser, ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager)
         {
             this.mediator = mediator;
             this.loginUser = loginUser;
             this.dbContext = dbContext;
             this.userManager = userManager;
-            this.signInManager = signInManager;
             var mapperConfig = new MapperConfiguration(config =>
             {
                 config.CreateMap<InputModel, UpdateUserProfileCommand>();
@@ -62,9 +60,9 @@ namespace WebApp.Pages.User
             [Display(Prompt = "LastName")]
             public string LastName { get; set; }
             
-            [Display(Name= "Birthday", Prompt = "Birthday")]
-            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd'/'MMM'/'yyyy}")]
-            [JsonConverter(typeof(IsoDateTimeConverter), "dd'/'MMM'/'yyyy")]
+            [Display(Name= "Birthday (mm/dd/yyyy)")]
+            [DataType(DataType.Date), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM'/'dd'/'yyyy}")]
+            [JsonConverter(typeof(IsoDateTimeConverter), "MM'/'dd'/'yyyy")]
             public DateTime? Birthday { get; set; }
 
             [Display(Name="", Prompt = "AddressType")]
@@ -128,16 +126,14 @@ namespace WebApp.Pages.User
                 var userProfile = await dbContext.UserProfiles.FirstOrDefaultAsync(fd => fd.User == user);
 
                 var claims = await userManager.GetClaimsAsync(user);
-                var claim = claims.FirstOrDefault(w => w.Type == "Approved");
+                await userManager.RemoveClaimsAsync(user, claims);
 
                 if (claim != null)
                     await userManager.ReplaceClaimAsync(user, claim, new Claim("Approved", $"{!userProfile.IsPending()}"));
                 else
                     await userManager.AddClaimAsync(user, new Claim("Approved", $"{!userProfile.IsPending()}"));
 
-                await signInManager.RefreshSignInAsync(user);
-
-                return RedirectToPage("/Index", new {toast = "success" });               
+                return Redirect("/");               
             }
 
             foreach (var error in result.Errors)
