@@ -2,15 +2,15 @@
 @model WebApp.Areas.Identity.Pages.Account.RegisterConfirmationModel
 
 @{
-    ViewData["Title"] = "Thank you!";
+    ViewData["Title"] = Localizer["Thank you!"];
 }
 
 <h1>@ViewData["Title"]</h1>
 <div>
     <p>
-        Almost done...
+        @Localizer["Almost done"]...
 
-        We'll send an email to you in 5 minutes. Open it up to activate your account.
+        @Localizer["We'll send an email to you in 5 minutes. Open it up to activate your account."]
     </p>
 </div>
 
