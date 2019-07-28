@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="~/lib/select2/dist/css/select2.min.css" />
   <link rel="stylesheet" href="~/lib/toastr/build/toastr.min.css" />
 </head>
-<body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+<body class="app sidebar-fixed aside-menu-fixed sidebar-lg-show">
   <environment include="Development">
     <script src="~/lib/jquery/dist/jquery.js"></script><!-- jQuery must be loaded before bootstrap -->
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
@@ -75,7 +75,7 @@
     <script src="~/lib/toastr/toastr.js"></script>
   </environment>
 
-  <header>
+  <header class="d-none">
       <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
           <div class="container">
               <a class="navbar-brand" asp-area="" asp-page="/Index">WebApp</a>
