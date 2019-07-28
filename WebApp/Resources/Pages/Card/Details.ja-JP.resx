@@ -117,16 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="All Cards" xml:space="preserve">
-    <value>すべてのカード</value>
+  <data name="Amount" xml:space="preserve">
+    <value>金額</value>
   </data>
-  <data name="Change Password" xml:space="preserve">
-    <value>パスワードを変更</value>
+  <data name="Back" xml:space="preserve">
+    <value>戻る</value>
   </data>
-  <data name="Hello" xml:space="preserve">
-    <value>こんにちは</value>
+  <data name="Card" xml:space="preserve">
+    <value>カード</value>
   </data>
-  <data name="Update Profile" xml:space="preserve">
-    <value>プロフィールを更新</value>
+  <data name="Currency" xml:space="preserve">
+    <value>貨幣</value>
+  </data>
+  <data name="Currency Balances" xml:space="preserve">
+    <value>貨幣残高</value>
+  </data>
+  <data name="Mechant Name" xml:space="preserve">
+    <value>販売者</value>
+  </data>
+  <data name="Merchant Id" xml:space="preserve">
+    <value>販売者アイデンティティ</value>
+  </data>
+  <data name="Syncing in progress" xml:space="preserve">
+    <value>同期中です</value>
+  </data>
+  <data name="Tran Date" xml:space="preserve">
+    <value>取引日</value>
+  </data>
+  <data name="Tran Type" xml:space="preserve">
+    <value>取り引きタイプ</value>
+  </data>
+  <data name="Transactions" xml:space="preserve">
+    <value>取り引き</value>
   </data>
 </root>

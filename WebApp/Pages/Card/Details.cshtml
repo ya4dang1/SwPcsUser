@@ -8,7 +8,7 @@
 <div class="card card-sm">
   <div class="card-header">
     <h4>
-      <strong>Card</strong>
+      <strong>@Localizer["Card"]</strong>
       <small>@Model.Input.Card.CardNumber</small>
     </h4>
   </div>
@@ -20,47 +20,47 @@
         </ul>
       </div>
       <h5 class="mb-4">
-        <strong>Currency Balances</strong>
+        <strong>@Localizer["Currency Balances"]</strong>
         <small></small>
       </h5>
       <div class="row">
-          @foreach (var balance in Model.Input.Balance)
-          {
-              <div class="form-group col-xs-6 col-sm-4 col-lg-3">
-                  <div class="row">
-                      <label class="col-3 col-form-label text-right">@balance.Key</label>
-                      <div class="col-9">
-                          <input class="form-control text-right" type="text" value="@balance.Value.ToString("N2")" readonly />
-                      </div>
-                  </div>
+        @foreach (var balance in Model.Input.Balance)
+        {
+          <div class="form-group col-xs-6 col-sm-4 col-lg-3">
+            <div class="row">
+              <label class="col-3 col-form-label text-right">@balance.Key</label>
+              <div class="col-9">
+                <input class="form-control text-right" type="text" value="@balance.Value.ToString("N2")" readonly />
               </div>
-          }
+            </div>
+          </div>
+        }
       </div>
 
       <h5 class="mt-4 mb-4">
-        <strong>Transactions</strong>
+        <strong>@Localizer["Transactions"]</strong>
         <small></small>
       </h5>
       <table data-order='[[ 0, "asc" ]]' class="table table-striped table-bordered table-responsive-sm datatable">
         <thead>
           <tr>
             <th>
-             Tran Date
+             @Localizer["Tran Date"]
             </th>
             <th>
-              Tran Type
+              @Localizer["Tran Type"]
             </th>
             <th>
-              Mechant Name
+              @Localizer["Mechant Name"]
             </th>
             <th>
-              Merchant Id
+              @Localizer["Merchant Id"]
             </th>
             <th>
-              Currency
+              @Localizer["Currency"]
             </th>
             <th>
-              Amount
+              @Localizer["Amount"]
             </th>
           </tr>
         </thead>
@@ -95,7 +95,7 @@
       <div class="form-group mb-0">
         <a class="btn btn-secondary" asp-page="./Index">
           <i class="fa fa-caret-left"></i>
-          Back
+          @Localizer["Back"]
         </a>
       </div>
     </div>

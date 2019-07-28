@@ -4,6 +4,9 @@
 // Write your Javascript code.
 $(function () {
   if ( ! $.fn.DataTable.isDataTable('.datatable') ) {
+    var arrEmpty = new Array();
+    arrEmpty["c=en-US|uic=en-US"] = 'No data available';
+    arrEmpty["c=ja-JP|uic=ja-JP"] = 'データなし';
     $.fn.DataTable.ext.pager.numbers_length = 5;
     $('.datatable').dataTable({
       "order": [
@@ -21,7 +24,7 @@ $(function () {
         }
       ],
       "language": {
-        "emptyTable": "No data available",
+        "emptyTable": arrEmpty[getCookie(".AspNetCore.Culture")],
         "paginate": {
           "previous": "<<",
           "next": ">>"
