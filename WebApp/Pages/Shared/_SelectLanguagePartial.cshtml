@@ -1,4 +1,4 @@
-﻿<form asp-page-handler="SetLanguage" asp-route-returnUrl="@Context.Request.Path" method="post"
+﻿<form asp-page-handler="SetLanguage" asp-route-returnUrl="@Context.Request.Path@Context.Request.QueryString" method="post"
   class="form-horizontal" role="form" id="form-culture">
   <input type="hidden" value="" name="culture" id="culture" />
   <input type="hidden" value="SetLanguage" name="handler" />

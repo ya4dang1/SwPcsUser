@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WebApp.Pages.Card
 {
-    public class DetailsModel : PageModel
+    public class DetailsModel : PageModelBase
     {
         private readonly IMediator mediator;
 
