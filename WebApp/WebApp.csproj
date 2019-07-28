@@ -26,9 +26,4 @@
     <ProjectReference Include="..\EmyralSystems\EmyralSystems.csproj" />
   </ItemGroup>
 
-
-  <ItemGroup>
-    <Folder Include="Resources\Pages\Card\" />
-  </ItemGroup>
-
 </Project>

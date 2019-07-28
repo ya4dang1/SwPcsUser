@@ -118,6 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Invalid login attempt." xml:space="preserve">
-    <value>無効なログイン試行です。</value>
+    <value>無効なログインです。</value>
   </data>
 </root>

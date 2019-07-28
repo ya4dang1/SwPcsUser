@@ -118,12 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Almost done" xml:space="preserve">
-    <value />
+    <value>ほぼ完成です</value>
   </data>
   <data name="Thank you!" xml:space="preserve">
-    <value />
+    <value>ありがとうございました!</value>
   </data>
   <data name="We'll send an email to you in 5 minutes. Open it up to activate your account." xml:space="preserve">
-    <value />
+    <value>5分後にメールが送信されます。メールを開いてアカウントをアクティブにしてください。</value>
   </data>
 </root>

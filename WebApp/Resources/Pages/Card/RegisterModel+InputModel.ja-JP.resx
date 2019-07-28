@@ -117,10 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Confirm your email" xml:space="preserve">
-    <value>メールを確認してください</value>
+  <data name="CardNumber" xml:space="preserve">
+    <value>カード番号</value>
   </data>
-  <data name="Please confirm your account by &lt;a href='{0}'&gt;clicking here&lt;/a&gt;" xml:space="preserve">
-    <value>アカウントを確認するために&lt;a href='{0}'&gt;ここ&lt;/a&gt;をクリックしてください</value>
+  <data name="CVV" xml:space="preserve">
+    <value>セキュリティコード</value>
+  </data>
+  <data name="ExpiredDate" xml:space="preserve">
+    <value>有効期限</value>
+  </data>
+  <data name="PIN" xml:space="preserve">
+    <value>ピン</value>
+  </data>
+  <data name="The {0} field is required." xml:space="preserve">
+    <value>{0}を入力してください</value>
   </data>
 </root>

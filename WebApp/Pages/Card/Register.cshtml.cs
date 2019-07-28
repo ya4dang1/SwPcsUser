@@ -37,20 +37,20 @@ namespace WebApp.Pages.Card
 
         public class InputModel
         {
-            [Required]
-            [Display(Prompt = "CardNumber")]
+            [Required(ErrorMessage = "The {0} field is required.")]
+            [Display(Name = "CardNumber", Prompt = "")]
             public string CardNumber { get; set; }
 
-            [Required]
-            [Display(Prompt = "CVV")]
+            [Required(ErrorMessage = "The {0} field is required.")]
+            [Display(Name = "CVV", Prompt = "")]
             public int CVV { get; set; }
 
-            [Required]
-            [Display(Prompt = "PIN")]
+            [Required(ErrorMessage = "The {0} field is required.")]
+            [Display(Name = "PIN", Prompt = "")]
             public int PIN { get; set; }
 
-            [Required]
-            [Display(Prompt = "ExpiredDate")]
+            [Required(ErrorMessage = "The {0} field is required.")]
+            [Display(Name = "ExpiredDate", Prompt = "")]
             [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM'/'yyyy}")]
             [JsonConverter(typeof(IsoDateTimeConverter), "MM'/'yyyy")]
             public DateTime ExpiredDate { get; set; }

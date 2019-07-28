@@ -130,7 +130,7 @@
     <value>メール</value>
   </data>
   <data name="FirstName" xml:space="preserve">
-    <value>姓</value>
+    <value>名</value>
   </data>
   <data name="FullName" xml:space="preserve">
     <value>名前</value>
@@ -139,7 +139,7 @@
     <value>識別</value>
   </data>
   <data name="LastName" xml:space="preserve">
-    <value>名</value>
+    <value>姓</value>
   </data>
   <data name="MiddleName" xml:space="preserve">
     <value>ミドルネーム</value>

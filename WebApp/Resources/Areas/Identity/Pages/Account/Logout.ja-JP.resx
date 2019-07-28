@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="&lt;p class=&quot;&quot;&gt;Click &lt;a href=&quot;{0}&quot;&gt;here&lt;/a&gt; to log in again.&lt;/p&gt;" xml:space="preserve">
-    <value>&lt;p class=""&gt;再度ログインするにはここをクリック</value>
+    <value>&lt;p class=""&gt;もう一度ログインするには&lt;a href="{0}"&gt;ここ&lt;/a&gt;をクリックしてください。&lt;/p&gt;</value>
   </data>
   <data name="Log out" xml:space="preserve">
     <value>ログアウト</value>
@@ -127,7 +127,7 @@
     <value>ログアウトしました。</value>
   </data>
   <data name="You have successfully logged out of the application." xml:space="preserve">
-    <value>アプリケーションから正常にログアウトしました。</value>
+    <value>アプリケーションからログアウトしました。</value>
   </data>
   <data name="Your session has been cleared." xml:space="preserve">
     <value>あなたのセッションはクリアされました。</value>

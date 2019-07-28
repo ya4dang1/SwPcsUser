@@ -124,7 +124,7 @@
     <value>パスワードを忘れた場合</value>
   </data>
   <data name="Log in" xml:space="preserve">
-    <value>サインイン</value>
+    <value>ログイン</value>
   </data>
   <data name="Personal Cards Management System" xml:space="preserve">
     <value>個人カード管理システム</value>
@@ -132,8 +132,8 @@
   <data name="Register as a new user" xml:space="preserve">
     <value>新規ユーザー登録</value>
   </data>
-  <data name="Sign In to your account" xml:space="preserve">
-    <value>アカウントにサインインする</value>
+  <data name="Log in to your account" xml:space="preserve">
+    <value>アカウントにログインする</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>次へ</value>

@@ -11,10 +11,10 @@ namespace WebApp.Pages
 {
 	public class PageModelBase : PageModel
 	{
-    #pragma warning disable MVC1002 // Route attributes cannot be applied to page handler methods.
-    [HttpPost]
-    #pragma warning restore MVC1002 // Route attributes cannot be applied to page handler methods.
-    public IActionResult OnPostSetLanguageAsync(string culture, string returnUrl)
+        #pragma warning disable MVC1002 // Route attributes cannot be applied to page handler methods.
+        [HttpPost]
+        #pragma warning restore MVC1002 // Route attributes cannot be applied to page handler methods.
+        public IActionResult OnPostSetLanguageAsync(string culture, string returnUrl)
 		{
             if(!(culture is String))
             {

@@ -126,8 +126,8 @@
   <data name="Register User" xml:space="preserve">
     <value>新規ユーザー登録</value>
   </data>
-  <data name="Sign In to your account" xml:space="preserve">
-    <value>アカウントにサインインする</value>
+  <data name="Log in to your account" xml:space="preserve">
+    <value>アカウントにログインする</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>次へ</value>
