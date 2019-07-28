@@ -9,7 +9,7 @@
   <div class="card-header">
     <h4>
       <strong>Card</strong>
-      <small>8080 8080 8080 8080</small>
+      <small>@Model.Input.Card.CardNumber</small>
     </h4>
   </div>
   <form method="post" novalidate="novalidate">
@@ -24,38 +24,17 @@
         <small></small>
       </h5>
       <div class="row">
-        <div class="form-group col-xs-6 col-sm-4 col-lg-3">
-          <div class="row">
-            <label class="col-3 col-form-label text-right">USD</label>
-            <div class="col-9">
-              <input class="form-control text-right" type="text" value="1,000,000.00" readonly />
-            </div>
-          </div>
-        </div>
-        <div class="form-group col-xs-6 col-sm-4 col-lg-3">
-          <div class="row">
-            <label class="col-3 col-form-label text-right">JPY</label>
-            <div class="col-9">
-              <input class="form-control text-right" type="text" value="1,000,000.00" readonly />
-            </div>
-          </div>
-        </div>
-        <div class="form-group col-xs-6 col-sm-4 col-lg-3">
-          <div class="row">
-            <label class="col-3 col-form-label text-right">PHP</label>
-            <div class="col-9">
-              <input class="form-control text-right" type="text" value="1,000,000.00" readonly />
-            </div>
-          </div>
-        </div>
-        <div class="form-group col-xs-6 col-sm-4 col-lg-3">
-          <div class="row">
-            <label class="col-3 col-form-label text-right">CNY</label>
-            <div class="col-9">
-              <input class="form-control text-right" type="text" value="1,000,000.00" readonly />
-            </div>
-          </div>
-        </div>
+          @foreach (var balance in Model.Input.Balance)
+          {
+              <div class="form-group col-xs-6 col-sm-4 col-lg-3">
+                  <div class="row">
+                      <label class="col-3 col-form-label text-right">@balance.Key</label>
+                      <div class="col-9">
+                          <input class="form-control text-right" type="text" value="@balance.Value.ToString("N2")" readonly />
+                      </div>
+                  </div>
+              </div>
+          }
       </div>
 
       <h5 class="mt-4 mb-4">
@@ -66,46 +45,49 @@
         <thead>
           <tr>
             <th>
-              @Html.DisplayNameFor(model => model.Input.TranDate)
+             Tran Date
             </th>
             <th>
-              @Html.DisplayNameFor(model => model.Input.TranType)
+              Tran Type
             </th>
             <th>
-              @Html.DisplayNameFor(model => model.Input.MerchantName)
+              Mechant Name
             </th>
             <th>
-              @Html.DisplayNameFor(model => model.Input.MerchantId)
+              Merchant Id
             </th>
             <th>
-              @Html.DisplayNameFor(model => model.Input.Currency)
+              Currency
             </th>
             <th>
-              @Html.DisplayNameFor(model => model.Input.Amount)
+              Amount
             </th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              12341234
-            </td>
-            <td>
-              007
-            </td>
-            <td>
-              123456
-            </td>
-            <td>
-              19/2020
-            </td>
-            <td>
-              19/2020
-            </td>
-            <td>
-              19/2020
-            </td>
-          </tr>
+            @foreach (var transaction in Model.Input.Transaction)
+            {
+                <tr>
+                    <td>
+                        @transaction.TranDate
+                    </td>
+                    <td>
+                        @transaction.TranType
+                    </td>
+                    <td>
+                        @transaction.MerchantName
+                    </td>
+                    <td>
+                        @transaction.MerchantId
+                    </td>
+                    <td>
+                        @transaction.Currency
+                    </td>
+                    <td>
+                        @transaction.Amount
+                    </td>
+                </tr>
+            }           
         </tbody>
       </table>
     </div>

@@ -52,12 +52,13 @@ namespace Application.Features.Card
                 var userCard = await dbContext.UserCards.FirstOrDefaultAsync(w => w.Id == request.Id && w.User == user);
                 if (userCard != null)
                 {
+                    response.Card = userCard;
                     var pcsCard = await pcsDbContext.Card.FirstOrDefaultAsync(fd => fd.CardNumber == userCard.CardNumber);
                     if (pcsCard != null)
                     {
                         pcsDbContext.Entry(pcsCard).Collection(c => c.CardTransaction).Load();
                         response.Balance = JsonConvert.DeserializeObject<Dictionary<string, double>>(pcsCard.Balance);
-                        response.Transaction = pcsCard.CardTransaction.ToList();
+                        response.Transaction = pcsCard.CardTransaction.Where(w => w.Amount > 0 && w.TranType != "BALINQ").ToList();
                     }
                     else
                         response.AddError("Invalid card");                    

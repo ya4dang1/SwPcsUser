@@ -25,13 +25,6 @@ namespace WebApp.Pages.Card
 
         public class InputModel
         {
-            public double Amount { get; set; }
-            public string Currency { get; set; }
-            public string MerchantId { get; set; }
-            public string MerchantName { get; set; }
-            public DateTime TranDate { get; set; }
-            public string TranType { get; set; }
-
             public UserCard Card { get; set; }
             public Dictionary<string, double> Balance { get; set; }
             public List<CardTransaction> Transaction { get; set; }

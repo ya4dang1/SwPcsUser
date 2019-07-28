@@ -18,7 +18,7 @@
           @foreach (var card in Model.Cards)
           {
               <div class="col-md-6 col-lg-4 col-xl-3 mb-2">
-                  <a href="/Card/Details" class="credit-card credit-card--front no-underline">
+                  <a asp-page="/Card/Details" asp-route-id="@card.Id" class="credit-card credit-card--front no-underline">
                       <svg class="Chip" viewBox="0 0 387.8 380.3" style="height:45px">
                           <defs>
                               <linearGradient id="gold-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
