@@ -14,13 +14,13 @@
         <span class="navbar-toggler-icon"></span>
       </a>
       <div class="dropdown-menu dropdown-menu-left">
-        <a class="dropdown-item" asp-page="/Card">
+        <a class="dropdown-item" asp-page="/Card/Index">
           <i class="far fa-credit-card"></i> All Cards
         </a>
         <a class="dropdown-item" asp-page="/User/UpdateProfile">
           <i class="fa fa-user-edit"></i> Update Profile
         </a>
-        <a class="dropdown-item" asp-page="/User/ChangePassword">
+        <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/ChangePassword">
           <i class="fa fa-lock"></i> Change Password
         </a>
       </div>
@@ -35,7 +35,7 @@
       <a class="nav-link" asp-page="/User/UpdateProfile"><strong>Update Profile</strong></a>
     </li>
     <li class="nav-item px-3">
-      <a class="nav-link" asp-page="/User/ChangePassword"><strong>Change Password</strong></a>
+      <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/ChangePassword"><strong>Change Password</strong></a>
     </li>
   </ul>
 

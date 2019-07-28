@@ -1,41 +1,68 @@
 ﻿@page
-@model WebApp.Pages.Card.DetailsModel
+@model DetailsModel
 @{
   ViewData["Title"] = "Details";
   Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-
 <div class="card card-sm">
   <div class="card-header">
     <h4>
       <strong>Card</strong>
-      <small>Details</small>
+      <small>8080 8080 8080 8080</small>
     </h4>
   </div>
   <form method="post" novalidate="novalidate">
     <div class="card-body">
-      <div class="col-xl-8 offset-xl-2">
-        <div class="text-danger validation-summary-valid d-none" data-valmsg-summary="true">
-          <ul>
-            <li class="d-none"></li>
-          </ul>
-        </div>
-        <div class="row">
-          <div class="form-group col-md-6">
-            <label asp-for="Input.Card" class="control-label"></label>
-            <input asp-for="Input.Card" class="form-control" />
-            <span asp-validation-for="Input.Card" class="text-danger"></span>
+      <div class="text-danger validation-summary-valid d-none" data-valmsg-summary="true">
+        <ul>
+          <li class="d-none"></li>
+        </ul>
+      </div>
+      <h5 class="mb-4">
+        <strong>Currency Balances</strong>
+        <small></small>
+      </h5>
+      <div class="row">
+        <div class="form-group col-xs-6 col-sm-4 col-lg-3">
+          <div class="row">
+            <label class="col-3 col-form-label text-right">USD</label>
+            <div class="col-9">
+              <input class="form-control text-right" type="text" value="1,000,000.00" readonly />
+            </div>
           </div>
-          <div class="form-group col-md-6">
-            <label asp-for="Input.Balance" class="control-label"></label>
-            <input type="text" asp-for="Input.Balance" class="form-control" />
-            <span asp-validation-for="Input.Balance" class="text-danger"></span>
+        </div>
+        <div class="form-group col-xs-6 col-sm-4 col-lg-3">
+          <div class="row">
+            <label class="col-3 col-form-label text-right">JPY</label>
+            <div class="col-9">
+              <input class="form-control text-right" type="text" value="1,000,000.00" readonly />
+            </div>
           </div>
         </div>
-      </div><!-- /.col -->
+        <div class="form-group col-xs-6 col-sm-4 col-lg-3">
+          <div class="row">
+            <label class="col-3 col-form-label text-right">PHP</label>
+            <div class="col-9">
+              <input class="form-control text-right" type="text" value="1,000,000.00" readonly />
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-xs-6 col-sm-4 col-lg-3">
+          <div class="row">
+            <label class="col-3 col-form-label text-right">CNY</label>
+            <div class="col-9">
+              <input class="form-control text-right" type="text" value="1,000,000.00" readonly />
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <table data-order='[[ 0, "asc" ]]' class="table table-striped table-bordered table-responsive datatable">
+      <h5 class="mt-4 mb-4">
+        <strong>Transactions</strong>
+        <small></small>
+      </h5>
+      <table data-order='[[ 0, "asc" ]]' class="table table-striped table-bordered table-responsive-sm datatable">
         <thead>
           <tr>
             <th>
@@ -56,7 +83,6 @@
             <th>
               @Html.DisplayNameFor(model => model.Input.Amount)
             </th>
-            <th class="text-center datatable-actions"></th>
           </tr>
         </thead>
         <tbody>
@@ -78,14 +104,6 @@
             </td>
             <td>
               19/2020
-            </td>
-            <td class="text-center text-nowrap">
-              <a title="Edit" class="btn btn-success">
-                <i class="fa fa-edit"></i>
-              </a>&nbsp;
-              <a title="Delete" class="btn btn-secondary">
-                <i class="fa fa-trash"></i>
-              </a>
             </td>
           </tr>
         </tbody>
