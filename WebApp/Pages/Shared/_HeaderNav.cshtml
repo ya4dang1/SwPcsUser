@@ -16,12 +16,14 @@
       <div class="dropdown-menu dropdown-menu-left">
         <a class="dropdown-item" asp-page="/Card/Index">
           <i class="far fa-credit-card"></i> All Cards
+          <i class="far fa-credit-card"></i> @Localizer["All Cards"]
         </a>
         <a class="dropdown-item" asp-page="/User/UpdateProfile">
-          <i class="fa fa-user-edit"></i> Update Profile
+          <i class="fa fa-user-edit"></i> @Localizer["Update Profile"]
         </a>
         <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/ChangePassword">
           <i class="fa fa-lock"></i> Change Password
+          <i class="fa fa-lock"></i> @Localizer["Change Password"]
         </a>
       </div>
     </li>
@@ -29,13 +31,13 @@
 
   <ul class="nav navbar-nav d-md-down-none">
     <li class="nav-item px-3">
-      <a class="nav-link" asp-page="/Card/Index"><strong>All Cards</strong></a>
+      <a class="nav-link" asp-page="/Card/Index"><strong>@Localizer["All Cards"]</strong></a>
     </li>
     <li class="nav-item px-3">
-      <a class="nav-link" asp-page="/User/UpdateProfile"><strong>Update Profile</strong></a>
+      <a class="nav-link" asp-page="/User/UpdateProfile"><strong>@Localizer["Update Profile"]</strong></a>
     </li>
     <li class="nav-item px-3">
-      <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/ChangePassword"><strong>Change Password</strong></a>
+      <a class="nav-link" asp-page="/Account/Manage/ChangePassword"><strong>@Localizer["Change Password"]</strong></a>
     </li>
   </ul>
 
@@ -45,7 +47,7 @@
     </div>
     <div class="mr-0 float-right">
       <form method="post" novalidate="novalidate">
-        <span class="d-sm-down-none">Hello <b>@User.Identity.Name</b>!</span>
+        <span class="d-sm-down-none">@Localizer["Hello"] <b>@User.Identity.Name</b>!</span>
         <button type="submit" class="btn" asp-area="Identity" asp-page="/Account/Logout" asp-route-toast="logout" title="Lockout">
           <i class="fas fa-sign-out-alt"></i>
         </button>
