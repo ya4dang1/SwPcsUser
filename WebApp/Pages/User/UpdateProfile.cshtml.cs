@@ -18,7 +18,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using WebApp.Resources;
 
 namespace WebApp.Pages.User
 {     

@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using Application.Infrastructures;
 using Core.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Localization;
+using Microsoft.Extensions.Options;
 using WebApp.Pages;
 
 namespace WebApp.Areas.Identity.Pages.Account
@@ -18,11 +21,16 @@ namespace WebApp.Areas.Identity.Pages.Account
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IEmailSender _emailSender;
+        private readonly IOptions<ResellerConfig> resellerConfig;
+        private readonly IStringLocalizer<EmailTemplates> emailTemplates;
 
-        public ForgotPasswordModel(UserManager<ApplicationUser> userManager, IEmailSender emailSender)
+        public ForgotPasswordModel(UserManager<ApplicationUser> userManager, IEmailSender emailSender, 
+            IOptions<ResellerConfig> resellerConfig, IStringLocalizer<EmailTemplates> emailTemplates)
         {
             _userManager = userManager;
             _emailSender = emailSender;
+            this.resellerConfig = resellerConfig;
+            this.emailTemplates = emailTemplates;
         }
 
         [BindProperty]
@@ -30,11 +38,13 @@ namespace WebApp.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage = "The {0} field is required.")]
+            [Display(Name="UserName", Prompt ="UserName")]
             public string UserName { get; set; }
 
-            [Required]
-            [EmailAddress]
+            [Required(ErrorMessage = "The {0} field is required.")]
+            [EmailAddress(ErrorMessage = "The {0} field is not a valid e-mail address.")]
+            [Display(Name = "Email", Prompt = "Email")]
             public string Email { get; set; }
         }
 
@@ -61,8 +71,8 @@ namespace WebApp.Areas.Identity.Pages.Account
 
                 await _emailSender.SendEmailAsync(
                     Input.Email,
-                    "Reset Password",
-                    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    emailTemplates["Reset Password"],
+                    String.Format(emailTemplates["Please reset your password by <a href='{0}'>clicking here</a>."], HtmlEncoder.Default.Encode(callbackUrl)));
 
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }

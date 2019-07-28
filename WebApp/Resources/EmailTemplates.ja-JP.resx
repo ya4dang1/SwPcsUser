@@ -117,28 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Cobrand Card System" xml:space="preserve">
-    <value>コブランドカードシステム</value>
+  <data name="Confirm your email" xml:space="preserve">
+    <value>メールを確認してください</value>
   </data>
-  <data name="Email" xml:space="preserve">
-    <value>メール</value>
-  </data>
-  <data name="Enter your email" xml:space="preserve">
-    <value>メールを入力</value>
-  </data>
-  <data name="Forgot Password" xml:space="preserve">
-    <value>パスワードを忘れた場合</value>
-  </data>
-  <data name="Personal Cards Management System" xml:space="preserve">
-    <value>個人カード管理システム</value>
-  </data>
-  <data name="Sign In to your account" xml:space="preserve">
-    <value>アカウントにサインインする</value>
-  </data>
-  <data name="Submit" xml:space="preserve">
-    <value>次へ</value>
-  </data>
-  <data name="User Name" xml:space="preserve">
-    <value>ユーザー</value>
+  <data name="Please confirm your account by &lt;a href='{0}'&gt;clicking here&lt;/a&gt;" xml:space="preserve">
+    <value>ここをクリックしてアカウントを確認してください&lt;a href='{0}'&gt;clicking here&lt;/a&gt;</value>
   </data>
 </root>

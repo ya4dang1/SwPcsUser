@@ -120,19 +120,16 @@
   <data name="Cobrand Card System" xml:space="preserve">
     <value>コブランドカードシステム</value>
   </data>
-  <data name="Confirm Password" xml:space="preserve">
-    <value>パスワードを認証する</value>
+  <data name="Forgot password" xml:space="preserve">
+    <value>パスワードを忘れた場合</value>
   </data>
-  <data name="Email" xml:space="preserve">
-    <value>メール</value>
-  </data>
-  <data name="Password" xml:space="preserve">
-    <value>パスワード</value>
+  <data name="Log in" xml:space="preserve">
+    <value>サインイン</value>
   </data>
   <data name="Personal Cards Management System" xml:space="preserve">
     <value>個人カード管理システム</value>
   </data>
-  <data name="Register" xml:space="preserve">
+  <data name="Register as a new user" xml:space="preserve">
     <value>新規ユーザー登録</value>
   </data>
   <data name="Sign In to your account" xml:space="preserve">
@@ -140,8 +137,5 @@
   </data>
   <data name="Submit" xml:space="preserve">
     <value>次へ</value>
-  </data>
-  <data name="User Name" xml:space="preserve">
-    <value>ユーザー</value>
   </data>
 </root>

@@ -3,7 +3,7 @@
 @model LoginModel
 
 @{
-    ViewData["Title"] = "Log in";
+    ViewData["Title"] = Localizer["Log in"];
     Layout = "~/Pages/Shared/_BlankLayout.cshtml";
 }
 
@@ -19,7 +19,7 @@
         <div class="card p-4">
           <div class="card-body">
             <form id="account" method="post">
-              <h2>@Localizer["Login"]</h2>
+              <h2>@ViewData["Title"]</h2>
               <p class="text-muted">@Localizer["Sign In to your account"]</p>
               <div asp-validation-summary="All" class="text-danger"></div>
               <div class="input-group">

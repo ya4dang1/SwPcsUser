@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApp.Resources
+namespace WebApp
 {
-    public class ErrorMessages
+    public class EmailTemplates
     {
     }
 }

@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using WebApp.Pages;
@@ -23,6 +24,7 @@ namespace WebApp.Areas.Identity.Pages.Account
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly IStringLocalizer<EmailTemplates> emailTemplates;
         private readonly ResellerConfig resellerConfig;
 
         public RegisterModel(
@@ -30,12 +32,14 @@ namespace WebApp.Areas.Identity.Pages.Account
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            IOptions<ResellerConfig> resellerConfig)
+            IOptions<ResellerConfig> resellerConfig,
+            IStringLocalizer<EmailTemplates> emailTemplates)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            this.emailTemplates = emailTemplates;
             this.resellerConfig = resellerConfig.Value;
         }
 
@@ -46,23 +50,23 @@ namespace WebApp.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]           
-            [Display(Name = "UserName")]
+            [Required (ErrorMessage = "The {0} field is required.")]           
+            [Display(Name = "UserName", Prompt ="UserName")]
             public string UserName { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "The {0} field is required.")]
             [EmailAddress]
-            [Display(Name = "Email")]
+            [Display(Name = "Email", Prompt="Email")]
             public string Email { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "The {0} field is required.")]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = "Password", Prompt="Password")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
+            [Display(Name = "Confirm password", Prompt="Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
         }
@@ -74,7 +78,7 @@ namespace WebApp.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/");
+            returnUrl = Url.Content("/Identity/Account/RegisterConfirmation");
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { AppId = resellerConfig.AppId, UserName = Input.UserName, Email = Input.Email };
@@ -90,11 +94,11 @@ namespace WebApp.Areas.Identity.Pages.Account
                         values: new { userId = user.Id, code = code },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    return LocalRedirect(returnUrl);
+                    await _emailSender.SendEmailAsync(Input.Email, emailTemplates["Confirm your email"],
+                        string.Format(emailTemplates["Please confirm your account by <a href='{0}'>clicking here</a>"], HtmlEncoder.Default.Encode(callbackUrl))
+                       );
+                                       
+                    return Redirect(returnUrl);
                 }
                 foreach (var error in result.Errors)
                 {
