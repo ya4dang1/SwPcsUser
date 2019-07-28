@@ -121,7 +121,7 @@
     <value>住所</value>
   </data>
   <data name="AddressType" xml:space="preserve">
-    <value />
+    <value>住所タイプ</value>
   </data>
   <data name="Birthday" xml:space="preserve">
     <value>お誕生日</value>
@@ -130,7 +130,7 @@
     <value>お誕生日 (月/日/年)</value>
   </data>
   <data name="City" xml:space="preserve">
-    <value />
+    <value>都市</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>メール</value>
@@ -157,9 +157,9 @@
     <value>名前</value>
   </data>
   <data name="Region" xml:space="preserve">
-    <value />
+    <value>区</value>
   </data>
   <data name="Zip" xml:space="preserve">
-    <value />
+    <value>郵便番号</value>
   </data>
 </root>

@@ -1,12 +1,18 @@
 ﻿@page
 @model ConfirmEmailModel
 @{
-    ViewData["Title"] = Localizer["Confirm email"];
+  ViewData["Title"] = Localizer["Confirm email"];
+  Layout = "~/Pages/Shared/_BlankLayout.cshtml";
 }
 
-<h1>@ViewData["Title"]</h1>
-<div>
-    <p>
-        @Localizer["Thank you for confirming your email."]
-    </p>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="clearfix text-center">
+        <h1 class="display-3 mr-4 text-success"><i class="fas fa-check-circle d-block mt-4"></i></h1>
+        <h4 class="pt-3 text-success">@Localizer["Thank you for confirming your email."]</h4>
+        @Localizer[@"<p class="""">Click <a href=""{0}"">here</a> to log in again.</p>", "./Login"]
+      </div>
+    </div>
+  </div>
 </div>
