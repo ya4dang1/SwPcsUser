@@ -48,9 +48,11 @@ namespace Application.Features.Card
             var user = await loginUser.GetAsync();
             if(user != null)
             {
+                string cardNumber = request.CardNumber.Replace(" ", "");
+
                 if (!await dbContext.UserCards.AnyAsync(a => a.CardNumber == request.CardNumber))
                 {
-                    var card = await pcsDbContext.Card.FirstOrDefaultAsync(fd => fd.CardNumber == request.CardNumber);
+                    var card = await pcsDbContext.Card.FirstOrDefaultAsync(fd => fd.CardNumber == cardNumber);
                     if (card != null && card.ExpiryDate == request.ExpiredDate)
                     {
                         pcsDbContext.Entry(card).Reference(r => r.Reseller).Load();
@@ -62,7 +64,7 @@ namespace Application.Features.Card
                             var userCard = new UserCard
                             {
                                 User = user,
-                                CardNumber = request.CardNumber,
+                                CardNumber = cardNumber,
                                 ExpiredDate = request.ExpiredDate,
                                 CVV = request.CVV,
                                 PIN = request.PIN

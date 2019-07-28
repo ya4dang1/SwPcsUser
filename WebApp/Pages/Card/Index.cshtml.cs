@@ -31,37 +31,17 @@ namespace WebApp.Pages.Card
         }
 
         [BindProperty]
-        public InputModel Input { get; set; }
-
-        public class InputModel
-        {
-            [Display(Name = "CardNumber")]
-            public string CardNumber { get; set; }
-
-            [Display(Name = "CardNumber")]
-            public string UserId { get; set; }
-
-            [Display(Name = "CVV")]
-            public int CVV { get; set; }
-
-            [Display(Name = "PIN")]
-            public int PIN { get; set; }
-
-            [Display(Name = "ExpiredDate")]
-            public DateTime ExpiredDate { get; set; }
-
-            public List<UserCard> Cards { get; set; }
-        }
+        public List<UserCard> Cards { get; set; }
 
         public async Task<IActionResult> OnGetAsync()
         {
-            Input = new InputModel();
+            Cards = new List<UserCard>();
             var request = new GetCardsQuery();
             var result = await mediator.Send(request);
 
             if (!result.IsError)
             {
-                Input.Cards = result.Cards;
+               Cards = result.Cards;
             }
             else
             {
