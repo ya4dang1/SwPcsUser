@@ -232,30 +232,30 @@ a.credit-card {
   cursor: pointer;
 }
 
-.credit-card__number {
+  a.credit-card.credit-card--front {
+    font-size: 16px;
+    font-family: 'Source Code Pro';
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .6);
+  }
+
+a.credit-card .credit-card__number {
   font-size: 26px;
   padding: 10px 0;
   text-align: center;
 }
 
-.credit-card__expiry-date {
+a.credit-card .credit-card__expiry-date {
   font-size: 14px;
   text-align: center;
 }
 
-.credit-card__owner {
+a.credit-card .credit-card__owner {
   text-align: left;
 }
 
-.credit-card__logo {
+a.credit-card .credit-card__logo {
   position: absolute;
   right: 20px;
   bottom: 20px;
   width: 75px;
-}
-
-.credit-card--front {
-  font-size: 16px;
-  font-family: 'Source Code Pro';
-  text-shadow: 0 1px 1px rgba(0, 0, 0, .6);
 }

@@ -35,13 +35,15 @@
     });
 
     // For Expiry Date
-    var imExpiry = new Inputmask('99/9999');
-    imExpiry.mask($('.dateformat-expiry'));
+    Inputmask('99/9999').mask($('.dataformat-expiry'));
     // For Date
-    var imDate = new Inputmask('99/99/9999');
-    imDate.mask($('.dateformat-date'));
+    Inputmask('99/99/9999').mask($('.dataformat-date'));
     // For Card Number
-    //$('.card-number-format').mask('9999 9999 9999 9999');
+    Inputmask('9999 9999 9999 9999').mask($('.dataformat-creditcard'));
+    // For CVV
+    Inputmask('999').mask($('.dataformat-cvv'));
+    // For PIN
+    Inputmask('999999').mask($('.dataformat-pin'));
 
     // For toastr
     if(GetURLParameter('toast') == 'success'){
@@ -57,14 +59,20 @@
     });
     
     // date picker
-    $('.dateformat-date').datepicker({
+    $('.dataformat-date').datepicker({
       format: 'mm/dd/yyyy',
     });
-    $('.dateformat-expiry').datepicker( {
+    
+    var minDate = new Date();
+    var maxDate = new Date(new Date().setFullYear(new Date().getFullYear() + 10));
+    $('.dataformat-expiry').datepicker({
       format: "mm/yyyy",
-      viewMode: "months", 
-      minViewMode: "months"
+      minViewMode: "months",
+      startDate: minDate,
+      endDate: maxDate
     });
+    //$('.dataformat-expiry').datepicker('setStartDate', minDate);    
+    //$('.dataformat-expiry').datepicker('setEndDate', maxDate);
   });
 
   $(window).on('load', function(){

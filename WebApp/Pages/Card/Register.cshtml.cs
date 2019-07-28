@@ -38,15 +38,19 @@ namespace WebApp.Pages.Card
         public class InputModel
         {
             [Required]
+            [Display(Prompt = "CardNumber")]
             public string CardNumber { get; set; }
 
             [Required]
+            [Display(Prompt = "CVV")]
             public int CVV { get; set; }
 
             [Required]
+            [Display(Prompt = "PIN")]
             public int PIN { get; set; }
 
             [Required]
+            [Display(Prompt = "ExpiredDate")]
             [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM'/'yyyy}")]
             [JsonConverter(typeof(IsoDateTimeConverter), "MM'/'yyyy")]
             public DateTime ExpiredDate { get; set; }
@@ -54,7 +58,7 @@ namespace WebApp.Pages.Card
 
         public void OnGet()
         {
-            Input = new InputModel();
+            
         }
 
         public async Task<IActionResult> OnPostAsync()
