@@ -29,7 +29,6 @@
 
   <ItemGroup>
     <Folder Include="Resources\Pages\Card\" />
-    <Folder Include="Resources\Pages\Shared\" />
   </ItemGroup>
 
 </Project>
