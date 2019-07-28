@@ -17,6 +17,7 @@ using Microsoft.Extensions.Options;
 using Application.Infrastructures;
 using Application.Enumerations;
 using System.IO;
+using Microsoft.Extensions.Localization;
 
 namespace WebApp.Areas.Identity.Pages.Account
 {
@@ -28,18 +29,21 @@ namespace WebApp.Areas.Identity.Pages.Account
         private readonly ApplicationDbContext dbContext;
         private readonly ResellerConfig resellerConfig;
         private readonly ILogger<LoginModel> _logger;
+        private readonly IStringLocalizer<LoginModel> localizer;
 
         public LoginModel(SignInManager<ApplicationUser> signInManager, 
             UserManager<ApplicationUser> userManager,
             ApplicationDbContext dbContext,
             IOptions<ResellerConfig> resellerConfig,
-            ILogger<LoginModel> logger)
+            ILogger<LoginModel> logger,
+            IStringLocalizer<LoginModel> localizer)
         {
             _signInManager = signInManager;
             this.userManager = userManager;
             this.dbContext = dbContext;
             this.resellerConfig = resellerConfig.Value;
             _logger = logger;
+            this.localizer = localizer;
         }
 
         [BindProperty]
@@ -123,7 +127,7 @@ namespace WebApp.Areas.Identity.Pages.Account
             }
 
             // If we got this far, something failed, redisplay form
-            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+            ModelState.AddModelError(string.Empty, localizer["Invalid login attempt."]);
             return Page();
         }
     }
