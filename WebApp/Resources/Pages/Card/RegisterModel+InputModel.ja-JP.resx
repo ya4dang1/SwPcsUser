@@ -132,4 +132,7 @@
   <data name="The {0} field is required." xml:space="preserve">
     <value>{0}を入力してください</value>
   </data>
+  <data name="Invalid card details" xml:space="preserve">
+    <value>無効なカード</value>
+  </data>
 </root>
