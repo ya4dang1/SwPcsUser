@@ -135,9 +135,6 @@
   <data name="Mobile" xml:space="preserve">
     <value>携帯電話</value>
   </data>
-  <data name="IDValue" xml:space="preserve">
-    <value>アイディー</value>
-  </data>
   <data name="Please complete the profile to register cards." xml:space="preserve">
     <value>カードを登録するためにプロフィールを完成してください。</value>
   </data>

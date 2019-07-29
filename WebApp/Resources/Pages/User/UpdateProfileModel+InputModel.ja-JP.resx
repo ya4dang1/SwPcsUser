@@ -141,9 +141,6 @@
   <data name="FullName" xml:space="preserve">
     <value>名前</value>
   </data>
-  <data name="ID" xml:space="preserve">
-    <value>識別</value>
-  </data>
   <data name="LastName" xml:space="preserve">
     <value>姓</value>
   </data>
@@ -155,6 +152,9 @@
   </data>
   <data name="Name" xml:space="preserve">
     <value>名前</value>
+  </data>
+  <data name="Passport / ID" xml:space="preserve">
+    <value>パスポート / アイディー</value>
   </data>
   <data name="Region" xml:space="preserve">
     <value>区</value>

@@ -84,7 +84,7 @@ namespace WebApp.Pages.User
             [Display(Name ="Mobile", Prompt ="Mobile")]
             public string Mobile { get; set; }
 
-            [Display(Name="ID", Prompt = "ID")]
+            [Display(Name="Passport / ID", Prompt = "Passport / ID")]
             public string IDValue { get; set; }
 
             [Required]
