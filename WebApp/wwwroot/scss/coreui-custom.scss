@@ -1,0 +1,71 @@
+/*
+ * CUSTOM
+ * CoreUI Pro - Dashboard UI Kit
+ * @version v2.1.14
+ * @link https://coreui.io/pro/
+ * Copyright (c) 2018 creativeLabs Łukasz Holeczek
+ */
+
+// CUSTOM Override Boostrap variables
+@import "variables";
+
+// Import Bootstrap source files
+@import "../lib/@coreui/coreui-pro/scss/bootstrap/bootstrap"; // from bootstrap node_modules
+
+// Mixins
+@import "../lib/@coreui/coreui-pro/scss/mixins";
+
+// Animations
+@import "../lib/@coreui/coreui-pro/scss/animate";
+
+// Vendors
+@import "../lib/@coreui/coreui-pro/scss/vendors";
+
+// Components
+@import "../lib/@coreui/coreui-pro/scss/aside";
+@import "../lib/@coreui/coreui-pro/scss/avatars";
+@import "../lib/@coreui/coreui-pro/scss/badge";
+@import "../lib/@coreui/coreui-pro/scss/breadcrumb-menu";
+@import "../lib/@coreui/coreui-pro/scss/breadcrumb";
+@import "../lib/@coreui/coreui-pro/scss/brand-card";
+@import "../lib/@coreui/coreui-pro/scss/brand-buttons";
+@import "../lib/@coreui/coreui-pro/scss/button-group";
+@import "../lib/@coreui/coreui-pro/scss/buttons";
+@import "../lib/@coreui/coreui-pro/scss/callout";
+@import "../lib/@coreui/coreui-pro/scss/card";
+@import "../lib/@coreui/coreui-pro/scss/charts";
+@import "../lib/@coreui/coreui-pro/scss/dropdown";
+@import "../lib/@coreui/coreui-pro/scss/footer";
+@import "../lib/@coreui/coreui-pro/scss/grid";
+@import "../lib/@coreui/coreui-pro/scss/header";
+@import "../lib/@coreui/coreui-pro/scss/input-group";
+@import "../lib/@coreui/coreui-pro/scss/images";
+@import "../lib/@coreui/coreui-pro/scss/list-group";
+@import "../lib/@coreui/coreui-pro/scss/modal";
+@import "../lib/@coreui/coreui-pro/scss/nav";
+@import "../lib/@coreui/coreui-pro/scss/progress";
+@import "../lib/@coreui/coreui-pro/scss/progress-group";
+@import "../lib/@coreui/coreui-pro/scss/sidebar";
+@import "../lib/@coreui/coreui-pro/scss/switches";
+@import "../lib/@coreui/coreui-pro/scss/tables";
+@import "../lib/@coreui/coreui-pro/scss/widgets";
+
+// Layout Options
+@import "../lib/@coreui/coreui-pro/scss/layout";
+
+@import "../lib/@coreui/coreui-pro/scss/others";
+
+// Utility classes
+@import "../lib/@coreui/coreui-pro/scss/utilities";
+
+// Apps
+@import "../lib/@coreui/coreui-pro/scss/apps";
+
+// Right-to-left
+@import "../lib/@coreui/coreui-pro/scss/rtl";
+
+// Custom Properties support for Internet Explorer
+@import "../lib/@coreui/coreui-pro/scss/ie-custom-properties";
+
+// temp fixes
+@import "../lib/@coreui/coreui-pro/scss/fixes";

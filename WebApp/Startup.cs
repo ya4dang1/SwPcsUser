@@ -12,15 +12,19 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WebApp.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Globalization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Localization;
-
-using Application.Modules.Test;
-using OmniPay;
+using Application;
+using Core.Infrastructures;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Core.Services;
+using Application.Infrastructures;
+using Core.Models;
+using Application.Services;
+using EmyralSystems;
 
 namespace WebApp
 {
@@ -35,6 +39,11 @@ namespace WebApp
             CultureInfo.GetCultureInfo("ja-JP"),
             CultureInfo.GetCultureInfo("ko-KR"),
             CultureInfo.GetCultureInfo("id-ID"),
+        };
+        readonly CultureInfo[] SupportedUICultures = new CultureInfo[]
+        {
+            CultureInfo.GetCultureInfo("en-US"),
+            CultureInfo.GetCultureInfo("ja-JP"),
         };
 
         //MediatR Settings
@@ -56,24 +65,66 @@ namespace WebApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddHttpContextAccessor();
+
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
+                options.UseMySql(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDbContext<PcsDbContext>(options =>
+            {
+                options.UseMySql(Configuration.GetConnectionString("PcsConnection"));
+            });
+
+            services.AddDefaultIdentity<ApplicationUser>(
+                config =>
+                {
+                    config.SignIn.RequireConfirmedEmail = true;        
+                })
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            //Security Claim
+            services.AddAuthorization(options => {
+                options.AddPolicy("IsApproved", policy => policy.RequireClaim("Approved", "True"));
+            });
+
+            services.AddMvc()
+                .AddRazorPagesOptions(options => {
+                    options.Conventions.AuthorizeFolder("/User");
+                    options.Conventions.AuthorizeFolder("/Card","IsApproved");                 
+                }).
+                AddJsonOptions(options =>
+                {
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            //Localization
             services.AddMvc()
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
-                .AddDataAnnotationsLocalization()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);            
+                .AddDataAnnotationsLocalization();
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
-            services.AddMediatR(typeof(TestConnectionCommandHandler));
+            //Mediator
+            services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
 
-            services.AddSingleton<WSCrystalPaymentsSvcSoapClient>(new WSCrystalPaymentsSvcSoapClient(WSCrystalPaymentsSvcSoapClient.EndpointConfiguration.WSCrystalPaymentsSvcSoap12));
+            ///TODO:OmniPay Webservice
+            //var wS = new WSCrystalPaymentsSvcSoapClient(WSCrystalPaymentsSvcSoapClient.EndpointConfiguration.WSCrystalPaymentsSvcSoap12,
+            //    Configuration.GetValue("OmniPayWebService", "http://beta-wscrystalpaymentsvc.omnipay.asia")
+            //);             
+            //services.AddSingleton(wS);
+
+            //Email Configuration
+            services.Configure<EmailConfig>(Configuration.GetSection("EmailConfig"));
+            services.AddTransient<IEmailSender, EmailSender>();
+
+            //Reseller Configurations
+            services.Configure<ResellerConfig>(Configuration.GetSection("ResellerConfig"));
+
+            //Login User
+            services.AddTransient<LoginUser>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -99,7 +150,7 @@ namespace WebApp
             {
                 DefaultRequestCulture = new RequestCulture(DefaultCulture.Name),                
                 SupportedCultures = SupportedCultures,               
-                SupportedUICultures = SupportedCultures
+                SupportedUICultures = SupportedUICultures
             });
 
             app.UseAuthentication();

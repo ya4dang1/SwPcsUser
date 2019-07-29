@@ -8,9 +8,10 @@ namespace Core.Libraries
     public class BaseModel
     {
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public string ActionBy { get; set; }
+
         public DateTime ActionOn { get; set; }
     }
 }

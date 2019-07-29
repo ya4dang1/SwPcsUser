@@ -1,7 +1,8 @@
-using Application.Modules.Test;
-using Application.Modules.User;
+using Application.Features.Test;
+using Application.Features.User;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OmniPay;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -41,12 +42,18 @@ namespace UnitTestApplication
                     },
                     token
                 );
-           
+
+                      
             Assert.IsFalse(result.Success);
-            Assert.IsFalse(result.IsError);
-
+            Assert.IsTrue(result.IsError);
+            if (result.IsError)
+            {
+                foreach (var error in result.Errors)
+                {
+                    Debug.WriteLine(error);
+                }
+            }
         }
-
 
         [TestMethod]
         public async Task TestRegisterNewUserCommandAsync()

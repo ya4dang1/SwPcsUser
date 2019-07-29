@@ -1,0 +1,21 @@
+﻿@page
+@model WebApp.Areas.Identity.Pages.Account.RegisterConfirmationModel
+
+@{
+  ViewData["Title"] = Localizer["Thank you!"];
+  Layout = "~/Pages/Shared/_BlankLayout.cshtml";
+}
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="clearfix text-center">
+        <h1 class="display-3 mr-4 text-info"><i class="fas fa-paper-plane d-block mt-4"></i></h1>
+        <h4 class="pt-3 text-info">
+          @Localizer["Almost done"]... <br />
+          @Localizer["We'll send an email to you in 5 minutes. Open it up to activate your account."]
+        </h4>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+﻿@page
+@model LockoutModel
+@{
+  ViewData["Title"] = Localizer["Locked out"];
+  Layout = "~/Pages/Shared/_BlankLayout.cshtml";
+}
+
+
+<header class="d-none">
+  <h1>@ViewData["Title"]</h1>
+  <p>@Localizer["This account has been locked out, please try again later."]</p>
+</header>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="clearfix text-center">
+        <h1 class="display-3 mr-4"><i class="icon-lock icons d-block mt-4"></i></h1>
+        <h4 class="pt-3">@Localizer["This account has been locked out, please try again 5 minutes later."]</h4>        
+      </div>
+    </div>
+  </div>
+</div>

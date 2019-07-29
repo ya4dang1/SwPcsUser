@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTestApplication", "UnitTestApplication\UnitTestApplication.csproj", "{0CC0BDFC-DA6F-4166-8BC6-D43428A93DB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{F57EC301-E69B-466F-9165-5DDB7C218848}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "WebApp\WebApp.csproj", "{F57EC301-E69B-466F-9165-5DDB7C218848}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmyralSystems", "EmyralSystems\EmyralSystems.csproj", "{8B01344F-CD4F-44A2-BAD2-BC71BBBD21A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{F57EC301-E69B-466F-9165-5DDB7C218848}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F57EC301-E69B-466F-9165-5DDB7C218848}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F57EC301-E69B-466F-9165-5DDB7C218848}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B01344F-CD4F-44A2-BAD2-BC71BBBD21A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B01344F-CD4F-44A2-BAD2-BC71BBBD21A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B01344F-CD4F-44A2-BAD2-BC71BBBD21A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B01344F-CD4F-44A2-BAD2-BC71BBBD21A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,58 @@
+﻿@page
+@model WebApp.Pages.Card.UnregisterModel
+@{
+  ViewData["Title"] = "Unregister";
+  Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="card card-sm">
+  <div class="card-header">
+    <h4>
+      <strong>Unregister</strong>
+      <small>Card</small>
+    </h4>
+  </div>
+  <form method="post" novalidate="novalidate">
+    <div class="card-body">
+      <div class="col-xl-8 offset-xl-2">
+        <div class="text-danger validation-summary-valid d-none" data-valmsg-summary="true">
+          <ul>
+            <li class="d-none"></li>
+          </ul>
+        </div>
+        <input asp-for="Input.Id" type="hidden" />
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label asp-for="Input.Card.CardNumber" class="control-label"></label>
+            <input asp-for="Input.Card.CardNumber" class="form-control" readonly />
+          </div>
+          <div class="form-group col-md-6">
+            <label asp-for="Input.Card.CVV" class="control-label"></label>
+            <input type="text" asp-for="Input.Card.CVV" class="form-control" readonly />
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label asp-for="Input.Card.PIN" class="control-label"></label>
+            <input type="text" asp-for="Input.Card.PIN" class="form-control" readonly />
+          </div>
+          <div class="form-group col-md-6">
+            <label asp-for="Input.Card.ExpiredDate" class="control-label"></label>
+            <input type="datetime" asp-for="Input.Card.ExpiredDate" class="form-control dataformat-expiry" readonly />
+          </div>
+        </div>
+      </div><!-- /.col -->
+    </div>
+    <div class="card-footer">
+      <div class="form-group mb-0">
+        <a class="btn btn-secondary d-none" asp-action="Index">
+          <i class="fa fa-caret-left"></i>
+          Back
+        </a>
+        <button type="submit" value="Create" class="btn btn-primary confirm-submit">
+          <i class="far fa-dot-circle"></i> Unregister
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,4 +1,4 @@
-using Core.Helper;
+using Core.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 

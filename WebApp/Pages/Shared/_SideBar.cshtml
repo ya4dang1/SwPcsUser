@@ -1,0 +1,124 @@
+﻿<div class="sidebar d-none">
+  <nav class="sidebar-nav">
+      <ul class="nav">
+          <li class="nav-item">
+              <a class="nav-link" href="/">
+                  <i class="nav-icon icon-home"></i> Home
+              </a>
+          </li>
+          <li class="nav-title">Menus</li>
+          <li class="nav-item nav-dropdown">
+              <a class="nav-link" asp-controller="Resellers" asp-action="Index">
+                  <i class="nav-icon fa fa-handshake"></i> Resellers
+              </a>
+              <ul class="nav-dropdown-items d-none">
+                  <li class="nav-item">
+                      <a class="nav-link" asp-controller="CardAssignments" asp-action="Index">
+                          <div class="navMarginLeft">
+                              <i class="nav-icon fa fa-angle-right"></i>Assign Cards<span class="badge badge-info">WIP</span>
+                          </div>
+                      </a>
+                  </li>
+              </ul>
+          </li>
+          <li class="nav-item nav-dropdown">
+              <a class="nav-link nav-dropdown-toggle" href="#">
+                  <i class="nav-icon far fa-credit-card"></i> Cards
+              </a>
+              <ul class="nav-dropdown-items">
+                  <li class="nav-item">
+                      <a class="nav-link" asp-controller="Cards" asp-action="Index">
+                          <div class="navMarginLeft"><i class="nav-icon fa fa-caret-right"></i>Card Inventory</div>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" asp-controller="CardBoxs" asp-action="Index">
+                          <div class="navMarginLeft"><i class="nav-icon fa fa-caret-right"></i>Card Boxes</div>
+                      </a>
+                  </li>
+              </ul>
+          </li>
+          <li class="nav-item nav-dropdown d-none">
+              <a class="nav-link disabled" asp-controller="CardLoads" asp-action="Index">
+                  <i class="nav-icon fa fa-download"></i> Reload Cards <span class="badge badge-info">WIP</span>
+              </a>
+          </li>
+          <li class="nav-item nav-dropdown">
+              <a class="nav-link" asp-controller="CardLoadsStatus" asp-action="Index">
+                  <i class="nav-icon fas fa-tasks"></i> Reload Card Status
+              </a>
+          </li>
+          <li class="nav-item nav-dropdown">
+              <a class="nav-link nav-dropdown-toggle" href="#">
+                  <i class="nav-icon fas fa-table"></i> Reports
+              </a>
+              <ul class="nav-dropdown-items">
+                  <li class="nav-item">
+                      <a class="nav-link" asp-area="Report" asp-page="/Reseller">
+                          <div class="navMarginLeft"><i class="nav-icon fa fa-hand-holding-usd"></i>Reseller</div>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" asp-area="Report" asp-page="/Sales">
+                          <div class="navMarginLeft"><i class="nav-icon fa fa-cash-register"></i>Sales</div>
+                      </a>
+                  </li>
+              </ul>
+          </li>
+          <li class="nav-item nav-dropdown">
+              <a class="nav-link nav-dropdown-toggle" href="#">
+                  <i class="nav-icon fa fa-cogs"></i> Settings
+              </a>
+              <ul class="nav-dropdown-items">
+                  @if (User.IsInRole("Administrators"))
+                  {
+                      <li class="nav-item">
+                          <a class="nav-link" asp-area="" asp-controller="CoBrands" asp-action="Index">
+                              <div class="navMarginLeft"><i class="nav-icon fa fa-caret-right"></i>CoBrands</div>
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" asp-area="" asp-controller="Currencies" asp-action="Index">
+                              <div class="navMarginLeft"><i class="nav-icon fa fa-caret-right"></i>Currencies</div>
+                          </a>
+                      </li>
+                  }
+                  <li class="nav-item">
+                      <a class="nav-link" asp-area="Identity" asp-page="/Account/ChangePassword">
+                          <div class="navMarginLeft"><i class="nav-icon fa fa-caret-right"></i>Change Password</div>
+                      </a>
+                  </li>
+              </ul>
+          </li>
+      </ul>
+  </nav>
+  <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+</div>
+
+<script>
+  $(function () {
+    //refreshNavDropdown('.sidebar-nav a.nav-link.nav-dropdown-toggle');
+  });
+  $('.sidebar-nav a.nav-link:not(.nav-dropdown-toggle)').on('click', function () {
+    //$('.sidebar-nav a.nav-link:not(.nav-dropdown-toggle)').removeClass('active');
+    //$(this).addClass('active');
+    //refreshNavDropdown('.sidebar-nav a.nav-link.nav-dropdown-toggle');
+  });
+
+  function refreshNavDropdown(dom) {
+    setTimeout(function () {
+      $(dom).each(function () {
+        var flag = false;
+        if ($(this).siblings('ul').find('a').hasClass('active')) {
+          flag = true;
+        }
+        if (flag) {
+          $(this).addClass('active');
+        } else {
+          $(this).removeClass('active');
+        }
+      });
+    }, 200);
+    return;
+  }
+</script>
