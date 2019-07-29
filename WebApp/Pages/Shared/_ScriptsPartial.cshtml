@@ -78,6 +78,10 @@
   $(window).on('load', function(){
     $('table.table').css('width', '100%');
   });
+  
+  $(window).on('resize', function() {
+    tableResize();
+  });
 
   function getCookie(cname) {
     var name = cname + "=";
@@ -158,13 +162,24 @@
   }
 
   function tableResize() {
-    $('[class*=table-responsive]').each(function (){
-      isContent = ($(this).width() - $('thead', this).width()) < 5;
-      if(!isContent) {
-        $(this).addClass('dataTables_resize');
-      } else {
-        $(this).removeClass('dataTables_resize');
-      }
-    });
+    $('table').css('visibility','hidden');
+
+    $('[class*=table-responsive]').addClass('dataTables_resize');
+    if($('[class*=table-responsive]').width() > $('[class*=table-responsive]').parent().width()){
+      $('[class*=table-responsive]').removeClass('dataTables_resize');    
+    }
+    
+    clearTimeout(window.resizedFinished);
+    window.resizedFinished = setTimeout(function(){
+      $('[class*=table-responsive]').each(function (){
+        isContent = ($(this).width() - $('thead', this).width());
+        if(isContent > 5) {
+          $(this).addClass('dataTables_resize');
+        } else {
+          // Do something          
+        }
+      });
+    }, 250);
+    $('table').css('visibility','visible');
   }
 </script>
