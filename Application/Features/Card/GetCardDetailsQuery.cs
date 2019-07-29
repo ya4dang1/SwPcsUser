@@ -26,6 +26,8 @@ namespace Application.Features.Card
         public Dictionary<string,double> Balance { get; set; }
         public List<CardTransaction> Transaction { get; set; }
 
+        public string NextSync { get; set; }
+
 
     }
 
@@ -59,6 +61,7 @@ namespace Application.Features.Card
                         pcsDbContext.Entry(pcsCard).Collection(c => c.CardTransaction).Load();
                         response.Balance = JsonConvert.DeserializeObject<Dictionary<string, double>>(pcsCard.Balance);
                         response.Transaction = pcsCard.CardTransaction.Where(w => w.Amount > 0 && w.TranType != "BALINQ").ToList();
+                        response.NextSync = pcsCard.LastSync > DateTime.Now ? "Syncing" : pcsCard.LastSync.AddDays(1).ToString("dd/MMM/yyyy hh:mm:ss");
                     }
                     else
                         response.AddError("Invalid card");                    

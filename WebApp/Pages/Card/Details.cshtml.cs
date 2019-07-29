@@ -28,6 +28,8 @@ namespace WebApp.Pages.Card
             public UserCard Card { get; set; }
             public Dictionary<string, double> Balance { get; set; }
             public List<CardTransaction> Transaction { get; set; }
+
+            public string NextSync { get; set; }
         }
 
         public async Task<IActionResult> OnGetAsync(Guid id)
@@ -42,6 +44,7 @@ namespace WebApp.Pages.Card
                 Input.Card = result.Card;
                 Input.Balance = result.Balance;
                 Input.Transaction = result.Transaction;
+                Input.NextSync = result.NextSync;
             }
             else
             {

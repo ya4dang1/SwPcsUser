@@ -138,6 +138,15 @@
   <data name="Merchant Id" xml:space="preserve">
     <value>販売者アイデンティティ</value>
   </data>
+  <data name="Next Sync" xml:space="preserve">
+    <value>次の同期</value>
+  </data>
+  <data name="Please be patience, we are getting the data for you" xml:space="preserve">
+    <value>辛抱してください、私たちはあなたのためにデータを得ています</value>
+  </data>
+  <data name="Syncing" xml:space="preserve">
+    <value>同期中</value>
+  </data>
   <data name="Syncing in progress" xml:space="preserve">
     <value>同期中です</value>
   </data>

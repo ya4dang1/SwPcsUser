@@ -24,7 +24,7 @@
           {
               <h5 class="mb-4">
                   <strong>@Localizer["Currency Balances"]</strong>
-                  <small></small>
+                  <small>@Localizer["Next Sync"]: @Localizer[Model.Input.NextSync]</small>
               </h5>
               <div class="row">
                   @foreach (var balance in Model.Input.Balance)
@@ -102,7 +102,7 @@
               </h5>
 
               <div class="row">
-                  <p>Please be patience, we are getting the data for you 15minutes</p>
+                  <p>@Localizer["Please be patience, we are getting the data for you"]</p>
               </div>
           }
 
