@@ -57,7 +57,7 @@
         <table data-order='[[ 0, "desc" ]]' class="table table-striped table-bordered table-responsive datatable">
           <thead>
             <tr>
-              <th class="datatable-datetime">
+              <th class="datatable-datetime datatable-default-sort-col-desc">
                 @Localizer["Tran Date"]
               </th>
               <th>
@@ -81,7 +81,7 @@
             @foreach (var transaction in Model.Input.Transaction)
             {
               <tr>
-                <td>
+                <td class="datatable-datetime">
                   @transaction.TranDate
                 </td>
                 <td>

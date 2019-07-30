@@ -37,7 +37,7 @@
     // For Expiry Date
     Inputmask('99/9999').mask($('.dataformat-expiry'));
     // For Date
-    Inputmask('99/99/9999').mask($('.dataformat-date'));
+    Inputmask('99/a{3}/9999').mask($('.dataformat-date'));
     // For Card Number
     Inputmask('9999 9999 9999 9999').mask($('.dataformat-creditcard'));
     // For CVV
@@ -60,7 +60,7 @@
     
     // date picker
     $('.dataformat-date').datepicker({
-      format: 'mm/dd/yyyy',
+      format: 'dd/M/yyyy',
     });
     
     var minDate = new Date();

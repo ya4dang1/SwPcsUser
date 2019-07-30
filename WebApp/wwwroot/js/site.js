@@ -3,6 +3,14 @@
 
 // Write your Javascript code.
 $(function () {
+  $('td.datatable-datetime').each(function(){
+    $(this).html(moment($(this).html()).format('DD/MMM/YYYY hh:mm:ss A'));
+  });
+
+  $('input.dataformat-date').each(function () {
+    $(this).val(moment($(this).val()).format('DD/MMM/YYYY'));
+  });
+
   if ( ! $.fn.DataTable.isDataTable('.datatable') ) {
     var arrEmpty = new Array();
     arrEmpty["c=en-US|uic=en-US"] = 'No data available';
