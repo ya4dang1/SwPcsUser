@@ -25,17 +25,9 @@
           <div class="form-group col-md-6">
             <label asp-for="Input.Card.CardNumber" class="control-label"></label>
             <input asp-for="Input.Card.CardNumber" class="form-control" readonly />
-          </div>
-          <div class="form-group col-md-6">
-            <label asp-for="Input.Card.CVV" class="control-label"></label>
-            <input type="text" asp-for="Input.Card.CVV" class="form-control" readonly />
-          </div>
+          </div>          
         </div>
-        <div class="row">
-          <div class="form-group col-md-6">
-            <label asp-for="Input.Card.PIN" class="control-label"></label>
-            <input type="text" asp-for="Input.Card.PIN" class="form-control" readonly />
-          </div>
+        <div class="row">          
           <div class="form-group col-md-6">
             <label asp-for="Input.Card.ExpiredDate" class="control-label"></label>
             <input type="datetime" asp-for="Input.Card.ExpiredDate" class="form-control dataformat-expiry" readonly />
