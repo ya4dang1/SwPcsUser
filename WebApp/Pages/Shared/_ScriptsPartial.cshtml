@@ -1,185 +1,143 @@
 <script>
-  $(document).ready(function () {
-    // For btn-group
-    $('.btn-group').each(function () {
-      var _parent = this;
-      $('.btn.currencymenu', this).click(function () {
-        $(this).addClass('active');
-        $(this).siblings().removeClass('active');
-      });
-    });
+$(function () {
+  var localizer = new Localizer();
 
-    $('.select2-single').select2({
-      width: '100%',
-      placeholder: "Select",
-      theme: 'bootstrap'
-    });
-    // Initilize multiple select
-    $('.select2-multiple').select2({
-      width: '100%',
-      minimumResultsForSearch: Infinity,
-      theme: 'bootstrap'
-    });
-
-    // For confirm delete
-    $('[class*="confirm-delete"]:not(.disabled)').click(function (e) {
-      return confirm('Proceed to delete?');
-    });
-    // For confirm submit
-    $('[class*="confirm-submit"]:not(.disabled)').click(function (e) {
-      return confirm('Proceed to submit?');
-    });
-    // For confirm submit
-    $('.disabled').click(function (e) {
-      return false;
-    });
-
-    // For Expiry Date
-    Inputmask('99/9999').mask($('.dataformat-expiry'));
-    // For Date
-    Inputmask('99/a{3}/9999').mask($('.dataformat-date'));
-    // For Card Number
-    Inputmask('9999 9999 9999 9999').mask($('.dataformat-creditcard'));
-    // For CVV
-    Inputmask('999').mask($('.dataformat-cvv'));
-    // For PIN
-    Inputmask('999999').mask($('.dataformat-pin'));
-
-    // For toastr
-    if(GetURLParameter('toast') == 'success'){
-      toastr.success('Your submission has been saved.', 'Success');
-    }
-    if(GetURLParameter('toast') == 'error'){
-      toastr.error('Something went wrong.', 'Oops');
-    }
-
-    // For general datatable status
-    $('.datatable-status').each(function(){
-      $(this).html(getIcon($.trim($(this).html())));
-    });
-    
-    // date picker
-    $('.dataformat-date').datepicker({
-      format: 'dd/M/yyyy',
-    });
-    
-    var minDate = new Date();
-    var maxDate = new Date(new Date().setFullYear(new Date().getFullYear() + 10));
-    $('.dataformat-expiry').datepicker({
-      format: "mm/yyyy",
-      minViewMode: "months",
-      startDate: minDate,
-      endDate: maxDate
-    });
-    //$('.dataformat-expiry').datepicker('setStartDate', minDate);    
-    //$('.dataformat-expiry').datepicker('setEndDate', maxDate);
+  $('td.datatable-datetime').each(function(){
+    $(this).html(moment($(this).html()).format('DD/MMM/YYYY hh:mm:ss A'));
   });
 
-  $(window).on('load', function(){
-    $('table.table').css('width', '100%');
+  $('input.dataformat-date').each(function () {
+    $(this).val(moment($(this).val()).format('DD/MMM/YYYY'));
+  });
+
+  if ( ! $.fn.DataTable.isDataTable('.datatable') ) {
+    $.fn.DataTable.ext.pager.numbers_length = 5;
+    $('.datatable').dataTable({
+      "order": [
+        [($('th[class*="datatable-default-sort-col-"]').index() > 0 ? $(
+          'th[class*="datatable-default-sort-col-"]').index() : $('th:not(".datatable-actions")').index()), ($(
+          'th[class*="datatable-default-sort-col-desc"]').index() > 0 ? "desc" : "asc")]
+      ],
+      "columnDefs": [{
+          "orderable": false,
+          "targets": 'datatable-actions'
+        },
+        {
+          "type": 'date',
+          "targets": 'datatable-datetime'
+        }
+      ],
+      "language": {
+        "decimal":        "",
+        "emptyTable":     localizer.getTranslation("No data available"),
+        "info":           localizer.getTranslation("Showing _START_ to _END_ of _TOTAL_ entries"),
+        "infoEmpty":      localizer.getTranslation("No entries found"),
+        "infoFiltered":   localizer.getTranslation("(filtered from _MAX_ total entries)"),
+        "infoPostFix":    localizer.getTranslation(""),
+        "thousands":      ",",
+        "lengthMenu":     localizer.getTranslation("Show _MENU_ entries"),
+        "loadingRecords": localizer.getTranslation("Loading..."),
+        "processing":     localizer.getTranslation("Processing..."),
+        "search":         localizer.getTranslation("Search:"),
+        "zeroRecords":    localizer.getTranslation("No matching records found"),
+        "paginate": {
+            "first":      localizer.getTranslation("First"),
+            "last":       localizer.getTranslation("Last"),
+            "next":       ">>",
+            "previous":   "<<"
+        },
+        "aria": {
+            "sortAscending":  ": activate to sort column ascending",
+            "sortDescending": ": activate to sort column descending"
+        }
+      },
+      "pageLength": 10,
+      "processing": true,
+      "initComplete": function( settings, json ) {
+        tableResize();
+      }
+    });  
+  }
+  $('.datatable').attr('style', 'border-collapse: collapse !important');
+  
+  // For btn-group
+  $('.btn-group').each(function () {
+    var _parent = this;
+    $('.btn.currencymenu', this).click(function () {
+      $(this).addClass('active');
+      $(this).siblings().removeClass('active');
+    });
+  });
+
+  $('.select2-single').select2({
+    width: '100%',
+    placeholder: "Select",
+    theme: 'bootstrap'
+  });
+  // Initilize multiple select
+  $('.select2-multiple').select2({
+    width: '100%',
+    minimumResultsForSearch: Infinity,
+    theme: 'bootstrap'
+  });
+
+  // For confirm delete
+  $('[class*="confirm-delete"]:not(.disabled)').click(function (e) {
+    return confirm('Proceed to delete?');
+  });
+  // For confirm submit
+  $('[class*="confirm-submit"]:not(.disabled)').click(function (e) {
+    return confirm('Proceed to submit?');
+  });
+  // For confirm submit
+  $('.disabled').click(function (e) {
+    return false;
+  });
+
+  // For Expiry Date
+  Inputmask('99/9999').mask($('.dataformat-expiry'));
+  // For Date
+  Inputmask('99/a{3}/9999').mask($('.dataformat-date'));
+  // For Card Number
+  Inputmask('9999 9999 9999 9999').mask($('.dataformat-creditcard'));
+  // For CVV
+  Inputmask('999').mask($('.dataformat-cvv'));
+  // For PIN
+  Inputmask('999999').mask($('.dataformat-pin'));
+
+  // For toastr
+  if(GetURLParameter('toast') == 'success'){
+    toastr.success('Your submission has been saved.', 'Success');
+  }
+  if(GetURLParameter('toast') == 'error'){
+    toastr.error('Something went wrong.', 'Oops');
+  }
+
+  // For general datatable status
+  $('.datatable-status').each(function(){
+    $(this).html(getIcon($.trim($(this).html())));
   });
   
-  $(window).on('resize', function() {
-    tableResize();
+  // date picker
+  $('.dataformat-date').datepicker({
+    format: 'dd/M/yyyy',
   });
+  
+  var minDate = new Date();
+  var maxDate = new Date(new Date().setFullYear(new Date().getFullYear() + 10));
+  $('.dataformat-expiry').datepicker({
+    format: "mm/yyyy",
+    minViewMode: "months",
+    startDate: minDate,
+    endDate: maxDate
+  });  
+});
 
-  function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
-    }
-    return "";
-  }
+$(window).on('load', function(){
+  $('table.table').css('width', '100%');
+});
 
-  function getIcon(text, texttype = 'light') {
-    var html = '';
-    switch (text) {
-      case true:
-        html = '<i class="fa fa-check text-success"></i>';
-        break;
-      case false:
-        html = '<i class="fas fa-times text-danger"></i>';
-        break;
-      case 'New':
-        html = '<h5><span class="badge badge-warning">New</span></h5>';
-        break;
-      case 'Activated':
-      case 'Registered':
-        html = '<h5><span class="badge badge-success">Registered</span></h5>';
-        break;
-      case 'Deactivated':
-      case 'Unregistered':
-        html = '<h5><span class="badge badge-danger">Unregistered</span></h5>';
-        break;
-      case 'Pending':
-        html = '<h5><span class="badge badge-primary">Pending</span></h5>';
-        break;
-      case 'PendingApproval':
-        html = '<h5><span class="badge badge-primary text-nowrap">Pending Approval</span></h5>';
-        break;
-      case 'PendingAction':
-        html = '<h5><span class="badge badge-primary text-nowrap">Pending Action</span></h5>';
-        break;
-      case 'Processing':
-        html = '<h5><span class="badge badge-primary">Processing</span></h5>';
-        break;
-      case 'Submitted':
-        html = '<h5><span class="badge badge-primary">Submitted</span></h5>';
-        break;
-      case 'CompletedWithError':
-        html = '<h5><span class="badge badge-warning text-nowrap">Completed With Error</span></h5>';
-        break;
-      case 'Completed':
-        html = '<h5><span class="badge badge-success">Completed</span></h5>';
-        break;
-      case 'Failed':
-        html = '<h5><span class="badge badge-danger">Failed</span></h5>';
-        break;
-      default:
-        html = '<h5><span class="badge badge-' + texttype + '">' + text + '</span></h5>';
-        break;
-    }
-    return html;
-  }
-
-  function GetURLParameter(sParam) {
-    var sPageURL = window.location.search.substring(1);
-    var sURLVariables = sPageURL.split('&');
-    for (var i = 0; i < sURLVariables.length; i++) {
-      var sParameterName = sURLVariables[i].split('=');
-      if (sParameterName[0] == sParam) {
-        return sParameterName[1];
-      }
-    }
-  }
-
-  function tableResize() {
-    $('table').css('visibility','hidden');
-
-    $('[class*=table-responsive]').addClass('dataTables_resize');
-    if($('[class*=table-responsive]').width() > $('[class*=table-responsive]').parent().width()){
-      $('[class*=table-responsive]').removeClass('dataTables_resize');    
-    }
-    
-    clearTimeout(window.resizedFinished);
-    window.resizedFinished = setTimeout(function(){
-      $('[class*=table-responsive]').each(function (){
-        isContent = ($(this).width() - $('thead', this).width());
-        if(isContent > 5) {
-          $(this).addClass('dataTables_resize');
-        } else {
-          // Do something          
-        }
-      });
-    }, 250);
-    $('table').css('visibility','visible');
-  }
+$(window).on('resize', function() {
+  tableResize();
+});
 </script>
