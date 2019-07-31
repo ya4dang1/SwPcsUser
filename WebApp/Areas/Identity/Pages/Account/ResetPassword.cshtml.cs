@@ -8,11 +8,12 @@ using Core.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using WebApp.Pages;
 
 namespace WebApp.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
-    public class ResetPasswordModel : PageModel
+    public class ResetPasswordModel : PageModelBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
 
@@ -27,17 +28,17 @@ namespace WebApp.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required(ErrorMessage = "The {0} field is required.")]
-            [Display(Name = "UserName")]
+            [Display(Name = "UserName", Prompt ="UserName")]
             public string UserName { get; set; }
 
             [Required(ErrorMessage = "The {0} field is required.")]
-            [Display(Name = "Password")]
+            [Display(Name = "Password", Prompt = "Password")]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
+            [Display(Name = "Confirm password", Prompt = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
