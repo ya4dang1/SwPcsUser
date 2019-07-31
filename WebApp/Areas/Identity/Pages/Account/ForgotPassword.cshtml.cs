@@ -60,23 +60,30 @@ namespace WebApp.Areas.Identity.Pages.Account
                     return RedirectToPage("./ForgotPasswordConfirmation");
                 }
 
-                // For more information on how to enable account confirmation and password reset please 
-                // visit https://go.microsoft.com/fwlink/?LinkID=532713
-                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
-                var callbackUrl = Url.Page(
-                    "/Account/ResetPassword",
-                    pageHandler: null,
-                    values: new { code },
-                    protocol: Request.Scheme);
+                if(user.AppId == resellerConfig.Value.AppId)
+                {
+                    // For more information on how to enable account confirmation and password reset please 
+                    // visit https://go.microsoft.com/fwlink/?LinkID=532713
+                    var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                    var callbackUrl = Url.Page(
+                        "/Account/ResetPassword",
+                        pageHandler: null,
+                        values: new { code },
+                        protocol: Request.Scheme);
 
-                await _emailSender.SendEmailAsync(
-                    Input.Email,
-                    emailTemplates["FG NetService-Forgot Password"],
-                    String.Format(emailTemplates[@"Please click <a href='{0}'>here</a> to reset your password.<br/><br/>------------------------------------<br/>FG NetService Customer Support<br/><br/>Email: <a href='mailto:info@fgnetservice.com'>info@fgnetservice.com</a><br/>------------------------------------"], 
-                        HtmlEncoder.Default.Encode(callbackUrl))
-                    );
+                    await _emailSender.SendEmailAsync(
+                        Input.Email,
+                        emailTemplates["FG NetService - Reset Password"],
+                        String.Format(emailTemplates[@"Please click <a href='{0}'>here</a> to reset your password.<br/><br/>------------------------------------<br/>FG NetService Customer Support<br/><br/>Email: <a href='mailto:info@fgnetservice.com'>info@fgnetservice.com</a><br/>------------------------------------"],
+                            HtmlEncoder.Default.Encode(callbackUrl))
+                        );
 
-                return RedirectToPage("./ForgotPasswordConfirmation");
+                    return RedirectToPage("./ForgotPasswordConfirmation");
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid user");
+                }
             }
 
             return Page();
