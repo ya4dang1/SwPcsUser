@@ -32,8 +32,13 @@
   white-space: nowrap
 }
 
-table[class*="table-responsive"] {
+table[class*="table-responsive"]{
   min-width: 100%;
+  width: 100% !important;
+}
+
+table.dataTables_resize{
+  display: table;
 }
 
 .datatable td {

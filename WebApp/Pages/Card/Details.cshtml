@@ -7,106 +7,118 @@
 
 <div class="card card-sm">
   <div class="card-header">
-    <h4>
-      <strong>@Localizer["Card"]</strong>
-      <small>@Model.Input.Card.CardNumber</small>
-    </h4>
+    <div class="row">
+      <div class="col-12">
+        <h4>
+          <strong>@Localizer["Card"]</strong>
+          <small>@Model.Input.Card.CardNumber</small>
+          <a class="btn btn-pill btn-danger float-xs-none float-right" asp-page="/Card/Unregister" asp-route-id="@Model.Input.Id"><i class="fas fa-trash-alt"></i> </a>
+        </h4>
+      </div>
+    </div>
   </div>
   <form method="post" novalidate="novalidate">
-      <div class="card-body">
-          <div class="text-danger validation-summary-valid d-none" data-valmsg-summary="true">
-              <ul>
-                  <li class="d-none"></li>
-              </ul>
-          </div>
-
-          @if (Model.Input.Balance != null)
-          {
-              <h5 class="mb-4">
-                  <strong>@Localizer["Currency Balances"]</strong>
-                  <small>@Localizer["Next Sync"]: @Localizer[Model.Input.NextSync]</small>
-              </h5>
-              <div class="row">
-                  @foreach (var balance in Model.Input.Balance)
-                  {
-                      <div class="form-group col-xs-6 col-sm-4 col-lg-3">
-                          <div class="row">
-                              <label class="col-3 col-form-label text-right">@balance.Key</label>
-                              <div class="col-9">
-                                  <input class="form-control text-right" type="text" value="@balance.Value.ToString("N2")" readonly />
-                              </div>
-                          </div>
-                      </div>
-                  }
-              </div>
-
-              <h5 class="mt-4 mb-4">
-                  <strong>@Localizer["Transactions"]</strong>
-                  <small></small>
-              </h5>
-              <table data-order='[[ 0, "asc" ]]' class="table table-striped table-bordered table-responsive-sm datatable">
-                  <thead>
-                      <tr>
-                          <th>
-                              @Localizer["Tran Date"]
-                          </th>
-                          <th>
-                              @Localizer["Tran Type"]
-                          </th>
-                          <th>
-                              @Localizer["Mechant Name"]
-                          </th>
-                          <th>
-                              @Localizer["Merchant Id"]
-                          </th>
-                          <th>
-                              @Localizer["Currency"]
-                          </th>
-                          <th>
-                              @Localizer["Amount"]
-                          </th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      @foreach (var transaction in Model.Input.Transaction)
-                      {
-                          <tr>
-                              <td>
-                                  @transaction.TranDate
-                              </td>
-                              <td>
-                                  @transaction.TranType
-                              </td>
-                              <td>
-                                  @transaction.MerchantName
-                              </td>
-                              <td>
-                                  @transaction.MerchantId
-                              </td>
-                              <td>
-                                  @transaction.Currency
-                              </td>
-                              <td>
-                                  @transaction.Amount
-                              </td>
-                          </tr>
-                      }
-                  </tbody>
-              </table>
-          }
-          else
-          {
-              <h5 class="mb-4">
-                  <strong>@Localizer["Syncing in progress"] ..</strong>
-                  <small></small>
-              </h5>
-
-              <div class="row">
-                  <p>@Localizer["Please be patience, we are getting the data for you"]</p>
-              </div>
-          }
-
+    <div class="card-body">
+      <div class="text-danger validation-summary-valid d-none" data-valmsg-summary="true">
+        <ul>
+          <li class="d-none"></li>
+        </ul>
       </div>
+
+      @if (Model.Input.Balance != null)
+      {
+        <div class="row">
+          <div class="col-sm-6">
+            <h5 class="mb-4">
+              <strong>@Localizer["Currency Balances"]</strong>
+              <small></small>
+            </h5>
+          </div>
+          <div class="col-sm-6 text-sm-right">
+            @Localizer["Next Sync"]: @Localizer[Model.Input.NextSync]
+          </div>
+        </div>
+        <div class="row">
+          @foreach (var balance in Model.Input.Balance)
+          {
+            <div class="form-group col-xs-6 col-sm-4 col-lg-3">
+              <div class="row">
+                <label class="col-3 col-form-label text-right">@balance.Key</label>
+                <div class="col-9">
+                  <input class="form-control text-right" type="text" value="@balance.Value.ToString("N2")" readonly />
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+
+        <h5 class="mt-4 mb-4">
+          <strong>@Localizer["Transactions"]</strong>
+          <small></small>
+        </h5>
+        <table data-order='[[ 0, "desc" ]]' class="table table-striped table-bordered table-responsive datatable">
+          <thead>
+            <tr>
+              <th class="datatable-datetime datatable-default-sort-col-desc">
+                @Localizer["Tran Date"]
+              </th>
+              <th>
+                @Localizer["Tran Type"]
+              </th>
+              <th>
+                @Localizer["Mechant Name"]
+              </th>
+              <th>
+                @Localizer["Merchant Id"]
+              </th>
+              <th>
+                @Localizer["Currency"]
+              </th>
+              <th>
+                @Localizer["Amount"]
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach (var transaction in Model.Input.Transaction)
+            {
+              <tr>
+                <td class="datatable-datetime">
+                  @transaction.TranDate
+                </td>
+                <td>
+                  @transaction.TranType
+                </td>
+                <td>
+                  @transaction.MerchantName
+                </td>
+                <td>
+                  @transaction.MerchantId
+                </td>
+                <td>
+                  @transaction.Currency
+                </td>
+                <td>
+                  @transaction.Amount
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      }
+      else
+      {
+        <h5 class="mb-4">
+          <strong>@Localizer["Syncing in progress"] ..</strong>
+          <small></small>
+        </h5>
+
+        <div class="row">
+          <div class="col-12">@Localizer["Please be patience, we are getting the data for you"]</div>
+        </div>
+      }
+
+    </div>
     <div class="card-footer">
       <div class="form-group mb-0">
         <a class="btn btn-secondary" asp-page="./Index">

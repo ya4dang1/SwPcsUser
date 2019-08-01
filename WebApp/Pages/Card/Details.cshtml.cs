@@ -25,6 +25,7 @@ namespace WebApp.Pages.Card
 
         public class InputModel
         {
+            public Guid Id { get; set; }
             public UserCard Card { get; set; }
             public Dictionary<string, double> Balance { get; set; }
             public List<CardTransaction> Transaction { get; set; }
@@ -41,6 +42,7 @@ namespace WebApp.Pages.Card
 
             if (!result.IsError)
             {
+                Input.Id = id;
                 Input.Card = result.Card;
                 Input.Balance = result.Balance;
                 Input.Transaction = result.Transaction;

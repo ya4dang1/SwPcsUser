@@ -58,7 +58,7 @@ namespace WebApp.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required (ErrorMessage = "The {0} field is required.")]           
+            [Required(ErrorMessage = "The {0} field is required.")]
             [Display(Name = "UserName", Prompt = "UserName")]
             public string UserName { get; set; }
 

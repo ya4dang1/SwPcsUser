@@ -61,9 +61,9 @@ namespace WebApp.Pages.User
             [Display(Prompt = "LastName")]
             public string LastName { get; set; }
             
-            [Display(Name= "Birthday (mm/dd/yyyy)", Prompt ="Birthday")]
-            [DataType(DataType.Date), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM'/'dd'/'yyyy}")]
-            [JsonConverter(typeof(IsoDateTimeConverter), "MM'/'dd'/'yyyy")]
+            [Display(Name= "Birthday", Prompt ="Birthday")]
+            //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd'/'MMM'/'yyyy}")]
+            //[JsonConverter(typeof(IsoDateTimeConverter), "dd'/'MMM'/'yyyy")]
             public DateTime? Birthday { get; set; }
 
             [Display(Name="", Prompt = "AddressType")]
@@ -136,7 +136,7 @@ namespace WebApp.Pages.User
 
                 await signInManager.RefreshSignInAsync(user);
 
-                return RedirectToPage("/Card/Index", new {toast = "success" });               
+                return RedirectToPage("/Card/Index", new {toast = "success" });
             }
 
             foreach (var error in result.Errors)

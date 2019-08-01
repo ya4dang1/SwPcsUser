@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace EmyralSystems.Models
 {
@@ -15,6 +16,7 @@ namespace EmyralSystems.Models
         public string Currency { get; set; }
         public string MerchantId { get; set; }
         public string MerchantName { get; set; }
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy hh:mm:ss tt}")]
         public DateTime TranDate { get; set; }
         public string TranType { get; set; }
 

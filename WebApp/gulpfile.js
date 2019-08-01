@@ -5,25 +5,15 @@ Click here to learn more. http://go.microsoft.com/fwlink/?LinkId=518007
 */
 
 var gulp = require('gulp');
-var uglify = require('gulp-uglify');
+// Replaced by terser
+// var uglify = require('gulp-uglify');
+var terser = require('gulp-terser');
 var concat = require('gulp-concat');
 var rimraf = require("rimraf");
 var merge = require('merge-stream');
 var sass = require('gulp-sass');
 
 sass.compiler = require('node-sass');
-
-gulp.task("minify", function () {
-
-    var streams = [
-        gulp.src(["wwwroot/js/*.js"])
-            .pipe(uglify())
-            .pipe(concat("site.min.js"))
-            .pipe(gulp.dest("wwwroot/lib/site"))
-    ];
-
-    return merge(streams);
-});
 
 // Dependency Dirs
 var deps = {
@@ -96,6 +86,17 @@ gulp.task('sass', function () {
  
 gulp.task('sass:watch', function () {
   gulp.watch('wwwroot/scss/**/*.scss', ['sass']);
+});
+
+gulp.task("minify", function () {
+    var streams = [
+        gulp.src(["wwwroot/js/*.js"])
+            .pipe(terser())
+            .pipe(concat("site.min.js"))
+            .pipe(gulp.dest("wwwroot/lib/site"))
+    ];
+
+    return merge(streams);
 });
 
 gulp.task("default", gulp.series('clean', 'scripts', 'sass','minify'));
