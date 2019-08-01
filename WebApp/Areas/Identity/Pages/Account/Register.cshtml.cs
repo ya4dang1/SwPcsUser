@@ -94,8 +94,9 @@ namespace WebApp.Areas.Identity.Pages.Account
                         values: new { userId = user.Id, code = code },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, emailTemplates["Confirm your email"],
-                        string.Format(emailTemplates["Please confirm your account by <a href='{0}'>clicking here</a>"], HtmlEncoder.Default.Encode(callbackUrl))
+                    await _emailSender.SendEmailAsync(Input.Email, emailTemplates["FG NetService-Account Activation"],
+                        string.Format(emailTemplates[@"Thank you for account registration.<br/>Please click <a href='{0}'>here</a> to activate your account.<br/><br/>------------------------------------<br/>FG NetService Customer Support<br/><br/>Email: <a href='mailto:info@fgnetservice.com'>info@fgnetservice.com</a><br/>------------------------------------"], 
+                        HtmlEncoder.Default.Encode(callbackUrl))
                        );
                                        
                     return Redirect(returnUrl);

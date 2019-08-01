@@ -71,8 +71,10 @@ namespace WebApp.Areas.Identity.Pages.Account
 
                 await _emailSender.SendEmailAsync(
                     Input.Email,
-                    emailTemplates["Reset Password"],
-                    String.Format(emailTemplates["Please reset your password by <a href='{0}'>clicking here</a>."], HtmlEncoder.Default.Encode(callbackUrl)));
+                    emailTemplates["FG NetService-Forgot Password"],
+                    String.Format(emailTemplates[@"Please click <a href='{0}'>here</a> to reset your password.<br/><br/>------------------------------------<br/>FG NetService Customer Support<br/><br/>Email: <a href='mailto:info@fgnetservice.com'>info@fgnetservice.com</a><br/>------------------------------------"], 
+                        HtmlEncoder.Default.Encode(callbackUrl))
+                    );
 
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }

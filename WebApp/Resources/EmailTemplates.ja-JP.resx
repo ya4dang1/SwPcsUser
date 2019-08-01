@@ -117,10 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Confirm your email" xml:space="preserve">
-    <value>メールを確認してください</value>
+  <data name="FG NetService-Account Activation" xml:space="preserve">
+    <value>FG NetService-アカウント登録確認</value>
   </data>
-  <data name="Please confirm your account by &lt;a href='{0}'&gt;clicking here&lt;/a&gt;" xml:space="preserve">
-    <value>アカウントを確認するために&lt;a href='{0}'&gt;ここ&lt;/a&gt;をクリックしてください</value>
+  <data name="FG NetService-Forgot Password" xml:space="preserve">
+    <value>FG NetService-パスワードを忘れた場合</value>
+  </data>
+  <data name="Please click &lt;a href='{0}'&gt;here&lt;/a&gt; to reset your password.&lt;br/&gt;&lt;br/&gt;------------------------------------&lt;br/&gt;FG NetService Customer Support&lt;br/&gt;&lt;br/&gt;Email: &lt;a href='mailto:info@fgnetservice.com'&gt;info@fgnetservice.com&lt;/a&gt;&lt;br/&gt;------------------------------------" xml:space="preserve">
+    <value>パスワードをリセットするには&lt;a href='{0}'&gt;ここ&lt;/a&gt;をクリックしてください。&lt;br/&gt;&lt;br/&gt;---------------------------------------&lt;br/&gt;FG NetService カスタマーサポート&lt;br/&gt;&lt;br/&gt;Email: &lt;a href='mailto:info@fgnetservice.com'&gt;info@fgnetservice.com&lt;/a&gt;&lt;br/&gt;---------------------------------------</value>
+  </data>
+  <data name="Thank you for account registration.&lt;br/&gt;Please click &lt;a href='{0}'&gt;here&lt;/a&gt; to activate your account.&lt;br/&gt;&lt;br/&gt;------------------------------------&lt;br/&gt;FG NetService Customer Support&lt;br/&gt;&lt;br/&gt;Email: &lt;a href='mailto:info@fgnetservice.com'&gt;info@fgnetservice.com&lt;/a&gt;&lt;br/&gt;------------------------------------" xml:space="preserve">
+    <value>新規アカウント登録をしていただきありがとうございます。&lt;br/&gt;アカウントを有効にするには&lt;a href='{0}'&gt;こちら&lt;/a&gt;をクリックしてください。&lt;br/&gt;&lt;br/&gt;---------------------------------------&lt;br/&gt;FG NetService カスタマーサポート&lt;br/&gt;&lt;br/&gt;Email: &lt;a href='mailto:info@fgnetservice.com'&gt;info@fgnetservice.com&lt;/a&gt;&lt;br/&gt;---------------------------------------</value>
   </data>
 </root>
