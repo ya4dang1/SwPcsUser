@@ -1,15 +1,15 @@
 ﻿@page
 @model WebApp.Pages.Card.UnregisterModel
 @{
-  ViewData["Title"] = "Unregister";
+  ViewData["Title"] = @Localizer["Unregister Card"];
   Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
 <div class="card card-sm">
   <div class="card-header">
     <h4>
-      <strong>Unregister</strong>
-      <small>Card</small>
+      <strong>@Localizer["Unregister Card"]</strong>
+      <small></small>
     </h4>
   </div>
   <form method="post" novalidate="novalidate">
@@ -23,26 +23,26 @@
         <input asp-for="Input.Id" type="hidden" />
         <div class="row">
           <div class="form-group col-md-6">
-            <label asp-for="Input.Card.CardNumber" class="control-label"></label>
-            <input asp-for="Input.Card.CardNumber" class="form-control" readonly />
+            <label asp-for="Input.CardNumber" class="control-label"></label>
+            <input asp-for="Input.CardNumber" class="form-control" readonly />
           </div>          
         </div>
         <div class="row">          
           <div class="form-group col-md-6">
-            <label asp-for="Input.Card.ExpiredDate" class="control-label"></label>
-            <input type="datetime" asp-for="Input.Card.ExpiredDate" class="form-control dataformat-expiry" readonly />
+            <label asp-for="Input.ExpiredDate" class="control-label"></label>
+            <input type="datetime" asp-for="Input.ExpiredDate" class="form-control dataformat-expiry" readonly />
           </div>
         </div>
       </div><!-- /.col -->
     </div>
     <div class="card-footer">
       <div class="form-group mb-0">
-        <a class="btn btn-secondary d-none" asp-action="Index">
+        <a class="btn btn-secondary" asp-page="/Card/Details" asp-route-id="@Model.Input.Id">
           <i class="fa fa-caret-left"></i>
-          Back
+          @Localizer["Back"]
         </a>
-        <button type="submit" value="Create" class="btn btn-primary confirm-submit">
-          <i class="far fa-dot-circle"></i> Unregister
+        <button type="submit" value="" class="btn btn-danger confirm-submit">
+          <i class="far fa-dot-circle"></i> @Localizer["Unregister"]
         </button>
       </div>
     </div>

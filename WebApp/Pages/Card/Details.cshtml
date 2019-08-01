@@ -8,16 +8,11 @@
 <div class="card card-sm">
   <div class="card-header">
     <div class="row">
-      <div class="col-6">
+      <div class="col-12">
         <h4>
           <strong>@Localizer["Card"]</strong>
           <small>@Model.Input.Card.CardNumber</small>
-        </h4>
-      </div>
-      <div class="col-6 text-right">
-        <h4>
-          <strong>&nbsp;</strong>
-          <small>@Localizer["Next Sync"]: @Localizer[Model.Input.NextSync]</small>
+          <a class="btn btn-pill btn-danger float-xs-none float-right" asp-page="/Card/Unregister" asp-route-id="@Model.Input.Id"><i class="fas fa-trash-alt"></i> </a>
         </h4>
       </div>
     </div>
@@ -32,10 +27,17 @@
 
       @if (Model.Input.Balance != null)
       {
-        <h5 class="mb-4">
-          <strong>@Localizer["Currency Balances"]</strong>
-          <small></small>
-        </h5>
+        <div class="row">
+          <div class="col-sm-6">
+            <h5 class="mb-4">
+              <strong>@Localizer["Currency Balances"]</strong>
+              <small></small>
+            </h5>
+          </div>
+          <div class="col-sm-6 text-sm-right">
+            @Localizer["Next Sync"]: @Localizer[Model.Input.NextSync]
+          </div>
+        </div>
         <div class="row">
           @foreach (var balance in Model.Input.Balance)
           {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Application.Features.Card;
@@ -10,7 +11,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WebApp.Pages.Card
 {
-    public class UnregisterModel : PageModel
+    public class UnregisterModel : PageModelBase
     {
         private readonly IMediator mediator;
 
@@ -25,8 +26,12 @@ namespace WebApp.Pages.Card
         public class InputModel
         {
             public Guid Id { get; set; } //Implement as hidden field
-            public UserCard Card { get; set; }
 
+            [Display(Name = "CardNumber")]
+            public string CardNumber { get; set; }
+
+            [Display(Name = "ExpiredDate")]
+            public DateTime ExpiredDate { get; set; }
         }
 
         public async Task<IActionResult> OnGetAsync(Guid id)
@@ -38,7 +43,8 @@ namespace WebApp.Pages.Card
 
             if(!result.IsError)
             {
-                Input.Card = result.Card;
+                Input.CardNumber = result.Card.CardNumber;
+                Input.ExpiredDate = result.Card.ExpiredDate;
             }
             else
             {
@@ -61,8 +67,7 @@ namespace WebApp.Pages.Card
 
             if (!result.IsError)
             {
-                ///TODO: Add toast success
-                Redirect("/");
+                return RedirectToPage("/Card/Index", new { toast = "success" });
             }
             else
             {
