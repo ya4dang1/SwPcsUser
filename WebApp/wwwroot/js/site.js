@@ -110,6 +110,7 @@ let Localizer = class{
     this.translations = {
       defaultCulture: { },
       "c=ja-JP|uic=ja-JP": {
+        // Data table
         "No data available": "データなし",
         "Showing _START_ to _END_ of _TOTAL_ entries": "_TOTAL_件のうち_START_〜_END_を表示しています",
         "No entries found": "エントリが見つかりません",
@@ -122,7 +123,14 @@ let Localizer = class{
         "First": "最初",
         "Last": "最後",
         ": activate to sort column ascending": ": 列を昇順に並べ替えます",
-        ": activate to sort column descending": ": 列を降順に並べ替えます"
+        ": activate to sort column descending": ": 列を降順に並べ替えます",
+        // Others
+        "Proceed to delete?": "削除に進みますか？",
+        "Proceed to submit?": "投稿に進みますか？",
+        "Success": "完了",
+        "Your submission has been saved.": "あなたの投稿は保存されました。",
+        "Oops": "おっとっと",
+        "Something went wrong.": "何かがうまくいかなかった。"
       }
     };
   }

@@ -83,11 +83,11 @@ $(function () {
 
   // For confirm delete
   $('[class*="confirm-delete"]:not(.disabled)').click(function (e) {
-    return confirm('Proceed to delete?');
+    return confirm(localizer.getTranslation('Proceed to delete?'));
   });
   // For confirm submit
   $('[class*="confirm-submit"]:not(.disabled)').click(function (e) {
-    return confirm('Proceed to submit?');
+    return confirm(localizer.getTranslation('Proceed to submit?'));
   });
   // For confirm submit
   $('.disabled').click(function (e) {
@@ -107,10 +107,10 @@ $(function () {
 
   // For toastr
   if(GetURLParameter('toast') == 'success'){
-    toastr.success('Your submission has been saved.', 'Success');
+    toastr.success(localizer.getTranslation('Your submission has been saved.'), localizer.getTranslation('Success'));
   }
   if(GetURLParameter('toast') == 'error'){
-    toastr.error('Something went wrong.', 'Oops');
+    toastr.error(localizer.getTranslation('Something went wrong.'), localizer.getTranslation('Oops'));
   }
 
   // For general datatable status

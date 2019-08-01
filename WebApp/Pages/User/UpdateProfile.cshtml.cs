@@ -136,7 +136,7 @@ namespace WebApp.Pages.User
 
                 await signInManager.RefreshSignInAsync(user);
 
-                return RedirectToPage("/Card/Index", new {toast = "success" });               
+                return RedirectToPage("/Card/Index", new {toast = "success" });
             }
 
             foreach (var error in result.Errors)
