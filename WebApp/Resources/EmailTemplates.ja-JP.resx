@@ -117,11 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="FG NetService-Account Activation" xml:space="preserve">
-    <value>FG NetService-アカウント登録確認</value>
+  <data name="FG NetService - Account Activation" xml:space="preserve">
+    <value>FG NetService - アカウント登録確認</value>
   </data>
-  <data name="FG NetService-Forgot Password" xml:space="preserve">
-    <value>FG NetService-パスワードを忘れた場合</value>
+  <data name="FG NetService - Reset Password" xml:space="preserve">
+    <value>FG NetService - パスワードをリセット</value>
   </data>
   <data name="Please click &lt;a href='{0}'&gt;here&lt;/a&gt; to reset your password.&lt;br/&gt;&lt;br/&gt;------------------------------------&lt;br/&gt;FG NetService Customer Support&lt;br/&gt;&lt;br/&gt;Email: &lt;a href='mailto:info@fgnetservice.com'&gt;info@fgnetservice.com&lt;/a&gt;&lt;br/&gt;------------------------------------" xml:space="preserve">
     <value>パスワードをリセットするには&lt;a href='{0}'&gt;ここ&lt;/a&gt;をクリックしてください。&lt;br/&gt;&lt;br/&gt;---------------------------------------&lt;br/&gt;FG NetService カスタマーサポート&lt;br/&gt;&lt;br/&gt;Email: &lt;a href='mailto:info@fgnetservice.com'&gt;info@fgnetservice.com&lt;/a&gt;&lt;br/&gt;---------------------------------------</value>
