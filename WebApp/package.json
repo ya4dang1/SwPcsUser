@@ -16,7 +16,7 @@
     "bootstrap-datepicker": "^1.9.0",
     "bootstrap4-toggle": "^3.4.0",
     "chart.js": "^2.8.0",
-    "codemirror": "^5.42.0",
+    "codemirror": "^5.58.2",
     "core-js": "^2.6.5",
     "datatables": "^1.10.18",
     "flag-icon": "^2.5.0",
