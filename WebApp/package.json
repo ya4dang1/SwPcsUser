@@ -24,7 +24,7 @@
     "inputmask": "^4.0.8",
     "jquery-validate": "^2.0.0",
     "merge-stream": "^1.0.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "select2": "^4.0.7",
     "simple-line-icons": "^2.4.1",
     "toastr": "^2.1.4"
